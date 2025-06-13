@@ -40,7 +40,7 @@ cj = pd.DataFrame(worksheet3.get_all_records())
 
 # %% SEGUIMIENTO CLUB DE CHICOS
 '''
-SEGUIMINTO CLUB DE CHICOS
+SEGUIMIENTO CLUB DE CHICOS
 '''
     
 import dash
