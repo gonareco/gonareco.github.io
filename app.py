@@ -97,4 +97,5 @@ def update_cj(escuela):
 
 # ===== 5. Configuración para Render =====
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    port = int(os.environ.get("PORT", 8050))  # Usa el puerto de Render o 8050 por defecto
+    app.run_server(host="0.0.0.0", port=port, debug=False)
