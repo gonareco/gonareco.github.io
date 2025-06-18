@@ -1,346 +1,171 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Fri May 30 11:41:52 2025
-
-@author: gonzalo
-"""
-
+import os
+import dash
+from dash import dcc, html, dash_table
+from dash.dependencies import Input, Output
+import plotly.express as px
+import pandas as pd
 import gspread
 from google.oauth2.service_account import Credentials
 
+# ===== 1. Configuración inicial =====
+app = dash.Dash(__name__, suppress_callback_exceptions=True)
+server = app.server  # ¡Crítico para Render!
 
-# Configura los alcances (scopes)
-scopes = [
-    'https://www.googleapis.com/auth/spreadsheets',
-    'https://www.googleapis.com/auth/drive'
-]
-
-import os
-
-creds_dict = {
-    "type": "service_account",
-    "project_id": os.environ['GCP_PROJECT_ID'],
-    "private_key_id": os.environ['GCP_PRIVATE_KEY_ID'],
-    "private_key": os.environ['GCP_PRIVATE_KEY'].replace('\\n', '\n'),
-    "client_email": os.environ['GCP_CLIENT_EMAIL'],
-    "client_id": os.environ['GCP_CLIENT_ID'],
-    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-    "token_uri": "https://oauth2.googleapis.com/token",
-    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-    "client_x509_cert_url": os.environ['GCP_CLIENT_X509_CERT_URL']
-}
-
-credentials = Credentials.from_service_account_info(creds_dict)  # ✅
-
-# Autoriza el cliente
-client = gspread.authorize(credentials)
-
-# Abre la hoja de cálculo (por nombre o URL)
-spreadsheet = client.open("Raciones_2025")  # o usa .open_by_url("URL")
-
-# Selecciona una hoja específica
-worksheet1 = spreadsheet.get_worksheet(0)  # 0 para la primera hoja
-worksheet2 = spreadsheet.get_worksheet(1)  # 1 para la segunda hoja
-worksheet3 = spreadsheet.get_worksheet(2)  # 2 para la tercera hoja
-
-import pandas as pd
-cch = pd.DataFrame(worksheet1.get_all_records())
-ci = pd.DataFrame(worksheet2.get_all_records())
-cj = pd.DataFrame(worksheet3.get_all_records())
-
-# %% SEGUIMIENTO CLUB DE CHICOS
-'''
-SEGUIMIENTO CLUB DE CHICOS
-'''
+# ===== 2. Conexión a Google Sheets (Versión Mejorada) =====
+try:
+    # Verificación de variables de entorno críticas
+    required_vars = [
+        'GCP_PROJECT_ID',
+        'GCP_PRIVATE_KEY',
+        'GCP_CLIENT_EMAIL',
+        'GCP_CLIENT_X509_CERT_URL'
+    ]
     
-import dash
-from dash import dcc, html
-from dash.dependencies import Input, Output
-import plotly.express as px
-import locale
-locale.setlocale(locale.LC_TIME, 'es_ES.UTF-8')  
-# import pandas as pd
+    missing_vars = [var for var in required_vars if var not in os.environ]
+    if missing_vars:
+        raise RuntimeError(f"Faltan variables de entorno: {', '.join(missing_vars)}")
 
-# Cargar tus datos (ejemplo con tu estructura)
-# cch = pd.read_csv("tu_cchset.csv", encoding='latin1')  # Ajusta el encoding si es necesario
-# cch["Fecha"] = pd.to_datetime(cch["Fecha"], format="%d-%b")  # Convertir a datetime
+    # Configuración de scopes necesarios
+    SCOPES = [
+        'https://www.googleapis.com/auth/spreadsheets',
+        'https://www.googleapis.com/auth/drive'
+    ]
 
-# Iniciar la app Dash
-app = dash.Dash(__name__)
+    creds_dict = {
+        "type": "service_account",
+        "project_id": os.environ['GCP_PROJECT_ID'],
+        "private_key_id": os.environ.get('GCP_PRIVATE_KEY_ID', ''),
+        "private_key": os.environ['GCP_PRIVATE_KEY'].replace('\\n', '\n'),
+        "client_email": os.environ['GCP_CLIENT_EMAIL'],
+        "client_id": os.environ.get('GCP_CLIENT_ID', ''),
+        "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+        "token_uri": "https://oauth2.googleapis.com/token",
+        "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+        "client_x509_cert_url": os.environ['GCP_CLIENT_X509_CERT_URL']
+    }
 
-# Layout del dashboard
+    credentials = Credentials.from_service_account_info(creds_dict, scopes=SCOPES)
+    client = gspread.authorize(credentials)
+
+    # Carga de datos con manejo de errores
+    try:
+        spreadsheet = client.open("Raciones_2025")
+        cch = pd.DataFrame(spreadsheet.get_worksheet(0).get_all_records())
+        ci = pd.DataFrame(spreadsheet.get_worksheet(1).get_all_records())
+        cj = pd.DataFrame(spreadsheet.get_worksheet(2).get_all_records())
+    except Exception as e:
+        print(f"Error al cargar datos de Google Sheets: {str(e)}")
+        raise
+
+except Exception as e:
+    print(f"Error crítico en inicialización: {str(e)}")
+    # Crear datos vacíos para que la app pueda iniciar (modo de fallo seguro)
+    cch = pd.DataFrame(columns=['Escuela', 'Fecha', 'Inscriptos', 'Presentes'])
+    ci = pd.DataFrame(columns=['Escuela', 'Fecha', 'Inscriptos', 'Presentes'])
+    cj = pd.DataFrame(columns=['Escuela', 'Fecha', 'Inscriptos', 'Presentes'])
+    print("Modo de fallo seguro activado - usando datos vacíos")
+
+# ===== 3. Layout principal con pestañas =====
 app.layout = html.Div([
-    html.H1("Dashboard de Seguimiento de Club de Chicos"),
-    
-    # Dropdown para seleccionar escuela
-    dcc.Dropdown(
-        id="escuela-dropdown",
-        options=[{"label": escuela, "value": escuela} for escuela in cch["Escuela"].unique()],
-        value=cch["Escuela"].iloc[0],
-        multi=False
-    ),
-    
-    # Gráficos
-    dcc.Graph(id="inscriptos-presentes"),
-    dcc.Graph(id="raciones"),
-    
-    # Tabla resumen
-    html.Div(id="tabla-resumen")
+    html.H1("Dashboard Educativo GOEAC"),
+    dcc.Tabs([
+        dcc.Tab(label='Club de Chicos', children=[
+            dcc.Dropdown(
+                id='cch-escuela', 
+                options=[{'label': e, 'value': e} for e in cch['Escuela'].unique()], 
+                value=cch['Escuela'].iloc[0] if not cch.empty else None
+            ),
+            dcc.Graph(id='cch-graph'),
+            html.Div(id='cch-table')
+        ]),
+        dcc.Tab(label='Centros Infantiles', children=[
+            dcc.Dropdown(
+                id='ci-escuela', 
+                options=[{'label': e, 'value': e} for e in ci['Escuela'].unique()], 
+                value=ci['Escuela'].iloc[0] if not ci.empty else None
+            ),
+            dcc.Graph(id='ci-graph'),
+            html.Div(id='ci-table')
+        ]),
+        dcc.Tab(label='Club de Jóvenes', children=[
+            dcc.Dropdown(
+                id='cj-escuela', 
+                options=[{'label': e, 'value': e} for e in cj['Escuela'].unique()], 
+                value=cj['Escuela'].iloc[0] if not cj.empty else None
+            ),
+            dcc.Graph(id='cj-graph'),
+            html.Div(id='cj-table')
+        ])
+    ])
 ])
 
-# Callbacks para interactividad
+# ===== 4. Callbacks para cada pestaña (con manejo de errores) =====
 @app.callback(
-    [Output("inscriptos-presentes", "figure"),
-     Output("raciones", "figure"),
-     Output("tabla-resumen", "children")],
-    [Input("escuela-dropdown", "value")]
+    [Output('cch-graph', 'figure'),
+     Output('cch-table', 'children')],
+    [Input('cch-escuela', 'value')]
 )
-def update_dashboard(escuela_seleccionada):
-    filtered_cch = cch[cch["Escuela"] == escuela_seleccionada]
-  
-    # Gráfico de inscriptos vs. presentes
-    fig1 = px.line(
-        filtered_cch, x="Fecha", y=["Inscriptos", "Presentes"],
-        labels={
-            'value' : 'Cantidad',
-            'variable' : 'Tipo'
-            },
-        title=f"Evolución de Inscriptos vs. Presentes - {escuela_seleccionada}"
-    )
-    # Personalización adicional
-    fig1.update_traces(
-        line=dict(width=3),
-        selector=dict(name='Presentes')
-    )
-    for idx, row in filtered_cch.iterrows():
-       if row['Presentes'] == 0 and pd.notna(row['Observaciones']):
-           fig1.add_annotation(
-               x=row['Fecha'],
-               y=0,
-               text=row['Observaciones'],
-               showarrow=True,
-               arrowhead=1,
-               ax=0,
-               ay=-40,
-               bgcolor="rgba(255,0,0,0.2)",
-               bordercolor="#FF0000",
-               font=dict(size=10)
-           )
-
-    # Gráfico de raciones
-    fig2 = px.bar(
-        filtered_cch, x="Fecha", y="Raciones",
-        title=f"Raciones entregadas - {escuela_seleccionada}"
-    )
-    
-    # Tabla resumen
-    tabla = html.Div([
-        html.H3("Resumen por Fecha"),
-        dash.dash_table.DataTable(
-            data=filtered_cch.to_dict("records"),
-            columns=[{"name": col, "id": col} for col in filtered_cch.columns]
+def update_cch(escuela):
+    try:
+        filtered = cch[cch['Escuela'] == escuela]
+        fig = px.line(filtered, x='Fecha', y=['Inscriptos', 'Presentes'], title=f"Club de Chicos - {escuela}")
+        table = dash_table.DataTable(
+            data=filtered.to_dict('records'),
+            style_table={'overflowX': 'auto'}
         )
-    ])
-    
-    return fig1, fig2, tabla
+        return fig, table
+    except Exception as e:
+        print(f"Error en callback cch: {str(e)}")
+        return px.line(), html.Div("Error al cargar datos")
 
-if __name__ == "__main__":
-    app.run(debug=True)
-    
-# %% SEGUIMIENTO CENTROS INFANTILES
-'''
-SEGUIMIENTO CENTROS INFANTILES
-'''
-    
-import dash
-from dash import dcc, html
-from dash.dependencies import Input, Output
-import plotly.express as px
-import locale
-locale.setlocale(locale.LC_TIME, 'es_ES.UTF-8')  
-# import pandas as pd
-
-# Cargar tus datos (ejemplo con tu estructura)
-# ci = pd.read_csv("tu_ciset.csv", encoding='latin1')  # Ajusta el encoding si es necesario
-# ci["Fecha"] = pd.to_datetime(ci["Fecha"], format="%d-%b")  # Convertir a datetime
-
-# Iniciar la app Dash
-app = dash.Dash(__name__)
-
-# Layout del dashboard
-app.layout = html.Div([
-    html.H1("Dashboard de Seguimiento de Centros Infantiles"),
-    
-    # Dropdown para seleccionar escuela
-    dcc.Dropdown(
-        id="escuela-dropdown",
-        options=[{"label": escuela, "value": escuela} for escuela in ci["Escuela"].unique()],
-        value=ci["Escuela"].iloc[0],
-        multi=False
-    ),
-    
-    # Gráficos
-    dcc.Graph(id="inscriptos-presentes"),
-    dcc.Graph(id="raciones"),
-    
-    # Tabla resumen
-    html.Div(id="tabla-resumen")
-])
-
-# Callbacks para interactividad
+# Callbacks para ci y cj (patrón similar)
 @app.callback(
-    [Output("inscriptos-presentes", "figure"),
-     Output("raciones", "figure"),
-     Output("tabla-resumen", "children")],
-    [Input("escuela-dropdown", "value")]
+    [Output('ci-graph', 'figure'),
+     Output('ci-table', 'children')],
+    [Input('ci-escuela', 'value')]
 )
-def update_dashboard(escuela_seleccionada):
-    filtered_ci = ci[ci["Escuela"] == escuela_seleccionada]
-  
-    # Gráfico de inscriptos vs. presentes
-    fig1 = px.line(
-        filtered_ci, x="Fecha", y=["Inscriptos", "Presentes"],
-        labels={
-            'value' : 'Cantidad',
-            'variable' : 'Tipo'
-            },
-        title=f"Evolución de Inscriptos vs. Presentes - {escuela_seleccionada}"
-    )
-    # Personalización adicional
-    fig1.update_traces(
-        line=dict(width=3),
-        selector=dict(name='Presentes')
-    )
-    for idx, row in filtered_ci.iterrows():
-       if row['Presentes'] == 0 and pd.notna(row['Observaciones']):
-           fig1.add_annotation(
-               x=row['Fecha'],
-               y=0,
-               text=row['Observaciones'],
-               showarrow=True,
-               arrowhead=1,
-               ax=0,
-               ay=-40,
-               bgcolor="rgba(255,0,0,0.2)",
-               bordercolor="#FF0000",
-               font=dict(size=10)
-           )
-
-    # Gráfico de raciones
-    fig2 = px.bar(
-        filtered_ci, x="Fecha", y="Raciones",
-        title=f"Raciones entregadas - {escuela_seleccionada}"
-    )
-    
-    # Tabla resumen
-    tabla = html.Div([
-        html.H3("Resumen por Fecha"),
-        dash.dash_table.DataTable(
-            data=filtered_ci.to_dict("records"),
-            columns=[{"name": col, "id": col} for col in filtered_ci.columns]
+def update_ci(escuela):
+    try:
+        filtered = ci[ci['Escuela'] == escuela]
+        fig = px.line(filtered, x='Fecha', y=['Inscriptos', 'Presentes'], title=f"Centros Infantiles - {escuela}")
+        fig2 = px.bar(
+        filtered, x="Fecha", y="Raciones",
+        title=f"Raciones entregadas - {escuela}"
         )
-    ])
-    
-    return fig1, fig2, tabla
+        table = dash_table.DataTable(
+            data=filtered.to_dict('records'),
+            style_table={'overflowX': 'auto'}
+        )
+        return fig, fig2, table
+    except:
+        return px.line(), html.Div("Error al cargar datos")
 
-if __name__ == "__main__":
-    app.run(debug=True)
-# %% SEGUIMIENTO CLUB DE JÓVENES
-'''
-SEGUIMIENTO CLUB DE JÓVENES
-'''
-    
-import dash
-from dash import dcc, html
-from dash.dependencies import Input, Output
-import plotly.express as px
-import locale
-locale.setlocale(locale.LC_TIME, 'es_ES.UTF-8')  
-# import pandas as pd
-
-# Cargar tus datos (ejemplo con tu estructura)
-# ci = pd.read_csv("tu_ciset.csv", encoding='latin1')  # Ajusta el encoding si es necesario
-# ci["Fecha"] = pd.to_datetime(ci["Fecha"], format="%d-%b")  # Convertir a datetime
-
-# Iniciar la app Dash
-app = dash.Dash(__name__)
-
-# Layout del dashboard
-app.layout = html.Div([
-    html.H1("Dashboard de Seguimiento de Club de Jóvenes"),
-    
-    # Dropdown para seleccionar escuela
-    dcc.Dropdown(
-        id="escuela-dropdown",
-        options=[{"label": escuela, "value": escuela} for escuela in cj["Escuela"].unique()],
-        value=cj["Escuela"].iloc[0],
-        multi=False
-    ),
-    
-    # Gráficos
-    dcc.Graph(id="inscriptos-presentes"),
-    dcc.Graph(id="raciones"),
-    
-    # Tabla resumen
-    html.Div(id="tabla-resumen")
-])
-
-# Callbacks para interactividad
 @app.callback(
-    [Output("inscriptos-presentes", "figure"),
-     Output("raciones", "figure"),
-     Output("tabla-resumen", "children")],
-    [Input("escuela-dropdown", "value")]
+    [Output('cj-graph', 'figure'),
+     Output('cj-table', 'children'),
+     Output('cj_graph2', 'figure')],
+    [Input('cj-escuela', 'value')]
 )
-def update_dashboard(escuela_seleccionada):
-    filtered_cj = cj[cj["Escuela"] == escuela_seleccionada]
-  
-    # Gráfico de inscriptos vs. presentes
-    fig1 = px.line(
-        filtered_cj, x="Fecha", y=["Inscriptos", "Presentes"],
-        labels={
-            'value' : 'Cantidad',
-            'variable' : 'Tipo'
-            },
-        title=f"Evolución de Inscriptos vs. Presentes - {escuela_seleccionada}"
-    )
-    # Personalización adicional
-    fig1.update_traces(
-        line=dict(width=3),
-        selector=dict(name='Presentes')
-    )
-    for idx, row in filtered_cj.iterrows():
-       if row['Presentes'] == 0 and pd.notna(row['Observaciones']):
-           fig1.add_annotation(
-               x=row['Fecha'],
-               y=0,
-               text=row['Observaciones'],
-               showarrow=True,
-               arrowhead=1,
-               ax=0,
-               ay=-40,
-               bgcolor="rgba(255,0,0,0.2)",
-               bordercolor="#FF0000",
-               font=dict(size=10)
-           )
-
-    # Gráfico de raciones
-    fig2 = px.bar(
-        filtered_cj, x="Fecha", y="Raciones",
-        title=f"Raciones entregadas - {escuela_seleccionada}"
-    )
-    
-    # Tabla resumen
-    tabla = html.Div([
-        html.H3("Resumen por Fecha"),
-        dash.dash_table.DataTable(
-            data=filtered_cj.to_dict("records"),
-            columns=[{"name": col, "id": col} for col in filtered_cj.columns]
+def update_cj(escuela):
+    try:
+        filtered = cj[cj['Escuela'] == escuela]
+        fig = px.line(filtered, x='Fecha', y=['Inscriptos', 'Presentes'], title=f"Club de Jóvenes - {escuela}")
+        table = dash_table.DataTable(
+            data=filtered.to_dict('records'),
+            style_table={'overflowX': 'auto'}
         )
-    ])
-    
-    return fig1, fig2, tabla
+        return fig, table
+    except:
+        return px.line(), html.Div("Error al cargar datos")
 
-if __name__ == "__main__":
-    app.run(debug=True)
+# ===== 5. Configuración para Render =====
+if __name__ == '__main__':
+    port = int(os.environ.get("PORT", 8050))
+    app.run_server(
+        host="0.0.0.0",
+        port=port,
+        debug=False,
+        dev_tools_props_check=False  # Para evitar warnings en producción
+    )
