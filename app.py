@@ -131,6 +131,10 @@ def update_cch(escuela):
             textposition='top center',
             textfont=dict(size=10, color='red')
         )
+        fig2 = px.bar(
+        filtered, x="Fecha", y="Raciones",
+        title=f"Raciones entregadas - {escuela}"
+        )
         table = dash_table.DataTable(
             data=filtered.to_dict('records'),
             style_table={'overflowX': 'auto'}
@@ -140,7 +144,6 @@ def update_cch(escuela):
         print(f"Error en callback cch: {str(e)}")
         return px.line(), html.Div("Error al cargar datos")
 
-# Callbacks para ci y cj (patrón similar)
 @app.callback(
     [Output('ci-graph', 'figure'),
      Output('ci-graph2', 'figure'),
@@ -165,25 +168,53 @@ def update_ci(escuela):
 
 @app.callback(
     [Output('cj-graph', 'figure'),
-     Output('cj_graph2', 'figure')],
-     Output('cj-table', 'children'),
+     Output('cj-graph2', 'figure'),
+     Output('cj-table', 'children')],
     [Input('cj-escuela', 'value')]
 )
 def update_cj(escuela):
     try:
-        filtered = cj[cj['Escuela'] == escuela]
-        fig = px.line(filtered, x='Fecha', y=['Inscriptos', 'Presentes'], title=f"Club de Jóvenes - {escuela}")
-        fig2 = px.bar(
-        filtered, x="Fecha", y="Raciones",
-        title=f"Raciones entregadas - {escuela}"
+        filtered = cj[cj['Escuela'] == escuela].copy()
+        
+        # Crear figura de líneas
+        fig = px.line(
+            filtered, 
+            x='Fecha', 
+            y=['Inscriptos', 'Presentes'], 
+            title=f"Club de Jóvenes - {escuela}"
         )
+        
+        # Añadir anotaciones para observaciones donde Presentes = 0
+        for idx, row in filtered.iterrows():
+            if row['Presentes'] == 0 and pd.notna(row['Observaciones']):
+                fig.add_annotation(
+                    x=row['Fecha'],
+                    y=0,
+                    text=row['Observaciones'],
+                    showarrow=True,
+                    arrowhead=1,
+                    font=dict(size=10, color='red'),
+                    yshift=10
+                )
+        
+        # Crear gráfico de barras para raciones
+        fig2 = px.bar(
+            filtered, 
+            x="Fecha", 
+            y="Raciones",
+            title=f"Raciones entregadas - {escuela}"
+        )
+        
+        # Crear tabla
         table = dash_table.DataTable(
             data=filtered.to_dict('records'),
             style_table={'overflowX': 'auto'}
         )
-        return fig, table
-    except:
-        return px.line(), html.Div("Error al cargar datos")
+        
+        return fig, fig2, table
+    except Exception as e:
+        print(f"Error en update_cj: {e}")
+        return px.line(), px.bar(), html.Div("Error al cargar datos")
 
 # ===== 5. Configuración para Render =====
 if __name__ == '__main__':
