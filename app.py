@@ -69,7 +69,7 @@ except Exception as e:
 
 # ===== 3. Layout principal con pestañas =====
 app.layout = html.Div([
-    html.H1("Dashboard GOEAC"),
+    html.H1("Dashboard GOEAC 16:07"),
     dcc.Tabs([
         dcc.Tab(label='Centros Infantiles', children=[
             dcc.Dropdown(
