@@ -110,8 +110,6 @@ app.layout = html.Div([
 def update_cch(escuela):
     try:
         filtered = cch[cch['Escuela'] == escuela]
-        filtered['Inscriptos'] = pd.to_numeric(filtered['Inscriptos'], errors='coerce')
-        filtered['Presentes'] = pd.to_numeric(filtered['Presentes'], errors='coerce')
         fig = px.line(filtered, x='Fecha', y=['Inscriptos', 'Presentes'], title=f"Club de Chicos - {escuela}")
         table = dash_table.DataTable(
             data=filtered.to_dict('records'),
@@ -131,8 +129,6 @@ def update_cch(escuela):
 def update_ci(escuela):
     try:
         filtered = ci[ci['Escuela'] == escuela]
-        filtered['Inscriptos'] = pd.to_numeric(filtered['Inscriptos'], errors='coerce')
-        filtered['Presentes'] = pd.to_numeric(filtered['Presentes'], errors='coerce')
         fig = px.line(filtered, x='Fecha', y=['Inscriptos', 'Presentes'], title=f"Centros Infantiles - {escuela}")
         table = dash_table.DataTable(
             data=filtered.to_dict('records'),
@@ -150,8 +146,6 @@ def update_ci(escuela):
 def update_cj(escuela):
     try:
         filtered = cj[cj['Escuela'] == escuela]
-        filtered['Inscriptos'] = pd.to_numeric(filtered['Inscriptos'], errors='coerce')
-        filtered['Presentes'] = pd.to_numeric(filtered['Presentes'], errors='coerce')
         fig = px.line(filtered, x='Fecha', y=['Inscriptos', 'Presentes'], title=f"Club de Jóvenes - {escuela}")
         table = dash_table.DataTable(
             data=filtered.to_dict('records'),
