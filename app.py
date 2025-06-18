@@ -104,7 +104,7 @@ app.layout = html.Div([
 # ===== 4. Callbacks para cada pestaña (con manejo de errores) =====
 @app.callback(
     [Output('cch-graph', 'figure'),
-     Output('cch-graph2', 'figure),
+     Output('cch-graph2', 'figure'),
      Output('cch-table', 'children')],
     [Input('cch-escuela', 'value')]
 )
@@ -165,8 +165,8 @@ def update_ci(escuela):
 
 @app.callback(
     [Output('cj-graph', 'figure'),
-     Output('cj-table', 'children'),
      Output('cj_graph2', 'figure')],
+     Output('cj-table', 'children'),
     [Input('cj-escuela', 'value')]
 )
 def update_cj(escuela):
