@@ -63,8 +63,8 @@ except Exception as e:
     print(f"Error crítico en inicialización: {str(e)}")
     # Crear datos vacíos para que la app pueda iniciar (modo de fallo seguro)
     cch = pd.DataFrame(columns=['Escuela', 'Fecha', 'Inscriptos', 'Presentes','Observaciones'])
-    ci = pd.DataFrame(columns=['Escuela', 'Fecha', 'Inscriptos', 'Presentes','Observaciones'])
-    cj = pd.DataFrame(columns=['Escuela', 'Fecha', 'Inscriptos', 'Presentes','Observaciones'])
+    ci = pd.DataFrame(columns=['Escuela', 'Fecha', 'Inscriptos', 'Presentes'])
+    cj = pd.DataFrame(columns=['Escuela', 'Fecha', 'Inscriptos', 'Presentes'])
     print("Modo de fallo seguro activado - usando datos vacíos")
 
 # ===== 3. Layout principal con pestañas =====
@@ -146,7 +146,6 @@ def update_cch(escuela):
 
 @app.callback(
     [Output('ci-graph', 'figure'),
-     Output('ci-graph2', 'figure'),
      Output('ci-table', 'children')],
     [Input('ci-escuela', 'value')]
 )
@@ -154,10 +153,6 @@ def update_ci(escuela):
     try:
         filtered = ci[ci['Escuela'] == escuela]
         fig = px.line(filtered, x='Fecha', y=['Inscriptos', 'Presentes'], title=f"Centros Infantiles - {escuela}")
-        fig2 = px.bar(
-        filtered, x="Fecha", y="Raciones",
-        title=f"Raciones entregadas - {escuela}"
-        )
         table = dash_table.DataTable(
             data=filtered.to_dict('records'),
             style_table={'overflowX': 'auto'}
@@ -168,7 +163,6 @@ def update_ci(escuela):
 
 @app.callback(
     [Output('cj-graph', 'figure'),
-     Output('cj-graph2', 'figure'),
      Output('cj-table', 'children')],
     [Input('cj-escuela', 'value')]
 )
@@ -177,41 +171,14 @@ def update_cj(escuela):
         filtered = cj[cj['Escuela'] == escuela].copy()
         
         # Crear figura de líneas
-        fig = px.line(
-            filtered, 
-            x='Fecha', 
-            y=['Inscriptos', 'Presentes'], 
-            title=f"Club de Jóvenes - {escuela}"
-        )
-        
-        # Añadir anotaciones para observaciones donde Presentes = 0
-        for idx, row in filtered.iterrows():
-            if row['Presentes'] == 0 and pd.notna(row['Observaciones']):
-                fig.add_annotation(
-                    x=row['Fecha'],
-                    y=0,
-                    text=row['Observaciones'],
-                    showarrow=True,
-                    arrowhead=1,
-                    font=dict(size=10, color='red'),
-                    yshift=10
-                )
-        
-        # Crear gráfico de barras para raciones
-        fig2 = px.bar(
-            filtered, 
-            x="Fecha", 
-            y="Raciones",
-            title=f"Raciones entregadas - {escuela}"
-        )
-        
-        # Crear tabla
+        fig = px.line(filtered, x='Fecha', y=['Inscriptos', 'Presentes'], title=f"Centros Infantiles - {escuela}")    
+       # Crear tabla
         table = dash_table.DataTable(
             data=filtered.to_dict('records'),
             style_table={'overflowX': 'auto'}
         )
         
-        return fig, fig2, table
+        return fig, table
     except Exception as e:
         print(f"Error en update_cj: {e}")
         return px.line(), px.bar(), html.Div("Error al cargar datos")
