@@ -1,6 +1,6 @@
-gspread
 pandas
-dash
 plotly
 google-auth
 gunicorn==20.1.0
+dash==2.10.2
+gspread==5.8.0
