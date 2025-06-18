@@ -16,11 +16,22 @@ scopes = [
     'https://www.googleapis.com/auth/drive'
 ]
 
-# Carga las credenciales desde el archivo JSON
-credentials = Credentials.from_service_account_file(
-    '/home/gonzalo/Documentos/Trabajo/Educacion/GOEAC/uso_general/acceso/goeac-general-dff4004b45b0.json',
-    scopes=scopes
-)
+import os
+
+creds_dict = {
+    "type": "service_account",
+    "project_id": os.environ['GCP_PROJECT_ID'],
+    "private_key_id": os.environ['GCP_PRIVATE_KEY_ID'],
+    "private_key": os.environ['GCP_PRIVATE_KEY'].replace('\\n', '\n'),
+    "client_email": os.environ['GCP_CLIENT_EMAIL'],
+    "client_id": os.environ['GCP_CLIENT_ID'],
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_x509_cert_url": os.environ['GCP_CLIENT_X509_CERT_URL']
+}
+
+credentials = Credentials.from_service_account_info(creds_dict)  # ✅
 
 # Autoriza el cliente
 client = gspread.authorize(credentials)
