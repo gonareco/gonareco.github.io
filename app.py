@@ -104,6 +104,7 @@ app.layout = html.Div([
 # ===== 4. Callbacks para cada pestaña (con manejo de errores) =====
 @app.callback(
     [Output('cch-graph', 'figure'),
+     Output('cch-graph2', 'figure),
      Output('cch-table', 'children')],
     [Input('cch-escuela', 'value')]
 )
@@ -111,6 +112,10 @@ def update_cch(escuela):
     try:
         filtered = cch[cch['Escuela'] == escuela]
         fig = px.line(filtered, x='Fecha', y=['Inscriptos', 'Presentes'], title=f"Club de Chicos - {escuela}")
+        fig2 = px.bar(
+        filtered, x="Fecha", y="Raciones",
+        title=f"Raciones entregadas - {escuela}"
+        )
         table = dash_table.DataTable(
             data=filtered.to_dict('records'),
             style_table={'overflowX': 'auto'}
@@ -123,6 +128,7 @@ def update_cch(escuela):
 # Callbacks para ci y cj (patrón similar)
 @app.callback(
     [Output('ci-graph', 'figure'),
+     Output('ci-graph2', 'figure'),
      Output('ci-table', 'children')],
     [Input('ci-escuela', 'value')]
 )
@@ -152,6 +158,10 @@ def update_cj(escuela):
     try:
         filtered = cj[cj['Escuela'] == escuela]
         fig = px.line(filtered, x='Fecha', y=['Inscriptos', 'Presentes'], title=f"Club de Jóvenes - {escuela}")
+        fig2 = px.bar(
+        filtered, x="Fecha", y="Raciones",
+        title=f"Raciones entregadas - {escuela}"
+        )
         table = dash_table.DataTable(
             data=filtered.to_dict('records'),
             style_table={'overflowX': 'auto'}
