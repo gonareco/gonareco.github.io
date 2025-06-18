@@ -108,13 +108,28 @@ app.layout = html.Div([
      Output('cch-table', 'children')],
     [Input('cch-escuela', 'value')]
 )
-def update_cch(escuela):
+def update_cj(escuela):
     try:
-        filtered = cch[cch['Escuela'] == escuela]
-        fig = px.line(filtered, x='Fecha', y=['Inscriptos', 'Presentes'], title=f"Club de Chicos - {escuela}")
-        fig2 = px.bar(
-        filtered, x="Fecha", y="Raciones",
-        title=f"Raciones entregadas - {escuela}"
+        filtered = cj[cj['Escuela'] == escuela].copy()
+        
+        # Crear una columna que contenga las observaciones solo cuando Presentes = 0
+        filtered['Observacion_Display'] = filtered.apply(
+            lambda x: x['Observacion'] if x['Presentes'] == 0 else '', 
+            axis=1
+        )
+        
+        fig = px.line(
+            filtered, 
+            x='Fecha', 
+            y=['Inscriptos', 'Presentes'], 
+            title=f"Club de Jóvenes - {escuela}",
+            text='Observacion_Display'  # Mostrar las observaciones como texto
+        )
+        
+        # Personalizar cómo se muestran las anotaciones
+        fig.update_traces(
+            textposition='top center',
+            textfont=dict(size=10, color='red')
         )
         table = dash_table.DataTable(
             data=filtered.to_dict('records'),
