@@ -71,15 +71,6 @@ except Exception as e:
 app.layout = html.Div([
     html.H1("Dashboard Educativo GOEAC"),
     dcc.Tabs([
-        dcc.Tab(label='Club de Chicos', children=[
-            dcc.Dropdown(
-                id='cch-escuela', 
-                options=[{'label': e, 'value': e} for e in cch['Escuela'].unique()], 
-                value=cch['Escuela'].iloc[0] if not cch.empty else None
-            ),
-            dcc.Graph(id='cch-graph'),
-            html.Div(id='cch-table')
-        ]),
         dcc.Tab(label='Centros Infantiles', children=[
             dcc.Dropdown(
                 id='ci-escuela', 
@@ -88,6 +79,15 @@ app.layout = html.Div([
             ),
             dcc.Graph(id='ci-graph'),
             html.Div(id='ci-table')
+        ]),
+        dcc.Tab(label='Club de Chicos', children=[
+            dcc.Dropdown(
+                id='cch-escuela', 
+                options=[{'label': e, 'value': e} for e in cch['Escuela'].unique()], 
+                value=cch['Escuela'].iloc[0] if not cch.empty else None
+            ),
+            dcc.Graph(id='cch-graph'),
+            html.Div(id='cch-table')
         ]),
         dcc.Tab(label='Club de Jóvenes', children=[
             dcc.Dropdown(
