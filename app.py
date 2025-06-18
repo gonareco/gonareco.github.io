@@ -108,7 +108,7 @@ app.layout = html.Div([
      Output('cch-table', 'children')],
     [Input('cch-escuela', 'value')]
 )
-def update_cj(escuela):
+def update_cch(escuela):
     try:
         filtered = cj[cj['Escuela'] == escuela].copy()
         
