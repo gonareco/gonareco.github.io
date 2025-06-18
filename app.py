@@ -62,9 +62,9 @@ try:
 except Exception as e:
     print(f"Error crítico en inicialización: {str(e)}")
     # Crear datos vacíos para que la app pueda iniciar (modo de fallo seguro)
-    cch = pd.DataFrame(columns=['Escuela', 'Fecha', 'Inscriptos', 'Presentes'])
-    ci = pd.DataFrame(columns=['Escuela', 'Fecha', 'Inscriptos', 'Presentes'])
-    cj = pd.DataFrame(columns=['Escuela', 'Fecha', 'Inscriptos', 'Presentes'])
+    cch = pd.DataFrame(columns=['Escuela', 'Fecha', 'Inscriptos', 'Presentes','Observaciones'])
+    ci = pd.DataFrame(columns=['Escuela', 'Fecha', 'Inscriptos', 'Presentes','Observaciones'])
+    cj = pd.DataFrame(columns=['Escuela', 'Fecha', 'Inscriptos', 'Presentes','Observaciones'])
     print("Modo de fallo seguro activado - usando datos vacíos")
 
 # ===== 3. Layout principal con pestañas =====
@@ -114,7 +114,7 @@ def update_cch(escuela):
         
         # Crear una columna que contenga las observaciones solo cuando Presentes = 0
         filtered['Observacion_Display'] = filtered.apply(
-            lambda x: x['Observacion'] if x['Presentes'] == 0 else '', 
+            lambda x: x['Observaciones'] if x['Presentes'] == 0 else '', 
             axis=1
         )
         
