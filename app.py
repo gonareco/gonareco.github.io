@@ -134,6 +134,11 @@ def update_ci(escuela, n_clicks):
         ci = pd.DataFrame(worksheet.get_all_records())
         
         filtered = ci[ci['Escuela'] == escuela]
+        
+        filtered['Observaciones'] = filtered.apply(
+            lambda row: row['Observaciones'] if row['Presentes'] == 0 else '',
+            axis=1
+        )
         fig = px.line(filtered, x='Fecha', y=['Inscriptos', 'Presentes'], title=f"Centros Infantiles - {escuela}")
         table = dash_table.DataTable(
             data=filtered.to_dict('records'),
