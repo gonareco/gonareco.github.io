@@ -125,7 +125,7 @@ def update_cch(escuela):
     [Output('ci-graph', 'figure'),
      Output('ci-table', 'children')],
     [Input('ci-escuela', 'value'),
-    Input('refresh-button', 'n_clicks')] ]
+    Input('refresh-button', 'n_clicks')]
 )
 def update_ci(escuela, n_clicks):
     worksheet = client.open("Raciones_2025").get_worksheet(1)
