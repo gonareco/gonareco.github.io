@@ -17,12 +17,12 @@ server = app.server
 
 # Configuración de estilos
 styles = {
-    'background': '#121212',
-    'text': '#FFD700',
-    'accent': '#FFA500',
-    'card': '#1E1E1E',
+    'background': '#F5F5F5',
+    'text': '#0A2463',
+    'accent': '#0A2463', #COLOR DE TÍTULO GENERAL
+    'card': '#FFFFFF',
     'font': 'Roboto, sans-serif',
-    'grid': '#333333'
+    'grid': '#E0E0E0'
 }
 
 app.index_string = '''
@@ -117,14 +117,18 @@ app.layout = html.Div([
             'marginBottom': '0'
         }),
         html.Button('Actualizar Datos', id='refresh-button', n_clicks=0, style={
-            'backgroundColor': styles['accent'],
+            'backgroundColor': styles['card'],
             'color': '#000',
             'border': 'none',
-            'padding': '10px 20px',
+            'padding': '0px 20px',
             'margin': '10px',
             'borderRadius': '5px',
-            'fontWeight': 'bold',
-            'cursor': 'pointer'
+            'fontWeight': 'normal',
+            'cursor': 'pointer',
+            'justifyContent': 'center',  # Centra horizontalmente
+            'alignItems': 'center',      # Centra verticalmente
+            'height': '40px',
+            'widht': '100%'
         }),
     ], style={'backgroundColor': styles['background']}),
     
