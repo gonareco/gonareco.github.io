@@ -69,7 +69,8 @@ except Exception as e:
 
 # ===== 3. Layout principal con pestañas =====
 app.layout = html.Div([
-    html.H1("Dashboard GOEAC 16:07"),
+    html.H1("Dashboard GOEAC 16:07")
+    html.Button('Actualizar Datos', id='refresh-button', n_clicks=0),
     dcc.Tabs([
         dcc.Tab(label='Centros Infantiles', children=[
             dcc.Dropdown(
@@ -128,11 +129,13 @@ def update_cch(escuela):
     Input('refresh-button', 'n_clicks')]
 )
 def update_ci(escuela, n_clicks):
-    worksheet = client.open("Raciones_2025").get_worksheet(1)
-    ci = pd.DataFrame(worksheet.get_all_records())
     try:
+        worksheet = client.open("Raciones_2025").get_worksheet(1)
+        ci = pd.DataFrame(worksheet.get_all_records())
+        
         filtered = ci[ci['Escuela'] == escuela]
-        fig = px.line(filtered, x='Fecha', y=['Inscriptos', 'Presentes'], title=f"Centros Infantiles - {escuela}")
+        fig = px.line(filtered, x='Fecha', y=['Inscriptos', 'Presentes'],
+                      title=f"Centros Infantiles - {escuela}")
         table = dash_table.DataTable(
             data=filtered.to_dict('records'),
             style_table={'overflowX': 'auto'}
