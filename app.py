@@ -69,7 +69,7 @@ except Exception as e:
 
 # ===== 3. Layout principal con pestañas =====
 app.layout = html.Div([
-    html.H1("Dashboard GOEAC")
+    html.H1("Dashboard GOEAC"),
     html.Button('Actualizar Datos', id='refresh-button', n_clicks=0),
     dcc.Tabs([
         dcc.Tab(label='Centros Infantiles', children=[
@@ -126,7 +126,7 @@ def update_cch(escuela):
     [Output('ci-graph', 'figure'),
      Output('ci-table', 'children')],
     [Input('ci-escuela', 'value'),
-    Input('refresh-button', 'n_clicks')]
+     Input('refresh-button', 'n_clicks')]
 )
 def update_ci(escuela, n_clicks):
     try:
