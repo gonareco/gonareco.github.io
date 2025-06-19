@@ -164,18 +164,6 @@ app.layout = html.Div([
             'color': styles['accent'],
             'border': f'2px solid {styles["accent"]}'
         }),
-        
-        dcc.Tab(label='CAI', value='tab-cai', style={
-            'backgroundColor': styles['background'],
-            'color': styles['text'],
-            'border': f'1px solid {styles["accent"]}',
-            'fontWeight': 'bold',
-            'padding': '10px'
-        }, selected_style={
-            'backgroundColor': styles['card'],
-            'color': styles['accent'],
-            'border': f'2px solid {styles["accent"]}'
-        }),
     ], style={
         'backgroundColor': styles['background'],
         'color': styles['text'],
