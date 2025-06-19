@@ -109,10 +109,11 @@ app.layout = html.Div([
     [Input('cch-escuela', 'value'),
      Input('refresh-button', 'n_clicks')]
 )
-def update_cch(escuela):
+def update_cch(escuela, n_clicks):
     try:
         worksheet = client.open("Raciones_2025").get_worksheet(0)
         cch = pd.DataFrame(worksheet.get_all_records())
+        
         filtered = cch[cch['Escuela'] == escuela]
         fig = px.line(filtered, x='Fecha', y=['Inscriptos', 'Presentes'], title=f"Club de Chicos - {escuela}")
         for idx, row in filtered.iterrows():
@@ -182,7 +183,7 @@ def update_ci(escuela, n_clicks):
     [Input('cj-escuela', 'value'),
      Input('refresh-button', 'n_clicks')]
 )
-def update_cj(escuela):
+def update_cj(escuela, n_clicks):
     try:
         worksheet = client.open("Raciones_2025").get_worksheet(2)
         cj = pd.DataFrame(worksheet.get_all_records())
