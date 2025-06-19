@@ -106,12 +106,30 @@ app.layout = html.Div([
 @app.callback(
     [Output('cch-graph', 'figure'),
      Output('cch-table', 'children')],
-    [Input('cch-escuela', 'value')]
+    [Input('cch-escuela', 'value'),
+     Input('refresh-button', 'n_clicks')]
 )
 def update_cch(escuela):
     try:
+        worksheet = client.open("Raciones_2025").get_worksheet(0)
+        cch = pd.DataFrame(worksheet.get_all_records())
         filtered = cch[cch['Escuela'] == escuela]
         fig = px.line(filtered, x='Fecha', y=['Inscriptos', 'Presentes'], title=f"Club de Chicos - {escuela}")
+        for idx, row in filtered.iterrows():
+            if row['Presentes'] == 0 and pd.notna(row.get('Observaciones', '')):
+                fig.add_annotation(
+                    x=row['Fecha'],
+                    y=0,
+                    text=row['Observaciones'],
+                    showarrow=True,
+                    arrowhead=1,
+                    ax=0,
+                    ay=-40,
+                    bgcolor="rgba(255,0,0,0.2)",
+                    bordercolor="#FF0000",
+                    font=dict(size=10),
+                    yanchor='top'
+                )
         table = dash_table.DataTable(
             data=filtered.to_dict('records'),
             style_table={'overflowX': 'auto'}
@@ -161,12 +179,30 @@ def update_ci(escuela, n_clicks):
 @app.callback(
     [Output('cj-graph', 'figure'),
      Output('cj-table', 'children')],
-    [Input('cj-escuela', 'value')]
+    [Input('cj-escuela', 'value'),
+     Input('refresh-button', 'n_clicks')]
 )
 def update_cj(escuela):
     try:
+        worksheet = client.open("Raciones_2025").get_worksheet(2)
+        cj = pd.DataFrame(worksheet.get_all_records())
         filtered = cj[cj['Escuela'] == escuela]
         fig = px.line(filtered, x='Fecha', y=['Inscriptos', 'Presentes'], title=f"Club de Jóvenes - {escuela}")
+        for idx, row in filtered.iterrows():
+            if row['Presentes'] == 0 and pd.notna(row.get('Observaciones', '')):
+                fig.add_annotation(
+                    x=row['Fecha'],
+                    y=0,
+                    text=row['Observaciones'],
+                    showarrow=True,
+                    arrowhead=1,
+                    ax=0,
+                    ay=-40,
+                    bgcolor="rgba(255,0,0,0.2)",
+                    bordercolor="#FF0000",
+                    font=dict(size=10),
+                    yanchor='top'
+                )
         table = dash_table.DataTable(
             data=filtered.to_dict('records'),
             style_table={'overflowX': 'auto'}
