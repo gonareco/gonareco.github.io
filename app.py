@@ -55,6 +55,7 @@ try:
         cch = pd.DataFrame(spreadsheet.get_worksheet(0).get_all_records())
         ci = pd.DataFrame(spreadsheet.get_worksheet(1).get_all_records())
         cj = pd.DataFrame(spreadsheet.get_worksheet(2).get_all_records())
+        cai = pd.DataFrame(spreadsheet.get_worksheet(3).get_all_records())
     except Exception as e:
         print(f"Error al cargar datos de Google Sheets: {str(e)}")
         raise
@@ -65,6 +66,7 @@ except Exception as e:
     cch = pd.DataFrame(columns=['Escuela', 'Fecha', 'Inscriptos', 'Presentes'])
     ci = pd.DataFrame(columns=['Escuela', 'Fecha', 'Inscriptos', 'Presentes'])
     cj = pd.DataFrame(columns=['Escuela', 'Fecha', 'Inscriptos', 'Presentes'])
+    cai = pd.DataFrame(columns=['Escuela', 'Fecha', 'Inscriptos', 'Presentes'])
     print("Modo de fallo seguro activado - usando datos vacíos")
 
 # ===== 3. Layout principal con pestañas =====
@@ -93,6 +95,15 @@ app.layout = html.Div([
         dcc.Tab(label='Club de Jóvenes', children=[
             dcc.Dropdown(
                 id='cj-escuela', 
+                options=[{'label': e, 'value': e} for e in cj['Escuela'].unique()], 
+                value=cj['Escuela'].iloc[0] if not cj.empty else None
+            ),
+            dcc.Graph(id='cj-graph'),
+            html.Div(id='cj-table')
+        ]),
+        dcc.Tab(label='CAI', children=[
+            dcc.Dropdown(
+                id='cai-escuela', 
                 options=[{'label': e, 'value': e} for e in cj['Escuela'].unique()], 
                 value=cj['Escuela'].iloc[0] if not cj.empty else None
             ),
@@ -211,6 +222,45 @@ def update_cj(escuela, n_clicks):
         return fig, table
     except:
         return px.line(), html.Div("Error al cargar datos")
+
+@app.callback(
+    [Output('cai-graph', 'figure'),
+     Output('cai-table', 'children')],
+    [Input('cai-escuela', 'value'),
+     Input('refresh-button', 'n_clicks')]
+)
+def update_cai(escuela, n_clicks):
+    try:
+        worksheet = client.open("Raciones_2025").get_worksheet(3)
+        cai = pd.DataFrame(worksheet.get_all_records())
+        
+        filtered = cai[cch['Escuela'] == escuela]
+        fig = px.line(filtered, x='Fecha', y=['Inscriptos', 'Presentes'], title=f"Club de Chicos - {escuela}")
+        for idx, row in filtered.iterrows():
+            if row['Presentes'] == 0 and pd.notna(row.get('Observaciones', '')):
+                fig.add_annotation(
+                    x=row['Fecha'],
+                    y=0,
+                    text=row['Observaciones'],
+                    showarrow=True,
+                    arrowhead=1,
+                    ax=0,
+                    ay=-40,
+                    bgcolor="rgba(255,0,0,0.2)",
+                    bordercolor="#FF0000",
+                    font=dict(size=10),
+                    yanchor='top'
+                )
+        table = dash_table.DataTable(
+            data=filtered.to_dict('records'),
+            style_table={'overflowX': 'auto'}
+        )
+        return fig, table
+    except Exception as e:
+        print(f"Error en callback cch: {str(e)}")
+        return px.line(), html.Div("Error al cargar datos")
+
+        
 
 # ===== 5. Configuración para Render =====
 if __name__ == '__main__':
