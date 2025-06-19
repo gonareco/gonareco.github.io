@@ -69,7 +69,7 @@ except Exception as e:
 
 # ===== 3. Layout principal con pestañas =====
 app.layout = html.Div([
-    html.H1("Dashboard GOEAC 16:07")
+    html.H1("Dashboard GOEAC")
     html.Button('Actualizar Datos', id='refresh-button', n_clicks=0),
     dcc.Tabs([
         dcc.Tab(label='Centros Infantiles', children=[
@@ -121,7 +121,7 @@ def update_cch(escuela):
         print(f"Error en callback cch: {str(e)}")
         return px.line(), html.Div("Error al cargar datos")
 
-# Callbacks para ci y cj (patrón similar)
+# Callbacks para ci
 @app.callback(
     [Output('ci-graph', 'figure'),
      Output('ci-table', 'children')],
@@ -134,8 +134,7 @@ def update_ci(escuela, n_clicks):
         ci = pd.DataFrame(worksheet.get_all_records())
         
         filtered = ci[ci['Escuela'] == escuela]
-        fig = px.line(filtered, x='Fecha', y=['Inscriptos', 'Presentes'],
-                      title=f"Centros Infantiles - {escuela}")
+        fig = px.line(filtered, x='Fecha', y=['Inscriptos', 'Presentes'], title=f"Centros Infantiles - {escuela}")
         table = dash_table.DataTable(
             data=filtered.to_dict('records'),
             style_table={'overflowX': 'auto'}
