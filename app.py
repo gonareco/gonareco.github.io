@@ -124,9 +124,12 @@ def update_cch(escuela):
 @app.callback(
     [Output('ci-graph', 'figure'),
      Output('ci-table', 'children')],
-    [Input('ci-escuela', 'value')]
+    [Input('ci-escuela', 'value'),
+    Input('refresh-button', 'n_clicks')] ]
 )
-def update_ci(escuela):
+def update_ci(escuela, n_clicks):
+    worksheet = client.open("Raciones_2025").get_worksheet(1)
+    ci = pd.DataFrame(worksheet.get_all_records())
     try:
         filtered = ci[ci['Escuela'] == escuela]
         fig = px.line(filtered, x='Fecha', y=['Inscriptos', 'Presentes'], title=f"Centros Infantiles - {escuela}")
