@@ -304,7 +304,7 @@ def create_graph_and_table(worksheet_num, escuela, title):
             style_data_conditional=[
                 {
                     'if': {'row_index': 'odd'},
-                    'backgroundColor': '#2A2A2A'
+                    'backgroundColor': '#F5F5F5'
                 },
                 {
                     'if': {'column_id': 'Observaciones'},
@@ -324,7 +324,7 @@ def create_graph_and_table(worksheet_num, escuela, title):
     [Output('ci-graph', 'figure'),
      Output('ci-table', 'children')],
     [Input('ci-escuela', 'value'),
-     Input('refresh-button', 'n_clicks')]
+     Input('refresh-button', 'n_clicks')]    
 )
 def update_ci(escuela, n_clicks):
     return create_graph_and_table(1, escuela, "Centros Infantiles")
