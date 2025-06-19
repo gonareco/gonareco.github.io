@@ -107,8 +107,8 @@ app.layout = html.Div([
                 options=[{'label': e, 'value': e} for e in cj['Escuela'].unique()], 
                 value=cj['Escuela'].iloc[0] if not cj.empty else None
             ),
-            dcc.Graph(id='cj-graph'),
-            html.Div(id='cj-table')
+            dcc.Graph(id='cai-graph'),
+            html.Div(id='cai-table')
         ])
     ])
 ])
