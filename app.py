@@ -279,7 +279,7 @@ def create_graph_and_table(worksheet_num, escuela, title):
                     ay=-40,
                     bgcolor="rgba(255,165,0,0.3)",
                     bordercolor=styles['accent'],
-                    font=dict(size=10, color='white'),
+                    font=dict(size=10, color='blue'),
                     yanchor='top'
                 )
         
