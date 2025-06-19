@@ -100,15 +100,6 @@ app.layout = html.Div([
             ),
             dcc.Graph(id='cj-graph'),
             html.Div(id='cj-table')
-        ]),
-        dcc.Tab(label='CAI', children=[
-            dcc.Dropdown(
-                id='cai-escuela', 
-                options=[{'label': e, 'value': e} for e in cai['Escuela'].unique()], 
-                value=cai['Escuela'].iloc[0] if not cj.empty else None
-            ),
-            dcc.Graph(id='cai-graph'),
-            html.Div(id='cai-table')
         ])
     ])
 ])
