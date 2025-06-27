@@ -398,7 +398,6 @@ def update_cai(escuela, n_clicks):
     [Input('refresh-button', 'n_clicks'),
      Input('tipo-centro', 'value')]
 )
-
 def update_resumen(n_clicks, tipo_centro):
     try:
         # Cargar datos actualizados
@@ -406,132 +405,102 @@ def update_resumen(n_clicks, tipo_centro):
         cch = pd.DataFrame(spreadsheet.get_worksheet(0).get_all_records())
         ci = pd.DataFrame(spreadsheet.get_worksheet(1).get_all_records())
         cj = pd.DataFrame(spreadsheet.get_worksheet(2).get_all_records())
-        # cai = pd.DataFrame(spreadsheet.get_worksheet(3).get_all_records())  # Descomentar cuando esté disponible
         
-        def limpiar_datos(df):
+        def limpiar_y_convertir(df):
             if df.empty:
                 return df
             
+            # Convertir fechas primero
+            df['Fecha'] = pd.to_datetime(df['Fecha'], dayfirst=True, errors='coerce')
+            df = df.dropna(subset=['Fecha'])
+            
+            # Convertir Inscriptos y Presentes a numéricos
             for col in ['Inscriptos', 'Presentes']:
                 if col in df.columns:
-                    # Convertir a string solo si no es ya string
+                    # Convertir a string si no lo es
                     if not pd.api.types.is_string_dtype(df[col]):
                         df[col] = df[col].astype(str)
                     
-                    # Extraer números y convertir a numérico
+                    # Extraer solo los números
                     df[col] = df[col].str.extract(r'(\d+)', expand=False)
-                    df[col] = pd.to_numeric(df[col], errors='coerce')  # Mantener como float para detectar NaN
+                    
+                    # Convertir a numérico, reemplazar NaN con 0
+                    df[col] = pd.to_numeric(df[col], errors='coerce').fillna(0).astype(int)
+            
             return df
         
-        # Limpiar datos de todos los centros
-        ci = limpiar_datos(ci)
-        cch = limpiar_datos(cch)
-        cj = limpiar_datos(cj)
-        # cai = limpiar_datos(cai)  # Descomentar cuando esté disponible
+        # Limpiar todos los datasets
+        ci = limpiar_y_convertir(ci)
+        cch = limpiar_y_convertir(cch)
+        cj = limpiar_y_convertir(cj)
         
-        def procesar_datos(df, nombre):
+        def obtener_resumen(df, nombre):
             if df.empty:
                 return pd.DataFrame()
             
-            # Convertir Fecha a datetime si no lo está
-            if not pd.api.types.is_datetime64_any_dtype(df['Fecha']):
-                df['Fecha'] = pd.to_datetime(df['Fecha'], errors='coerce')
-                df = df.dropna(subset=['Fecha'])
+            # Filtrar solo filas con Inscriptos > 0
+            df = df[df['Inscriptos'] > 0]
             
-            # Ordenar por fecha descendente
-            df = df.sort_values('Fecha', ascending=False)
-            
-            # Filtrar solo registros con Inscriptos válidos (no nulos y no NaN)
-            df_validos = df[df['Inscriptos'].notna()]
-            
-            if df_validos.empty:
+            if df.empty:
                 return pd.DataFrame()
             
-            # Tomar la última fecha con datos válidos
-            ultima_fecha_valida = df_validos['Fecha'].iloc[0]
-            df_reciente = df_validos[df_validos['Fecha'] == ultima_fecha_valida]
+            # Obtener la última fecha con datos válidos
+            ultima_fecha = df['Fecha'].max()
+            df_reciente = df[df['Fecha'] == ultima_fecha].copy()
             
-            # Calcular métricas (con protección contra división por cero)
-            df_reciente['Presentismo'] = df_reciente.apply(
-                lambda x: (x['Presentes'] / x['Inscriptos']) * 100 if x['Inscriptos'] > 0 else 0,
-                axis=1
-            )
+            # Calcular métricas
+            df_reciente['Presentismo'] = (df_reciente['Presentes'] / df_reciente['Inscriptos']) * 100
             df_reciente['Tipo'] = nombre
+            
             return df_reciente[['Escuela', 'Inscriptos', 'Presentes', 'Presentismo', 'Tipo', 'Fecha']]
         
-        # Procesar cada tipo de centro
-        ci_resumen = procesar_datos(ci, 'Centros Infantiles')
-        cch_resumen = procesar_datos(cch, 'Club de Chicos')
-        cj_resumen = procesar_datos(cj, 'Club de Jóvenes')
-        # cai_resumen = procesar_datos(cai, 'CAI')  # Descomentar cuando esté disponible
+        # Procesar cada dataset
+        ci_resumen = obtener_resumen(ci, 'Centros Infantiles')
+        cch_resumen = obtener_resumen(cch, 'Club de Chicos')
+        cj_resumen = obtener_resumen(cj, 'Club de Jóvenes')
         
-        # Unir todos los datos
+        # Combinar todos los datos
         todos_datos = pd.concat([df for df in [ci_resumen, cch_resumen, cj_resumen] if not df.empty])
         
         if todos_datos.empty:
-            # Manejo cuando no hay datos válidos
-            empty_fig = px.bar()
-            empty_fig.update_layout(
-                title={'text': "No hay datos válidos disponibles", 'font': {'color': styles['text']}},
+            # Manejo de caso sin datos
+            empty_bar = px.bar(title="No hay datos válidos disponibles")
+            empty_bar.update_layout(
                 xaxis={'visible': False},
                 yaxis={'visible': False},
-                plot_bgcolor=styles['card'],
-                paper_bgcolor=styles['background']
+                annotations=[{
+                    'text': 'No se encontraron datos válidos',
+                    'showarrow': False
+                }]
             )
             
-            empty_alert = html.Div([
-                html.I(className="fa fa-exclamation-circle", style={'color': 'orange', 'marginRight': '10px'}),
-                "No se encontraron datos válidos de inscriptos en ninguna fecha"
-            ], style={'color': 'orange'})
-            
-            empty_line = px.line()
+            empty_line = px.line(title="No hay datos disponibles")
             empty_line.update_layout(
-                title={'text': "No hay datos disponibles", 'font': {'color': styles['text']}},
                 xaxis={'visible': False},
-                yaxis={'visible': False},
-                plot_bgcolor=styles['card'],
-                paper_bgcolor=styles['background']
+                yaxis={'visible': False}
             )
             
-            return empty_fig, empty_alert, empty_line
+            return empty_bar, html.Div("No hay alertas (sin datos)"), empty_line
         
-        # Crear DataFrame resumen con totales por tipo
+        # Crear resumen por tipo
         resumen_tipos = todos_datos.groupby('Tipo', as_index=False).agg({
             'Inscriptos': 'sum',
             'Presentes': 'sum',
-            'Fecha': 'max'  # Última fecha válida (puede ser diferente por tipo)
+            'Fecha': 'max'
         })
         
-        # Calcular presentismo general por tipo (con protección contra división por cero)
-        resumen_tipos['Presentismo'] = resumen_tipos.apply(
-            lambda x: (x['Presentes'] / x['Inscriptos']) * 100 if x['Inscriptos'] > 0 else 0,
-            axis=1
-        )
+        # Calcular presentismo general
+        resumen_tipos['Presentismo'] = (resumen_tipos['Presentes'] / resumen_tipos['Inscriptos']) * 100
         
-        # Obtener el rango de fechas para el título
-        fecha_min = todos_datos['Fecha'].min()
-        fecha_max = todos_datos['Fecha'].max()
-        
-        if fecha_min == fecha_max:
-            titulo_fecha = f"Última fecha disponible: {fecha_max.strftime('%d/%m/%Y')}"
-        else:
-            titulo_fecha = f"Rango de fechas: {fecha_min.strftime('%d/%m/%Y')} a {fecha_max.strftime('%d/%m/%Y')}"
-        
-        # Gráfico de barras con totales
+        # Gráfico de barras
         fig_resumen = px.bar(
             resumen_tipos,
             x='Tipo',
             y='Inscriptos',
             color='Tipo',
-            title=f"Total de Inscriptos por Tipo de Centro ({titulo_fecha})",
+            title=f"Total de Inscriptos por Tipo de Centro (Última fecha: {resumen_tipos['Fecha'].iloc[0].strftime('%d/%m/%Y')})",
             labels={'Inscriptos': 'Total Inscriptos', 'Tipo': 'Tipo de Centro'},
-            color_discrete_sequence=[styles['accent'], '#FF7F0E', '#2CA02C', '#D62728'],
-            hover_data={
-                'Inscriptos': ':,', 
-                'Presentes': ':,',
-                'Presentismo': ':.1f%',
-                'Fecha': False
-            }
+            color_discrete_sequence=[styles['accent'], '#FF7F0E', '#2CA02C']
         )
         
         fig_resumen.update_layout(
@@ -540,15 +509,12 @@ def update_resumen(n_clicks, tipo_centro):
             font={'color': styles['text']},
             xaxis={'gridcolor': styles['grid']},
             yaxis={'gridcolor': styles['grid']},
-            title={'font': {'size': 20, 'color': styles['accent']}},
             hovermode='x unified',
             showlegend=False
         )
         
-        # Generar alertas (solo para fechas válidas)
+        # Alertas (como ya funciona bien, lo mantenemos igual)
         alertas = []
-        
-        # Alertas para centros con menos del 40% de presentismo
         baja_asistencia = todos_datos[todos_datos['Presentismo'] < 40]
         if not baja_asistencia.empty:
             for _, row in baja_asistencia.iterrows():
@@ -559,7 +525,6 @@ def update_resumen(n_clicks, tipo_centro):
                     ], style={'color': 'red', 'marginBottom': '10px'})
                 )
         
-        # Alertas para centros con menos de 30 inscriptos
         baja_matricula = todos_datos[todos_datos['Inscriptos'] < 30]
         if not baja_matricula.empty:
             for _, row in baja_matricula.iterrows():
@@ -573,125 +538,76 @@ def update_resumen(n_clicks, tipo_centro):
         if not alertas:
             alertas = html.Div([
                 html.I(className="fa fa-check-circle", style={'color': 'green', 'marginRight': '10px'}),
-                f"No hay alertas críticas para las fechas analizadas"
+                "No hay alertas críticas en este momento"
             ], style={'color': 'green'})
         
-        # Gráfico de tendencias para el tipo de centro seleccionado
+        # Gráfico de tendencias
         df_tendencias = None
-        title_tendencias = ""
         if tipo_centro == 'ci':
-            df_tendencias = ci
-            title_tendencias = "Inscriptos en Centros Infantiles"
+            df_tendencias = ci[ci['Inscriptos'] > 0]  # Solo datos válidos
+            title_tendencias = "Tendencias en Centros Infantiles"
         elif tipo_centro == 'cch':
-            df_tendencias = cch
-            title_tendencias = "Inscriptos en Club de Chicos"
+            df_tendencias = cch[cch['Inscriptos'] > 0]
+            title_tendencias = "Tendencias en Club de Chicos"
         elif tipo_centro == 'cj':
-            df_tendencias = cj
-            title_tendencias = "Inscriptos en Club de Jóvenes"
-        # elif tipo_centro == 'cai':  # Descomentar cuando esté disponible
-        #     df_tendencias = cai
-        #     title_tendencias = "Tendencias en CAI"
+            df_tendencias = cj[cj['Inscriptos'] > 0]
+            title_tendencias = "Tendencias en Club de Jóvenes"
         
-        # Filtrar solo datos válidos para el gráfico de tendencias
         if df_tendencias is not None and not df_tendencias.empty:
-            df_tendencias = df_tendencias[df_tendencias['Inscriptos'].notna()]
+            fig_tendencias = px.line(
+                df_tendencias,
+                x='Fecha',
+                y='Inscriptos',
+                color='Escuela',
+                title=title_tendencias,
+                color_discrete_sequence=px.colors.qualitative.Plotly
+            )
             
-            if not df_tendencias.empty:
-                # Convertir Fecha a datetime si no lo está
-                if not pd.api.types.is_datetime64_any_dtype(df_tendencias['Fecha']):
-                    df_tendencias['Fecha'] = pd.to_datetime(df_tendencias['Fecha'], errors='coerce')
-                    df_tendencias = df_tendencias.dropna(subset=['Fecha'])
-                
-                fig_tendencias = px.line(
-                    df_tendencias,
-                    x='Fecha',
-                    y='Inscriptos',
-                    color='Escuela',
-                    title=title_tendencias,
-                    color_discrete_sequence=px.colors.qualitative.Plotly,
-                    hover_name='Escuela'
-                )
-                fig_tendencias.update_traces(
-                    hovertemplate=(
-                        "<b>%{hovertext}</b><br>"
-                        "Fecha: %{x|%d/%m/%Y}<br>"
-                        "Inscriptos: %{y:,}<br>"
-                        "<extra></extra>"
-                    ),
-                    line=dict(width=2)
-                )
-                
-                fig_tendencias.update_layout(
-                    plot_bgcolor=styles['card'],
-                    paper_bgcolor=styles['background'],
-                    font={'color': styles['text']},
-                    xaxis={'gridcolor': styles['grid']},
-                    yaxis={'gridcolor': styles['grid']},
-                    title={'font': {'size': 20, 'color': styles['accent']}},
-                    hovermode='closest',
-                    legend_title_text='Centros'
-                )
-            else:
-                # Crear gráfico vacío si no hay datos válidos
-                fig_tendencias = px.line(title=title_tendencias)
-                fig_tendencias.update_layout(
-                    plot_bgcolor=styles['card'],
-                    paper_bgcolor=styles['background'],
-                    title={'font': {'size': 20, 'color': styles['accent']}},
-                    xaxis={'visible': False},
-                    yaxis={'visible': False},
-                    annotations=[{
-                        'text': 'No hay datos válidos de inscriptos',
-                        'showarrow': False,
-                        'font': {'size': 16, 'color': styles['text']}
-                    }]
-                )
-        else:
-            # Crear gráfico vacío si no hay datos
-            fig_tendencias = px.line(title=title_tendencias)
+            fig_tendencias.update_traces(
+                line=dict(width=2),
+                hovertemplate="<b>%{fullData.name}</b><br>Fecha: %{x|%d/%m/%Y}<br>Inscriptos: %{y}<extra></extra>"
+            )
+            
             fig_tendencias.update_layout(
                 plot_bgcolor=styles['card'],
                 paper_bgcolor=styles['background'],
-                title={'font': {'size': 20, 'color': styles['accent']}},
-                xaxis={'visible': False},
-                yaxis={'visible': False},
+                font={'color': styles['text']},
+                xaxis={'gridcolor': styles['grid']},
+                yaxis={'gridcolor': styles['grid']},
+                hovermode='closest'
+            )
+        else:
+            fig_tendencias = px.line(title=title_tendencias)
+            fig_tendencias.update_layout(
                 annotations=[{
                     'text': 'No hay datos disponibles',
                     'showarrow': False,
-                    'font': {'size': 16, 'color': styles['text']}
-                }]
+                    'font': {'size': 16}
+                }],
+                xaxis={'visible': False},
+                yaxis={'visible': False}
             )
         
         return fig_resumen, alertas, fig_tendencias
     
     except Exception as e:
-        print(f"Error en resumen: {str(e)}")
-        # Retornar gráficos vacíos con mensaje de error
+        print(f"Error en update_resumen: {str(e)}")
+        
         error_fig = px.bar()
         error_fig.update_layout(
             title={'text': "Error al cargar datos", 'font': {'color': 'red'}},
             xaxis={'visible': False},
-            yaxis={'visible': False},
-            plot_bgcolor=styles['card'],
-            paper_bgcolor=styles['background']
+            yaxis={'visible': False}
         )
-        
-        error_alert = html.Div([
-            html.I(className="fa fa-exclamation-circle", style={'color': 'red', 'marginRight': '10px'}),
-            "Error al generar el resumen. Por favor intente nuevamente."
-        ], style={'color': 'red'})
         
         error_line = px.line()
         error_line.update_layout(
             title={'text': "Error al cargar datos", 'font': {'color': 'red'}},
             xaxis={'visible': False},
-            yaxis={'visible': False},
-            plot_bgcolor=styles['card'],
-            paper_bgcolor=styles['background']
+            yaxis={'visible': False}
         )
         
-        return error_fig, error_alert, error_line
-
+        return error_fig, html.Div("Error al generar alertas"), error_line
 
 
 # ===== 5. Configuración para Render =====
