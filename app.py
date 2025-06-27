@@ -168,6 +168,41 @@ app.layout = html.Div([
             'color': styles['accent'],
             'border': f'2px solid {styles["accent"]}'
         }),
+        dcc.Tab(label='Resumen y Alertas', value='tab-resumen', children=[
+            html.Div([
+                html.H2("Resumen General", style={'color': styles['accent']}),
+                dcc.Graph(id='resumen-graph'),
+                html.H2("Alertas", style={'color': styles['accent'], 'marginTop': '30px'}),
+                html.Div(id='alertas-container', style={
+                    'backgroundColor': styles['card'],
+                    'padding': '15px',
+                    'borderRadius': '5px',
+                    'marginBottom': '20px'
+                }),
+                html.H2("    Programa", style={'color': styles['accent'], 'marginTop': '30px'}),
+                dcc.Dropdown(
+                    id='tipo-centro',
+                    options=[
+                        {'label': 'Centros Infantiles', 'value': 'ci'},
+                        {'label': 'Club de Chicos', 'value': 'cch'},
+                        {'label': 'Club de Jóvenes', 'value': 'cj'},
+                    ],
+                    value='ci',
+                    style=dropdown_style
+                ),
+                dcc.Graph(id='tendencias-graph')
+            ], style={'padding': '20px'})
+        ], style={
+            'backgroundColor': styles['background'],
+            'color': styles['text'],
+            'border': f'1px solid {styles["accent"]}',
+            'fontWeight': 'bold',
+            'padding': '10px'
+        }, selected_style={
+            'backgroundColor': styles['card'],
+            'color': styles['accent'],
+            'border': f'2px solid {styles["accent"]}'
+        }),
     ], style={
         'backgroundColor': styles['background'],
         'color': styles['text'],
@@ -355,6 +390,309 @@ def update_cj(escuela, n_clicks):
 )
 def update_cai(escuela, n_clicks):
     return create_graph_and_table(3, escuela, "CAI")
+
+@app.callback(
+    [Output('resumen-graph', 'figure'),
+     Output('alertas-container', 'children'),
+     Output('tendencias-graph', 'figure')],
+    [Input('refresh-button', 'n_clicks'),
+     Input('tipo-centro', 'value')]
+)
+
+def update_resumen(n_clicks, tipo_centro):
+    try:
+        # Cargar datos actualizados
+        spreadsheet = client.open("Raciones_2025")
+        cch = pd.DataFrame(spreadsheet.get_worksheet(0).get_all_records())
+        ci = pd.DataFrame(spreadsheet.get_worksheet(1).get_all_records())
+        cj = pd.DataFrame(spreadsheet.get_worksheet(2).get_all_records())
+        # cai = pd.DataFrame(spreadsheet.get_worksheet(3).get_all_records())  # Descomentar cuando esté disponible
+        
+        def limpiar_datos(df):
+            if df.empty:
+                return df
+            
+            for col in ['Inscriptos', 'Presentes']:
+                if col in df.columns:
+                    # Convertir a string solo si no es ya string
+                    if not pd.api.types.is_string_dtype(df[col]):
+                        df[col] = df[col].astype(str)
+                    
+                    # Extraer números y convertir a numérico
+                    df[col] = df[col].str.extract(r'(\d+)', expand=False)
+                    df[col] = pd.to_numeric(df[col], errors='coerce')  # Mantener como float para detectar NaN
+            return df
+        
+        # Limpiar datos de todos los centros
+        ci = limpiar_datos(ci)
+        cch = limpiar_datos(cch)
+        cj = limpiar_datos(cj)
+        # cai = limpiar_datos(cai)  # Descomentar cuando esté disponible
+        
+        def procesar_datos(df, nombre):
+            if df.empty:
+                return pd.DataFrame()
+            
+            # Convertir Fecha a datetime si no lo está
+            if not pd.api.types.is_datetime64_any_dtype(df['Fecha']):
+                df['Fecha'] = pd.to_datetime(df['Fecha'], errors='coerce')
+                df = df.dropna(subset=['Fecha'])
+            
+            # Ordenar por fecha descendente
+            df = df.sort_values('Fecha', ascending=False)
+            
+            # Filtrar solo registros con Inscriptos válidos (no nulos y no NaN)
+            df_validos = df[df['Inscriptos'].notna()]
+            
+            if df_validos.empty:
+                return pd.DataFrame()
+            
+            # Tomar la última fecha con datos válidos
+            ultima_fecha_valida = df_validos['Fecha'].iloc[0]
+            df_reciente = df_validos[df_validos['Fecha'] == ultima_fecha_valida]
+            
+            # Calcular métricas (con protección contra división por cero)
+            df_reciente['Presentismo'] = df_reciente.apply(
+                lambda x: (x['Presentes'] / x['Inscriptos']) * 100 if x['Inscriptos'] > 0 else 0,
+                axis=1
+            )
+            df_reciente['Tipo'] = nombre
+            return df_reciente[['Escuela', 'Inscriptos', 'Presentes', 'Presentismo', 'Tipo', 'Fecha']]
+        
+        # Procesar cada tipo de centro
+        ci_resumen = procesar_datos(ci, 'Centros Infantiles')
+        cch_resumen = procesar_datos(cch, 'Club de Chicos')
+        cj_resumen = procesar_datos(cj, 'Club de Jóvenes')
+        # cai_resumen = procesar_datos(cai, 'CAI')  # Descomentar cuando esté disponible
+        
+        # Unir todos los datos
+        todos_datos = pd.concat([df for df in [ci_resumen, cch_resumen, cj_resumen] if not df.empty])
+        
+        if todos_datos.empty:
+            # Manejo cuando no hay datos válidos
+            empty_fig = px.bar()
+            empty_fig.update_layout(
+                title={'text': "No hay datos válidos disponibles", 'font': {'color': styles['text']}},
+                xaxis={'visible': False},
+                yaxis={'visible': False},
+                plot_bgcolor=styles['card'],
+                paper_bgcolor=styles['background']
+            )
+            
+            empty_alert = html.Div([
+                html.I(className="fa fa-exclamation-circle", style={'color': 'orange', 'marginRight': '10px'}),
+                "No se encontraron datos válidos de inscriptos en ninguna fecha"
+            ], style={'color': 'orange'})
+            
+            empty_line = px.line()
+            empty_line.update_layout(
+                title={'text': "No hay datos disponibles", 'font': {'color': styles['text']}},
+                xaxis={'visible': False},
+                yaxis={'visible': False},
+                plot_bgcolor=styles['card'],
+                paper_bgcolor=styles['background']
+            )
+            
+            return empty_fig, empty_alert, empty_line
+        
+        # Crear DataFrame resumen con totales por tipo
+        resumen_tipos = todos_datos.groupby('Tipo', as_index=False).agg({
+            'Inscriptos': 'sum',
+            'Presentes': 'sum',
+            'Fecha': 'max'  # Última fecha válida (puede ser diferente por tipo)
+        })
+        
+        # Calcular presentismo general por tipo (con protección contra división por cero)
+        resumen_tipos['Presentismo'] = resumen_tipos.apply(
+            lambda x: (x['Presentes'] / x['Inscriptos']) * 100 if x['Inscriptos'] > 0 else 0,
+            axis=1
+        )
+        
+        # Obtener el rango de fechas para el título
+        fecha_min = todos_datos['Fecha'].min()
+        fecha_max = todos_datos['Fecha'].max()
+        
+        if fecha_min == fecha_max:
+            titulo_fecha = f"Última fecha disponible: {fecha_max.strftime('%d/%m/%Y')}"
+        else:
+            titulo_fecha = f"Rango de fechas: {fecha_min.strftime('%d/%m/%Y')} a {fecha_max.strftime('%d/%m/%Y')}"
+        
+        # Gráfico de barras con totales
+        fig_resumen = px.bar(
+            resumen_tipos,
+            x='Tipo',
+            y='Inscriptos',
+            color='Tipo',
+            title=f"Total de Inscriptos por Tipo de Centro ({titulo_fecha})",
+            labels={'Inscriptos': 'Total Inscriptos', 'Tipo': 'Tipo de Centro'},
+            color_discrete_sequence=[styles['accent'], '#FF7F0E', '#2CA02C', '#D62728'],
+            hover_data={
+                'Inscriptos': ':,', 
+                'Presentes': ':,',
+                'Presentismo': ':.1f%',
+                'Fecha': False
+            }
+        )
+        
+        fig_resumen.update_layout(
+            plot_bgcolor=styles['card'],
+            paper_bgcolor=styles['background'],
+            font={'color': styles['text']},
+            xaxis={'gridcolor': styles['grid']},
+            yaxis={'gridcolor': styles['grid']},
+            title={'font': {'size': 20, 'color': styles['accent']}},
+            hovermode='x unified',
+            showlegend=False
+        )
+        
+        # Generar alertas (solo para fechas válidas)
+        alertas = []
+        
+        # Alertas para centros con menos del 40% de presentismo
+        baja_asistencia = todos_datos[todos_datos['Presentismo'] < 40]
+        if not baja_asistencia.empty:
+            for _, row in baja_asistencia.iterrows():
+                alertas.append(
+                    html.Div([
+                        html.I(className="fa fa-exclamation-triangle", style={'color': 'red', 'marginRight': '10px'}),
+                        html.Span(f"Baja asistencia en {row['Escuela']} ({row['Tipo']}) {row['Fecha'].strftime('%d/%m/%Y')}: {row['Presentismo']:.1f}%"),
+                    ], style={'color': 'red', 'marginBottom': '10px'})
+                )
+        
+        # Alertas para centros con menos de 30 inscriptos
+        baja_matricula = todos_datos[todos_datos['Inscriptos'] < 30]
+        if not baja_matricula.empty:
+            for _, row in baja_matricula.iterrows():
+                alertas.append(
+                    html.Div([
+                        html.I(className="fa fa-user-times", style={'color': 'orange', 'marginRight': '10px'}),
+                        html.Span(f"Baja matrícula en {row['Escuela']} ({row['Tipo']}) {row['Fecha'].strftime('%d/%m/%Y')}: {row['Inscriptos']} inscriptos"),
+                    ], style={'color': 'orange', 'marginBottom': '10px'})
+                )
+        
+        if not alertas:
+            alertas = html.Div([
+                html.I(className="fa fa-check-circle", style={'color': 'green', 'marginRight': '10px'}),
+                f"No hay alertas críticas para las fechas analizadas"
+            ], style={'color': 'green'})
+        
+        # Gráfico de tendencias para el tipo de centro seleccionado
+        df_tendencias = None
+        title_tendencias = ""
+        if tipo_centro == 'ci':
+            df_tendencias = ci
+            title_tendencias = "Inscriptos en Centros Infantiles"
+        elif tipo_centro == 'cch':
+            df_tendencias = cch
+            title_tendencias = "Inscriptos en Club de Chicos"
+        elif tipo_centro == 'cj':
+            df_tendencias = cj
+            title_tendencias = "Inscriptos en Club de Jóvenes"
+        # elif tipo_centro == 'cai':  # Descomentar cuando esté disponible
+        #     df_tendencias = cai
+        #     title_tendencias = "Tendencias en CAI"
+        
+        # Filtrar solo datos válidos para el gráfico de tendencias
+        if df_tendencias is not None and not df_tendencias.empty:
+            df_tendencias = df_tendencias[df_tendencias['Inscriptos'].notna()]
+            
+            if not df_tendencias.empty:
+                # Convertir Fecha a datetime si no lo está
+                if not pd.api.types.is_datetime64_any_dtype(df_tendencias['Fecha']):
+                    df_tendencias['Fecha'] = pd.to_datetime(df_tendencias['Fecha'], errors='coerce')
+                    df_tendencias = df_tendencias.dropna(subset=['Fecha'])
+                
+                fig_tendencias = px.line(
+                    df_tendencias,
+                    x='Fecha',
+                    y='Inscriptos',
+                    color='Escuela',
+                    title=title_tendencias,
+                    color_discrete_sequence=px.colors.qualitative.Plotly,
+                    hover_name='Escuela'
+                )
+                fig_tendencias.update_traces(
+                    hovertemplate=(
+                        "<b>%{hovertext}</b><br>"
+                        "Fecha: %{x|%d/%m/%Y}<br>"
+                        "Inscriptos: %{y:,}<br>"
+                        "<extra></extra>"
+                    ),
+                    line=dict(width=2)
+                )
+                
+                fig_tendencias.update_layout(
+                    plot_bgcolor=styles['card'],
+                    paper_bgcolor=styles['background'],
+                    font={'color': styles['text']},
+                    xaxis={'gridcolor': styles['grid']},
+                    yaxis={'gridcolor': styles['grid']},
+                    title={'font': {'size': 20, 'color': styles['accent']}},
+                    hovermode='closest',
+                    legend_title_text='Centros'
+                )
+            else:
+                # Crear gráfico vacío si no hay datos válidos
+                fig_tendencias = px.line(title=title_tendencias)
+                fig_tendencias.update_layout(
+                    plot_bgcolor=styles['card'],
+                    paper_bgcolor=styles['background'],
+                    title={'font': {'size': 20, 'color': styles['accent']}},
+                    xaxis={'visible': False},
+                    yaxis={'visible': False},
+                    annotations=[{
+                        'text': 'No hay datos válidos de inscriptos',
+                        'showarrow': False,
+                        'font': {'size': 16, 'color': styles['text']}
+                    }]
+                )
+        else:
+            # Crear gráfico vacío si no hay datos
+            fig_tendencias = px.line(title=title_tendencias)
+            fig_tendencias.update_layout(
+                plot_bgcolor=styles['card'],
+                paper_bgcolor=styles['background'],
+                title={'font': {'size': 20, 'color': styles['accent']}},
+                xaxis={'visible': False},
+                yaxis={'visible': False},
+                annotations=[{
+                    'text': 'No hay datos disponibles',
+                    'showarrow': False,
+                    'font': {'size': 16, 'color': styles['text']}
+                }]
+            )
+        
+        return fig_resumen, alertas, fig_tendencias
+    
+    except Exception as e:
+        print(f"Error en resumen: {str(e)}")
+        # Retornar gráficos vacíos con mensaje de error
+        error_fig = px.bar()
+        error_fig.update_layout(
+            title={'text': "Error al cargar datos", 'font': {'color': 'red'}},
+            xaxis={'visible': False},
+            yaxis={'visible': False},
+            plot_bgcolor=styles['card'],
+            paper_bgcolor=styles['background']
+        )
+        
+        error_alert = html.Div([
+            html.I(className="fa fa-exclamation-circle", style={'color': 'red', 'marginRight': '10px'}),
+            "Error al generar el resumen. Por favor intente nuevamente."
+        ], style={'color': 'red'})
+        
+        error_line = px.line()
+        error_line.update_layout(
+            title={'text': "Error al cargar datos", 'font': {'color': 'red'}},
+            xaxis={'visible': False},
+            yaxis={'visible': False},
+            plot_bgcolor=styles['card'],
+            paper_bgcolor=styles['background']
+        )
+        
+        return error_fig, error_alert, error_line
+
+
 
 # ===== 5. Configuración para Render =====
 if __name__ == '__main__':
