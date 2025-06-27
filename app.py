@@ -5,6 +5,7 @@ import dash
 from dash import dcc, html, dash_table
 from dash.dependencies import Input, Output
 import plotly.express as px
+import plotly.graph_objects as go
 import pandas as pd
 import gspread
 from google.oauth2.service_account import Credentials
@@ -482,35 +483,49 @@ def update_resumen(n_clicks, tipo_centro):
             
             return empty_bar, html.Div("No hay alertas (sin datos)"), empty_line
         
-         # Crear resumen por tipo para el gráfico de barras apiladas
+        # Crear resumen por tipo para el gráfico de barras apiladas
         resumen_tipos = todos_datos.groupby('Tipo', as_index=False).agg({
             'Inscriptos': 'sum',
             'Presentes': 'sum',
             'Fecha': 'max'
         })
         
-        # Calculamos los Inscriptos - Presentes
-        resumen_tipos['Inscriptos'] = resumen_tipos['Inscriptos'] - resumen_tipos['Presentes']
+        # Gráfico de barras con sub-barra de presentes
+        fig_resumen = go.Figure()
+    
+    # Barra de inscriptos (transparente, solo para establecer el máximo)
+        fig_resumen.add_trace(go.Bar(
+            x=resumen_tipos['Tipo'],
+            y=resumen_tipos['Inscriptos'],
+            name='Inscriptos',
+            marker_color='rgba(255,0,100,0.8)',  # Rojo levemente transparente
+            hoverinfo='y+name',
+            hovertemplate='<b>%{x}</b><br>Total Inscriptos: %{y}<extra></extra>',
+            width=0.6
+        ))
         
-        # Gráfico de barras apiladas
-        fig_resumen = px.bar(
-            resumen_tipos,
-            x='Tipo',
-            y=['Presentes', 'Inscriptos'], 
-            title=f"Total de Inscriptos vs Presentes por Tipo de Centro (Última fecha: {resumen_tipos['Fecha'].iloc[0].strftime('%d/%m/%Y')})",
-            labels={'value': 'Cantidad', 'Tipo': 'Tipo de Centro'},
-            color_discrete_sequence=['#2CA02C', '#FF7F0E'],  # Verde para presentes, naranja para ausentes
-            barmode='stack'  # Esto hace que las barras se apilen
-        )
+        # Barra de presentes (dentro de la barra de inscriptos)
+        fig_resumen.add_trace(go.Bar(
+            x=resumen_tipos['Tipo'],
+            y=resumen_tipos['Presentes'],
+            name='Presentes',
+            marker_color=styles['accent'],  # Color principal del dashboard
+            hoverinfo='y+name',
+            hovertemplate='<b>%{x}</b><br>Presentes: %{y}<extra></extra>',
+            width=0.5  # Hace la barra más estrecha para visualización interna
+        ))
         
+        # Personalización del layout
         fig_resumen.update_layout(
+            title=f"Total de Inscriptos vs Presentes (Última fecha: {resumen_tipos['Fecha'].iloc[0].strftime('%d/%m/%Y')}",
             plot_bgcolor=styles['card'],
             paper_bgcolor=styles['background'],
             font={'color': styles['text']},
             xaxis={'gridcolor': styles['grid']},
-            yaxis={'gridcolor': styles['grid']},
+            yaxis={'gridcolor': styles['grid'], 'title': 'Cantidad'},
             hovermode='x unified',
-            legend_title_text='Estado',
+            barmode='overlay',  # Superpone las barras en lugar de apilarlas
+            showlegend=True,
             legend=dict(
                 orientation="h",
                 yanchor="bottom",
@@ -518,10 +533,7 @@ def update_resumen(n_clicks, tipo_centro):
                 xanchor="right",
                 x=1
             )
-        )
-        
-        # Cambiar nombres en la leyenda
-        fig_resumen.for_each_trace(lambda t: t.update(name='Presentes' if t.name == 'Presentes' else 'Inscriptos'))
+        )    
         
         # ALERTAS!
         alertas = []
