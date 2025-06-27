@@ -482,25 +482,25 @@ def update_resumen(n_clicks, tipo_centro):
             
             return empty_bar, html.Div("No hay alertas (sin datos)"), empty_line
         
-        # Crear resumen por tipo
+         # Crear resumen por tipo para el gráfico de barras apiladas
         resumen_tipos = todos_datos.groupby('Tipo', as_index=False).agg({
             'Inscriptos': 'sum',
             'Presentes': 'sum',
             'Fecha': 'max'
         })
         
-        # Calcular presentismo general
-        resumen_tipos['Presentismo'] = (resumen_tipos['Presentes'] / resumen_tipos['Inscriptos']) * 100
+        # Calculamos los Inscriptos - Presentes
+        resumen_tipos['Inscriptos'] = resumen_tipos['Inscriptos'] - resumen_tipos['Presentes']
         
-        # Gráfico de barras
+        # Gráfico de barras apiladas
         fig_resumen = px.bar(
             resumen_tipos,
             x='Tipo',
-            y='Inscriptos',
-            color='Tipo',
-            title=f"Total de Inscriptos por Tipo de Centro (Última fecha: {resumen_tipos['Fecha'].iloc[0].strftime('%d/%m/%Y')})",
-            labels={'Inscriptos': 'Total Inscriptos', 'Tipo': 'Tipo de Centro'},
-            color_discrete_sequence=[styles['accent'], '#FF7F0E', '#2CA02C']
+            y=['Presentes', 'Inscriptos'], 
+            title=f"Total de Inscriptos vs Presentes por Tipo de Centro (Última fecha: {resumen_tipos['Fecha'].iloc[0].strftime('%d/%m/%Y')})",
+            labels={'value': 'Cantidad', 'Tipo': 'Tipo de Centro'},
+            color_discrete_sequence=['#2CA02C', '#FF7F0E'],  # Verde para presentes, naranja para ausentes
+            barmode='stack'  # Esto hace que las barras se apilen
         )
         
         fig_resumen.update_layout(
@@ -510,10 +510,20 @@ def update_resumen(n_clicks, tipo_centro):
             xaxis={'gridcolor': styles['grid']},
             yaxis={'gridcolor': styles['grid']},
             hovermode='x unified',
-            showlegend=False
+            legend_title_text='Estado',
+            legend=dict(
+                orientation="h",
+                yanchor="bottom",
+                y=1.02,
+                xanchor="right",
+                x=1
+            )
         )
         
-        # Alertas (como ya funciona bien, lo mantenemos igual)
+        # Cambiar nombres en la leyenda
+        fig_resumen.for_each_trace(lambda t: t.update(name='Presentes' if t.name == 'Presentes' else 'Inscriptos'))
+        
+        # ALERTAS!
         alertas = []
         baja_asistencia = todos_datos[todos_datos['Presentismo'] < 40]
         if not baja_asistencia.empty:
@@ -541,7 +551,8 @@ def update_resumen(n_clicks, tipo_centro):
                 "No hay alertas críticas en este momento"
             ], style={'color': 'green'})
         
-        # Gráfico de tendencias
+        # Grafico de TENDENCIAS!
+        
         df_tendencias = None
         if tipo_centro == 'ci':
             df_tendencias = ci[ci['Inscriptos'] > 0]  # Solo datos válidos
