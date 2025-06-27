@@ -1,5 +1,5 @@
 pandas
-plotly
+plotly==6.1.1
 google-auth
 gunicorn==20.1.0
 dash==2.10.2
