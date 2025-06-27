@@ -500,7 +500,7 @@ def update_resumen(n_clicks, tipo_centro):
             name='Inscriptos',
             marker_color='rgba(255,0,100,0.8)',  # Rojo levemente transparente
             hoverinfo='y+name',
-            hovertemplate='<b>%{x}</b><br>Total Inscriptos: %{y}<extra></extra>',
+            hovertemplate='Total Inscriptos: %{y}<extra></extra>',
             width=0.6
         ))
         
@@ -511,7 +511,7 @@ def update_resumen(n_clicks, tipo_centro):
             name='Presentes',
             marker_color=styles['accent'],  # Color principal del dashboard
             hoverinfo='y+name',
-            hovertemplate='<b>%{x}</b><br>Presentes: %{y}<extra></extra>',
+            hovertemplate='Presentes: %{y}<extra></extra>',
             width=0.5  # Hace la barra más estrecha para visualización interna
         ))
         
