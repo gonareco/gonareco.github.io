@@ -174,13 +174,14 @@ app.layout = html.Div([
                 html.H2("Resumen General", style={'color': styles['accent']}),
                 dcc.Graph(id='resumen-graph'),
                 html.H2("Alertas", style={'color': styles['accent'], 'marginTop': '30px'}),
+                html.H3("Aparecen los centros con menos del 40% de asistencia", style={'color': styles['accent'], 'marginTop': '30px'}),               
                 html.Div(id='alertas-container', style={
                     'backgroundColor': styles['card'],
                     'padding': '15px',
                     'borderRadius': '5px',
                     'marginBottom': '20px'
                 }),
-                html.H2("    Programa", style={'color': styles['accent'], 'marginTop': '30px'}),
+                html.H2("Programa", style={'color': styles['accent'], 'marginTop': '30px'}),
                 dcc.Dropdown(
                     id='tipo-centro',
                     options=[
@@ -568,13 +569,13 @@ def update_resumen(n_clicks, tipo_centro):
         df_tendencias = None
         if tipo_centro == 'ci':
             df_tendencias = ci[ci['Inscriptos'] > 0]  # Solo datos válidos
-            title_tendencias = "Tendencias en Centros Infantiles"
+            title_tendencias = "Tendencias de Inscripciones en Centros Infantiles"
         elif tipo_centro == 'cch':
             df_tendencias = cch[cch['Inscriptos'] > 0]
-            title_tendencias = "Tendencias en Club de Chicos"
+            title_tendencias = "Tendencias de Inscripciones en Club de Chicos"
         elif tipo_centro == 'cj':
             df_tendencias = cj[cj['Inscriptos'] > 0]
-            title_tendencias = "Tendencias en Club de Jóvenes"
+            title_tendencias = "Tendencias de Inscripciones en Club de Jóvenes"
         
         if df_tendencias is not None and not df_tendencias.empty:
             fig_tendencias = px.line(
