@@ -517,7 +517,7 @@ def update_resumen(n_clicks, tipo_centro):
         
         # Personalización del layout
         fig_resumen.update_layout(
-            title=f"Total de Inscriptos vs Presentes (Última fecha: {resumen_tipos['Fecha'].iloc[0].strftime('%d/%m/%Y')}",
+            title=f"Total de Inscriptos vs Presentes (Última fecha: {resumen_tipos['Fecha'].iloc[0].strftime('%d/%m/%Y')})",
             plot_bgcolor=styles['card'],
             paper_bgcolor=styles['background'],
             font={'color': styles['text']},
