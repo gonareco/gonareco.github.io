@@ -1,0 +1,4210 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_bcda98267b0b8e349ebf3d7a6f13a15f {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+<div style="position: fixed; 
+            bottom: 50px; left: 50px; 
+            width: 180px; height: auto;
+            border: 2px solid grey;
+            border-radius: 5px;
+            z-index: 9999;
+            font-size: 14px;
+            background: white;
+            opacity: 0.9;
+            padding: 10px;">
+    <h4 style="margin-top: 0; text-align: center;">Leyenda</h4>
+    <p style="margin: 5px 0;"><i class="fa fa-square" style="color: red;"></i> CAI</p>
+    <p style="margin: 5px 0;"><i class="fa fa-square" style="color: blue;"></i> CCH</p>
+    <p style="margin: 5px 0;"><i class="fa fa-square" style="color: orange;"></i> CJ/CAJ</p>
+    <p style="margin: 5px 0;"><i class="fa fa-square" style="color: green;"></i> CI</p>
+</div>
+    
+            <div class="folium-map" id="map_bcda98267b0b8e349ebf3d7a6f13a15f" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_bcda98267b0b8e349ebf3d7a6f13a15f = L.map(
+                "map_bcda98267b0b8e349ebf3d7a6f13a15f",
+                {
+                    center: [-34.62508831525729, -58.439571510768594],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 12,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+            L.control.scale().addTo(map_bcda98267b0b8e349ebf3d7a6f13a15f);
+
+            
+
+        
+    
+            var tile_layer_a4addd44d0a316bd75887ee5c0487458 = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abcd",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_a4addd44d0a316bd75887ee5c0487458.addTo(map_bcda98267b0b8e349ebf3d7a6f13a15f);
+        
+    
+            var feature_group_efdc8c05328c9528993d7680bde221f6 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_5263a765e3fa8bf441c5df69ec9de5cc = L.marker(
+                [-34.58161678192894, -58.37967395797595],
+                {
+}
+            ).addTo(feature_group_efdc8c05328c9528993d7680bde221f6);
+        
+    
+            var icon_ef8e35aa4b919a1bbaefad4803f42b99 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_33cebad535d8c11007eda2473b7ddf95 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_7101cd2f6946f50962beafa8a07ce7cd = $(`<div id="html_7101cd2f6946f50962beafa8a07ce7cd" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: red; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> CAI Esc. JS Nº 11 DE 1         </div>         <div style="width: 300px;">             <b>CAI Esc. JS Nº 11 DE 1</b><br>             Programa: <b>CAI</b><br>             Escuela Base: <b>Esc. JS Nº11 DE 1 "Polo Educativo María Elena Walsh"</b><br>             Distrito Escolar: <b>1</b><br>             Comuna: <b>1</b><br>             Dirección: <b>Perette y Calle 10</b><br>             Mail Institucional: <b>cai.11de01@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_33cebad535d8c11007eda2473b7ddf95.setContent(html_7101cd2f6946f50962beafa8a07ce7cd);
+            
+        
+
+        marker_5263a765e3fa8bf441c5df69ec9de5cc.bindPopup(popup_33cebad535d8c11007eda2473b7ddf95)
+        ;
+
+        
+    
+    
+            marker_5263a765e3fa8bf441c5df69ec9de5cc.bindTooltip(
+                `<div>
+                     CAI: CAI Esc. JS Nº 11 DE 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_5263a765e3fa8bf441c5df69ec9de5cc.setIcon(icon_ef8e35aa4b919a1bbaefad4803f42b99);
+            
+    
+            var marker_a2bf73fbb98b18f86fbfa5d74e36cbe8 = L.marker(
+                [-34.6034689, -58.400355],
+                {
+}
+            ).addTo(feature_group_efdc8c05328c9528993d7680bde221f6);
+        
+    
+            var icon_13c46aba096e6c2ee683c66facd1791b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_7ee26e95ed48a02a122ff164e1cbc2f7 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_b614314911250df2720316ce33705a5f = $(`<div id="html_b614314911250df2720316ce33705a5f" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: red; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> CAI Esc. JC N° 10 DE 01°         </div>         <div style="width: 300px;">             <b>CAI Esc. JC N° 10 DE 01°</b><br>             Programa: <b>CAI</b><br>             Escuela Base: <b>Esc. JC N° 10 DE 01° "Presidente Manuel Quintana"</b><br>             Distrito Escolar: <b>1</b><br>             Comuna: <b>3</b><br>             Dirección: <b>Lavalle 2366</b><br>             Mail Institucional: <b>cai.10de01@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_7ee26e95ed48a02a122ff164e1cbc2f7.setContent(html_b614314911250df2720316ce33705a5f);
+            
+        
+
+        marker_a2bf73fbb98b18f86fbfa5d74e36cbe8.bindPopup(popup_7ee26e95ed48a02a122ff164e1cbc2f7)
+        ;
+
+        
+    
+    
+            marker_a2bf73fbb98b18f86fbfa5d74e36cbe8.bindTooltip(
+                `<div>
+                     CAI: CAI Esc. JC N° 10 DE 01°
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_a2bf73fbb98b18f86fbfa5d74e36cbe8.setIcon(icon_13c46aba096e6c2ee683c66facd1791b);
+            
+    
+            var marker_4c2e9e0158da7a82a5d65212682584d5 = L.marker(
+                [-34.5810683, -58.3854849],
+                {
+}
+            ).addTo(feature_group_efdc8c05328c9528993d7680bde221f6);
+        
+    
+            var icon_cbefba09a6832ca8a12adebb0fac233a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_432782cbbb9c1c8549c84d4fbbfcdab9 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_7ffadee44dad3ba92fb14cf0c5c0d5bc = $(`<div id="html_7ffadee44dad3ba92fb14cf0c5c0d5bc" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: red; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> CAI Sede A.C. Detrás de todo para la inclusión Social         </div>         <div style="width: 300px;">             <b>CAI Sede A.C. Detrás de todo para la inclusión Social</b><br>             Programa: <b>CAI</b><br>             Escuela Base: <b>Sede Asociación Civil Detrás de todo para la inclusión Social</b><br>             Distrito Escolar: <b>1</b><br>             Comuna: <b>1</b><br>             Dirección: <b>Manzana 104 - casa 125 -Villa 31 bis</b><br>             Mail Institucional: <b>cai.detrasdetodo@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_432782cbbb9c1c8549c84d4fbbfcdab9.setContent(html_7ffadee44dad3ba92fb14cf0c5c0d5bc);
+            
+        
+
+        marker_4c2e9e0158da7a82a5d65212682584d5.bindPopup(popup_432782cbbb9c1c8549c84d4fbbfcdab9)
+        ;
+
+        
+    
+    
+            marker_4c2e9e0158da7a82a5d65212682584d5.bindTooltip(
+                `<div>
+                     CAI: CAI Sede A.C. Detrás de todo para la inclusión Social
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_4c2e9e0158da7a82a5d65212682584d5.setIcon(icon_cbefba09a6832ca8a12adebb0fac233a);
+            
+    
+            var marker_25eefc68681f0169477261303843766f = L.marker(
+                [-34.6003202, -58.4112809],
+                {
+}
+            ).addTo(feature_group_efdc8c05328c9528993d7680bde221f6);
+        
+    
+            var icon_36b342c63e36c8c1035824bcf03777c6 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_60e92309cf845ff78f32078b1ffe7005 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_0c0b1fda690c7eede672b8612c6dc73d = $(`<div id="html_0c0b1fda690c7eede672b8612c6dc73d" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: red; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> CAI Esc. JC Nº 8 DE 2º         </div>         <div style="width: 300px;">             <b>CAI Esc. JC Nº 8 DE 2º</b><br>             Programa: <b>CAI</b><br>             Escuela Base: <b>Esc. JC Nº 8 DE 2º "Dr. Arturo Mateo Bas"</b><br>             Distrito Escolar: <b>2</b><br>             Comuna: <b>3</b><br>             Dirección: <b>Tucumán 3233</b><br>             Mail Institucional: <b>cai.08de02@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_60e92309cf845ff78f32078b1ffe7005.setContent(html_0c0b1fda690c7eede672b8612c6dc73d);
+            
+        
+
+        marker_25eefc68681f0169477261303843766f.bindPopup(popup_60e92309cf845ff78f32078b1ffe7005)
+        ;
+
+        
+    
+    
+            marker_25eefc68681f0169477261303843766f.bindTooltip(
+                `<div>
+                     CAI: CAI Esc. JC Nº 8 DE 2º
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_25eefc68681f0169477261303843766f.setIcon(icon_36b342c63e36c8c1035824bcf03777c6);
+            
+    
+            var marker_4b0a439055070995a1db7c6bb4069b76 = L.marker(
+                [-34.6138394, -58.3768836],
+                {
+}
+            ).addTo(feature_group_efdc8c05328c9528993d7680bde221f6);
+        
+    
+            var icon_cf2e3c12d1589510175ef2928d1d62a6 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_bac57bac6f1d4a64dccdc0558d5549d2 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_a4e0a054692a5aecd0c632ae8f140924 = $(`<div id="html_a4e0a054692a5aecd0c632ae8f140924" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: red; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> CAI Esc. JS Nº 4 DE 3º         </div>         <div style="width: 300px;">             <b>CAI Esc. JS Nº 4 DE 3º</b><br>             Programa: <b>CAI</b><br>             Escuela Base: <b>Esc. JS Nº 4 DE 3º "Cnel. Isidoro Suarez"</b><br>             Distrito Escolar: <b>3</b><br>             Comuna: <b>1</b><br>             Dirección: <b>Venezuela 771</b><br>             Mail Institucional: <b>cai.04de03@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_bac57bac6f1d4a64dccdc0558d5549d2.setContent(html_a4e0a054692a5aecd0c632ae8f140924);
+            
+        
+
+        marker_4b0a439055070995a1db7c6bb4069b76.bindPopup(popup_bac57bac6f1d4a64dccdc0558d5549d2)
+        ;
+
+        
+    
+    
+            marker_4b0a439055070995a1db7c6bb4069b76.bindTooltip(
+                `<div>
+                     CAI: CAI Esc. JS Nº 4 DE 3º
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_4b0a439055070995a1db7c6bb4069b76.setIcon(icon_cf2e3c12d1589510175ef2928d1d62a6);
+            
+    
+            var marker_8aa79ff862e2137abee29b432330f7e1 = L.marker(
+                [-34.613255, -58.396438],
+                {
+}
+            ).addTo(feature_group_efdc8c05328c9528993d7680bde221f6);
+        
+    
+            var icon_00265d5afa611e70ccb12a0c4e0a9914 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_27336ffb4687dca246e24fa2ed20f617 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_4984e8fc532764643d412a2975944313 = $(`<div id="html_4984e8fc532764643d412a2975944313" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: red; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> CAI Esc. JS Nº 09 DE 03°         </div>         <div style="width: 300px;">             <b>CAI Esc. JS Nº 09 DE 03°</b><br>             Programa: <b>CAI</b><br>             Escuela Base: <b>Esc. JS Nº 09 DE 03° "Mariano Moreno"</b><br>             Distrito Escolar: <b>3</b><br>             Comuna: <b>3</b><br>             Dirección: <b>Moreno 2104</b><br>             Mail Institucional: <b>cai.09de03@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_27336ffb4687dca246e24fa2ed20f617.setContent(html_4984e8fc532764643d412a2975944313);
+            
+        
+
+        marker_8aa79ff862e2137abee29b432330f7e1.bindPopup(popup_27336ffb4687dca246e24fa2ed20f617)
+        ;
+
+        
+    
+    
+            marker_8aa79ff862e2137abee29b432330f7e1.bindTooltip(
+                `<div>
+                     CAI: CAI Esc. JS Nº 09 DE 03°
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_8aa79ff862e2137abee29b432330f7e1.setIcon(icon_00265d5afa611e70ccb12a0c4e0a9914);
+            
+    
+            var marker_df94d1c696fc521a6cf995da604d0f65 = L.marker(
+                [-34.620400738217946, -58.38839962916373],
+                {
+}
+            ).addTo(feature_group_efdc8c05328c9528993d7680bde221f6);
+        
+    
+            var icon_fa78705f3c1c0e99564698a43f813962 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_40883835160a40e4a2e2d858137dc9f8 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_8cc6f27b54147283a442d4d2416c2cb2 = $(`<div id="html_8cc6f27b54147283a442d4d2416c2cb2" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: red; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> CAI Esc. JC N° 05 DE 03         </div>         <div style="width: 300px;">             <b>CAI Esc. JC N° 05 DE 03</b><br>             Programa: <b>CAI</b><br>             Escuela Base: <b>Esc. JC N° 05 DE 03 "Agustín Álvarez"</b><br>             Distrito Escolar: <b>3</b><br>             Comuna: <b>1</b><br>             Dirección: <b>Humberto 1º 1573</b><br>             Mail Institucional: <b>cai.05de03@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_40883835160a40e4a2e2d858137dc9f8.setContent(html_8cc6f27b54147283a442d4d2416c2cb2);
+            
+        
+
+        marker_df94d1c696fc521a6cf995da604d0f65.bindPopup(popup_40883835160a40e4a2e2d858137dc9f8)
+        ;
+
+        
+    
+    
+            marker_df94d1c696fc521a6cf995da604d0f65.bindTooltip(
+                `<div>
+                     CAI: CAI Esc. JC N° 05 DE 03
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_df94d1c696fc521a6cf995da604d0f65.setIcon(icon_fa78705f3c1c0e99564698a43f813962);
+            
+    
+            var marker_1c9bf3d274710c27ca17c6d79f61b9ce = L.marker(
+                [-34.6229956, -58.368012],
+                {
+}
+            ).addTo(feature_group_efdc8c05328c9528993d7680bde221f6);
+        
+    
+            var icon_6dd4723d2fa5bfd371f0335361033ffa = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_8175c3a5e53df72d4edb98b36f2d018b = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_99482f160a861062cf9c403b93bc0a5e = $(`<div id="html_99482f160a861062cf9c403b93bc0a5e" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: red; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> CAI Centro Educativo Isauro Arancibia         </div>         <div style="width: 300px;">             <b>CAI Centro Educativo Isauro Arancibia</b><br>             Programa: <b>CAI</b><br>             Escuela Base: <b>Centro Educativo Isauro Arancibia</b><br>             Distrito Escolar: <b>3</b><br>             Comuna: <b>1</b><br>             Dirección: <b>Paseo Colón 1318</b><br>             Mail Institucional: <b>cai.isauroarancibia@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_8175c3a5e53df72d4edb98b36f2d018b.setContent(html_99482f160a861062cf9c403b93bc0a5e);
+            
+        
+
+        marker_1c9bf3d274710c27ca17c6d79f61b9ce.bindPopup(popup_8175c3a5e53df72d4edb98b36f2d018b)
+        ;
+
+        
+    
+    
+            marker_1c9bf3d274710c27ca17c6d79f61b9ce.bindTooltip(
+                `<div>
+                     CAI: CAI Centro Educativo Isauro Arancibia
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_1c9bf3d274710c27ca17c6d79f61b9ce.setIcon(icon_6dd4723d2fa5bfd371f0335361033ffa);
+            
+    
+            var marker_ac539361b33bfbba9efb60a61c39347c = L.marker(
+                [-34.6389631, -58.3609934],
+                {
+}
+            ).addTo(feature_group_efdc8c05328c9528993d7680bde221f6);
+        
+    
+            var icon_99e5b01354d609f33cb425d3c2c9a1bd = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_89926cca33727171a2cc8c7330994609 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_c29e1e760e0704cb39ea2c8640f237ea = $(`<div id="html_c29e1e760e0704cb39ea2c8640f237ea" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: red; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> CAI Esc. JS N° 09 DE 04         </div>         <div style="width: 300px;">             <b>CAI Esc. JS N° 09 DE 04</b><br>             Programa: <b>CAI</b><br>             Escuela Base: <b>Esc. JS N° 09 DE 04 "Benito Quinquela Martin"</b><br>             Distrito Escolar: <b>4</b><br>             Comuna: <b>4</b><br>             Dirección: <b>Avda. Don Pedro de Mendoza 1835</b><br>             Mail Institucional: <b>cai.09de04@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_89926cca33727171a2cc8c7330994609.setContent(html_c29e1e760e0704cb39ea2c8640f237ea);
+            
+        
+
+        marker_ac539361b33bfbba9efb60a61c39347c.bindPopup(popup_89926cca33727171a2cc8c7330994609)
+        ;
+
+        
+    
+    
+            marker_ac539361b33bfbba9efb60a61c39347c.bindTooltip(
+                `<div>
+                     CAI: CAI Esc. JS N° 09 DE 04
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_ac539361b33bfbba9efb60a61c39347c.setIcon(icon_99e5b01354d609f33cb425d3c2c9a1bd);
+            
+    
+            var marker_a880f2a4317a2231be457bfa48c37438 = L.marker(
+                [-34.6290497, -58.3770873],
+                {
+}
+            ).addTo(feature_group_efdc8c05328c9528993d7680bde221f6);
+        
+    
+            var icon_cd960a1813352f773da735ab6f56fe30 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_02a1cd01fb9171d98e3d21e09e39ae80 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_8afb6dd6ceeaeb543beb8c665a790857 = $(`<div id="html_8afb6dd6ceeaeb543beb8c665a790857" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: red; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> CAI Escuela Hospitalaria Nº 3 "Pedro Elizalde"         </div>         <div style="width: 300px;">             <b>CAI Escuela Hospitalaria Nº 3 "Pedro Elizalde"</b><br>             Programa: <b>CAI</b><br>             Escuela Base: <b>Escuela Hospitalaria Nº 3 "Pedro Elizalde" - DE Nº 5</b><br>             Distrito Escolar: <b>5</b><br>             Comuna: <b>4</b><br>             Dirección: <b>Av. Manuel Montes de Oca 40</b><br>             Mail Institucional: <b>cai.hospielizalde@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_02a1cd01fb9171d98e3d21e09e39ae80.setContent(html_8afb6dd6ceeaeb543beb8c665a790857);
+            
+        
+
+        marker_a880f2a4317a2231be457bfa48c37438.bindPopup(popup_02a1cd01fb9171d98e3d21e09e39ae80)
+        ;
+
+        
+    
+    
+            marker_a880f2a4317a2231be457bfa48c37438.bindTooltip(
+                `<div>
+                     CAI: CAI Escuela Hospitalaria Nº 3 "Pedro Elizalde"
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_a880f2a4317a2231be457bfa48c37438.setIcon(icon_cd960a1813352f773da735ab6f56fe30);
+            
+    
+            var marker_c7d5d12422f1613466c70219f0ea6c8e = L.marker(
+                [-34.6499316, -58.4046521],
+                {
+}
+            ).addTo(feature_group_efdc8c05328c9528993d7680bde221f6);
+        
+    
+            var icon_9b684eedd51d0103be240ca732ca0bdb = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_463832412de465579a0f36154ead94ce = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_2dd367d72da9d5f680824171e6dad18a = $(`<div id="html_2dd367d72da9d5f680824171e6dad18a" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: red; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> CAI Esc. JC Nº 10 DE 05°         </div>         <div style="width: 300px;">             <b>CAI Esc. JC Nº 10 DE 05°</b><br>             Programa: <b>CAI</b><br>             Escuela Base: <b>Esc. JC Nº 10 DE 05° "Dean Diego Estanislado De Zavaleta"</b><br>             Distrito Escolar: <b>5</b><br>             Comuna: <b>4</b><br>             Dirección: <b>Iguazu 1110</b><br>             Mail Institucional: <b>cai.10de05@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_463832412de465579a0f36154ead94ce.setContent(html_2dd367d72da9d5f680824171e6dad18a);
+            
+        
+
+        marker_c7d5d12422f1613466c70219f0ea6c8e.bindPopup(popup_463832412de465579a0f36154ead94ce)
+        ;
+
+        
+    
+    
+            marker_c7d5d12422f1613466c70219f0ea6c8e.bindTooltip(
+                `<div>
+                     CAI: CAI Esc. JC Nº 10 DE 05°
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_c7d5d12422f1613466c70219f0ea6c8e.setIcon(icon_9b684eedd51d0103be240ca732ca0bdb);
+            
+    
+            var marker_7ba2f8fe4698aec980cdea32f1a146b2 = L.marker(
+                [-34.6564225, -58.3903491],
+                {
+}
+            ).addTo(feature_group_efdc8c05328c9528993d7680bde221f6);
+        
+    
+            var icon_6b5c41ae9233247de9394fa02b29291e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_abab2348f9b36f22d47c6be0e6cc2031 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_bc84b940fa612fc4deed6d180b6fde4e = $(`<div id="html_bc84b940fa612fc4deed6d180b6fde4e" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: red; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> CAI Esc. JS Nº 11 DE 5º         </div>         <div style="width: 300px;">             <b>CAI Esc. JS Nº 11 DE 5º</b><br>             Programa: <b>CAI</b><br>             Escuela Base: <b>Esc. JS Nº 11 DE 5º "República de Haití"</b><br>             Distrito Escolar: <b>5</b><br>             Comuna: <b>4</b><br>             Dirección: <b>Lafayette 1879</b><br>             Mail Institucional: <b>cai.11de05@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_abab2348f9b36f22d47c6be0e6cc2031.setContent(html_bc84b940fa612fc4deed6d180b6fde4e);
+            
+        
+
+        marker_7ba2f8fe4698aec980cdea32f1a146b2.bindPopup(popup_abab2348f9b36f22d47c6be0e6cc2031)
+        ;
+
+        
+    
+    
+            marker_7ba2f8fe4698aec980cdea32f1a146b2.bindTooltip(
+                `<div>
+                     CAI: CAI Esc. JS Nº 11 DE 5º
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_7ba2f8fe4698aec980cdea32f1a146b2.setIcon(icon_6b5c41ae9233247de9394fa02b29291e);
+            
+    
+            var marker_72aaf894287b440e92bcaff43c6a98bc = L.marker(
+                [-34.651981766766426, -58.409681873347665],
+                {
+}
+            ).addTo(feature_group_efdc8c05328c9528993d7680bde221f6);
+        
+    
+            var icon_2313e2f67e62c196f4deec1024f8d736 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_5d5165a15dbfd7218e6e0b7d651af829 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_ecf4b280cdeb42f0abdc62dd5ed090ba = $(`<div id="html_ecf4b280cdeb42f0abdc62dd5ed090ba" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: red; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> CAI Esc. JS N° 24 DE 5°         </div>         <div style="width: 300px;">             <b>CAI Esc. JS N° 24 DE 5°</b><br>             Programa: <b>CAI</b><br>             Escuela Base: <b>Esc. JS N° 24 DE 5° "Contraalmirante Martin Guerrico"</b><br>             Distrito Escolar: <b>5</b><br>             Comuna: <b>4</b><br>             Dirección: <b>Lynch 3536</b><br>             Mail Institucional: <b>cai.24de05@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_5d5165a15dbfd7218e6e0b7d651af829.setContent(html_ecf4b280cdeb42f0abdc62dd5ed090ba);
+            
+        
+
+        marker_72aaf894287b440e92bcaff43c6a98bc.bindPopup(popup_5d5165a15dbfd7218e6e0b7d651af829)
+        ;
+
+        
+    
+    
+            marker_72aaf894287b440e92bcaff43c6a98bc.bindTooltip(
+                `<div>
+                     CAI: CAI Esc. JS N° 24 DE 5°
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_72aaf894287b440e92bcaff43c6a98bc.setIcon(icon_2313e2f67e62c196f4deec1024f8d736);
+            
+    
+            var marker_617d05a523dbaa97261629c848a62b14 = L.marker(
+                [-34.6178271, -58.4115225],
+                {
+}
+            ).addTo(feature_group_efdc8c05328c9528993d7680bde221f6);
+        
+    
+            var icon_6d42fb5411396b5a41fefc9ee7df8214 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b063c6474e329a7e6d79a239975091f5 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_b3ec9e7dbeb989f5af2ee0f97e95daeb = $(`<div id="html_b3ec9e7dbeb989f5af2ee0f97e95daeb" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: red; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> CAI Esc. JC Nº 12 DE 6º         </div>         <div style="width: 300px;">             <b>CAI Esc. JC Nº 12 DE 6º</b><br>             Programa: <b>CAI</b><br>             Escuela Base: <b>Esc. JC Nº 12 DE 6º "República del Paraguay"</b><br>             Distrito Escolar: <b>6</b><br>             Comuna: <b>3</b><br>             Dirección: <b>Agrelo 3231</b><br>             Mail Institucional: <b>cai.12de06@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_b063c6474e329a7e6d79a239975091f5.setContent(html_b3ec9e7dbeb989f5af2ee0f97e95daeb);
+            
+        
+
+        marker_617d05a523dbaa97261629c848a62b14.bindPopup(popup_b063c6474e329a7e6d79a239975091f5)
+        ;
+
+        
+    
+    
+            marker_617d05a523dbaa97261629c848a62b14.bindTooltip(
+                `<div>
+                     CAI: CAI Esc. JC Nº 12 DE 6º
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_617d05a523dbaa97261629c848a62b14.setIcon(icon_6d42fb5411396b5a41fefc9ee7df8214);
+            
+    
+            var marker_e207eed3b70c5427d2424b6511310970 = L.marker(
+                [-34.6342247, -58.4018751],
+                {
+}
+            ).addTo(feature_group_efdc8c05328c9528993d7680bde221f6);
+        
+    
+            var icon_94aea8173e7d605996051dd07b55570a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_7b4b9eea5ee05ee78e8d3292bb51cf14 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_9e86e89f7e458a24497485bd8cfedc4e = $(`<div id="html_9e86e89f7e458a24497485bd8cfedc4e" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: red; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> CAI Esc JC N.º 91 D.E. 6         </div>         <div style="width: 300px;">             <b>CAI Esc JC N.º 91 D.E. 6</b><br>             Programa: <b>CAI</b><br>             Escuela Base: <b>Esc. JC N.º 91 D.E. 6 Dr. Carlos Saavedra Lamas</b><br>             Distrito Escolar: <b>6</b><br>             Comuna: <b>4</b><br>             Dirección: <b>Catulo Castillo 2750</b><br>             Mail Institucional: <b>cai.91de06@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_7b4b9eea5ee05ee78e8d3292bb51cf14.setContent(html_9e86e89f7e458a24497485bd8cfedc4e);
+            
+        
+
+        marker_e207eed3b70c5427d2424b6511310970.bindPopup(popup_7b4b9eea5ee05ee78e8d3292bb51cf14)
+        ;
+
+        
+    
+    
+            marker_e207eed3b70c5427d2424b6511310970.bindTooltip(
+                `<div>
+                     CAI: CAI Esc JC N.º 91 D.E. 6
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_e207eed3b70c5427d2424b6511310970.setIcon(icon_94aea8173e7d605996051dd07b55570a);
+            
+    
+            var marker_cf9cad7a93fcc93ae36ed383c2c0d8fa = L.marker(
+                [-34.6094382, -58.4271865],
+                {
+}
+            ).addTo(feature_group_efdc8c05328c9528993d7680bde221f6);
+        
+    
+            var icon_e7000164b5b3489e0c00716aceedf96c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_f7cea1e84f8bc9b71803f85794dd1ac2 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_97a0b363401491e8cd3783faac27b1d7 = $(`<div id="html_97a0b363401491e8cd3783faac27b1d7" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: red; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> CAI Esc. JC Nº 23 DE 07°         </div>         <div style="width: 300px;">             <b>CAI Esc. JC Nº 23 DE 07°</b><br>             Programa: <b>CAI</b><br>             Escuela Base: <b>Esc. JC Nº 23 DE 07° "Gral. Belgrano"</b><br>             Distrito Escolar: <b>7</b><br>             Comuna: <b>5</b><br>             Dirección: <b>Pringles 263</b><br>             Mail Institucional: <b>cai.23de07@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_f7cea1e84f8bc9b71803f85794dd1ac2.setContent(html_97a0b363401491e8cd3783faac27b1d7);
+            
+        
+
+        marker_cf9cad7a93fcc93ae36ed383c2c0d8fa.bindPopup(popup_f7cea1e84f8bc9b71803f85794dd1ac2)
+        ;
+
+        
+    
+    
+            marker_cf9cad7a93fcc93ae36ed383c2c0d8fa.bindTooltip(
+                `<div>
+                     CAI: CAI Esc. JC Nº 23 DE 07°
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_cf9cad7a93fcc93ae36ed383c2c0d8fa.setIcon(icon_e7000164b5b3489e0c00716aceedf96c);
+            
+    
+            var marker_8b03de082cb0bfabeedf5772159e5759 = L.marker(
+                [-34.62407974683423, -58.43491481085392],
+                {
+}
+            ).addTo(feature_group_efdc8c05328c9528993d7680bde221f6);
+        
+    
+            var icon_e4fb21efa6a3e756fbfd9a5c4f4a86ab = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_87373521bc6285de3736707591494546 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_47e5e60483a5d375bb871f8feced811c = $(`<div id="html_47e5e60483a5d375bb871f8feced811c" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: red; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> CAI Esc. JS Nº 8 DE 8º         </div>         <div style="width: 300px;">             <b>CAI Esc. JS Nº 8 DE 8º</b><br>             Programa: <b>CAI</b><br>             Escuela Base: <b>Esc. JS Nº 8 DE 8º "Antonio Schettino"</b><br>             Distrito Escolar: <b>8</b><br>             Comuna: <b>6</b><br>             Dirección: <b>Av. José M. Moreno 480</b><br>             Mail Institucional: <b>cai.08de08@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_87373521bc6285de3736707591494546.setContent(html_47e5e60483a5d375bb871f8feced811c);
+            
+        
+
+        marker_8b03de082cb0bfabeedf5772159e5759.bindPopup(popup_87373521bc6285de3736707591494546)
+        ;
+
+        
+    
+    
+            marker_8b03de082cb0bfabeedf5772159e5759.bindTooltip(
+                `<div>
+                     CAI: CAI Esc. JS Nº 8 DE 8º
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_8b03de082cb0bfabeedf5772159e5759.setIcon(icon_e4fb21efa6a3e756fbfd9a5c4f4a86ab);
+            
+    
+            var marker_3c798f184a28c884025b72d10da445e1 = L.marker(
+                [-34.6358293, -58.4421357],
+                {
+}
+            ).addTo(feature_group_efdc8c05328c9528993d7680bde221f6);
+        
+    
+            var icon_960b03bf6d637a4da75970dedcead3c8 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_60a54acb58fe9d7b6f03a5e931b5964f = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_0acd49601dbd2bf8324b7aa2dc9d0676 = $(`<div id="html_0acd49601dbd2bf8324b7aa2dc9d0676" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: red; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> CAI Esc. JS Nº 07 D.E. 08         </div>         <div style="width: 300px;">             <b>CAI Esc. JS Nº 07 D.E. 08</b><br>             Programa: <b>CAI</b><br>             Escuela Base: <b>Esc. JS Nº 07 D.E. 08 "Niñas de Ayohuma"</b><br>             Distrito Escolar: <b>8</b><br>             Comuna: <b>7</b><br>             Dirección: <b>Av. Asamblea 1221</b><br>             Mail Institucional: <b>cai.07de08@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_60a54acb58fe9d7b6f03a5e931b5964f.setContent(html_0acd49601dbd2bf8324b7aa2dc9d0676);
+            
+        
+
+        marker_3c798f184a28c884025b72d10da445e1.bindPopup(popup_60a54acb58fe9d7b6f03a5e931b5964f)
+        ;
+
+        
+    
+    
+            marker_3c798f184a28c884025b72d10da445e1.bindTooltip(
+                `<div>
+                     CAI: CAI Esc. JS Nº 07 D.E. 08
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_3c798f184a28c884025b72d10da445e1.setIcon(icon_960b03bf6d637a4da75970dedcead3c8);
+            
+    
+            var marker_44a5101ebb265de624a3f22b46f81856 = L.marker(
+                [-34.579717, -58.445511],
+                {
+}
+            ).addTo(feature_group_efdc8c05328c9528993d7680bde221f6);
+        
+    
+            var icon_65b42ce883d0108634fe203ba9a28b71 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_fa8ac72d43599f2aaeccb3137a8b15fe = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_e9773baf035c97bf7ae6a1adbd9b43b9 = $(`<div id="html_e9773baf035c97bf7ae6a1adbd9b43b9" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: red; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> CAI Esc. JS Nº 13 DE 09°         </div>         <div style="width: 300px;">             <b>CAI Esc. JS Nº 13 DE 09°</b><br>             Programa: <b>CAI</b><br>             Escuela Base: <b>Esc. JS Nº 13 DE 09° "Escuela Scalabrini Ortiz"</b><br>             Distrito Escolar: <b>9</b><br>             Comuna: <b>13</b><br>             Dirección: <b>Conde 223</b><br>             Mail Institucional: <b>cai.13de09@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_fa8ac72d43599f2aaeccb3137a8b15fe.setContent(html_e9773baf035c97bf7ae6a1adbd9b43b9);
+            
+        
+
+        marker_44a5101ebb265de624a3f22b46f81856.bindPopup(popup_fa8ac72d43599f2aaeccb3137a8b15fe)
+        ;
+
+        
+    
+    
+            marker_44a5101ebb265de624a3f22b46f81856.bindTooltip(
+                `<div>
+                     CAI: CAI Esc. JS Nº 13 DE 09°
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_44a5101ebb265de624a3f22b46f81856.setIcon(icon_65b42ce883d0108634fe203ba9a28b71);
+            
+    
+            var marker_16400a0b6d495f792c77d2adbb8dde18 = L.marker(
+                [-34.58566474786438, -58.422161133221174],
+                {
+}
+            ).addTo(feature_group_efdc8c05328c9528993d7680bde221f6);
+        
+    
+            var icon_025613e2e6c3fd8a14acc602536b4cc5 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_de70537f02f4410767cbdc2494452dfa = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_a59723c646da226bbd29c19f3c264a9f = $(`<div id="html_a59723c646da226bbd29c19f3c264a9f" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: red; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> CAI Esc. JC N° 17 DE 9°         </div>         <div style="width: 300px;">             <b>CAI Esc. JC N° 17 DE 9°</b><br>             Programa: <b>CAI</b><br>             Escuela Base: <b>Esc. JC N° 17 DE 9° "Blas Parera"</b><br>             Distrito Escolar: <b>9</b><br>             Comuna: <b>14</b><br>             Dirección: <b>Armenia 2214</b><br>             Mail Institucional: <b>cai.17de09@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_de70537f02f4410767cbdc2494452dfa.setContent(html_a59723c646da226bbd29c19f3c264a9f);
+            
+        
+
+        marker_16400a0b6d495f792c77d2adbb8dde18.bindPopup(popup_de70537f02f4410767cbdc2494452dfa)
+        ;
+
+        
+    
+    
+            marker_16400a0b6d495f792c77d2adbb8dde18.bindTooltip(
+                `<div>
+                     CAI: CAI Esc. JC N° 17 DE 9°
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_16400a0b6d495f792c77d2adbb8dde18.setIcon(icon_025613e2e6c3fd8a14acc602536b4cc5);
+            
+    
+            var marker_241a362a9a868ced69a8f0ce62c8dc99 = L.marker(
+                [-34.5617556, -58.4653171],
+                {
+}
+            ).addTo(feature_group_efdc8c05328c9528993d7680bde221f6);
+        
+    
+            var icon_d8cc080045b358e22d5967ae49cae5d6 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_6d4e0176f6ccc7ae4fa49a248df1fd44 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_bf5642fd2da7cf4c510b1e415591dd11 = $(`<div id="html_bf5642fd2da7cf4c510b1e415591dd11" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: red; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> CAI Esc. JS Nº 19 D.E. 10         </div>         <div style="width: 300px;">             <b>CAI Esc. JS Nº 19 D.E. 10</b><br>             Programa: <b>CAI</b><br>             Escuela Base: <b>Esc. JS Nº 19 D.E. 10 "Pablo A. Pizzurno"</b><br>             Distrito Escolar: <b>10</b><br>             Comuna: <b>13</b><br>             Dirección: <b>Avda. Monroe 3000</b><br>             Mail Institucional: <b>cai.19de10@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_6d4e0176f6ccc7ae4fa49a248df1fd44.setContent(html_bf5642fd2da7cf4c510b1e415591dd11);
+            
+        
+
+        marker_241a362a9a868ced69a8f0ce62c8dc99.bindPopup(popup_6d4e0176f6ccc7ae4fa49a248df1fd44)
+        ;
+
+        
+    
+    
+            marker_241a362a9a868ced69a8f0ce62c8dc99.bindTooltip(
+                `<div>
+                     CAI: CAI Esc. JS Nº 19 D.E. 10
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_241a362a9a868ced69a8f0ce62c8dc99.setIcon(icon_d8cc080045b358e22d5967ae49cae5d6);
+            
+    
+            var marker_7b6b33d1920e0b58d51396135c68b6aa = L.marker(
+                [-34.6462909, -58.4578705],
+                {
+}
+            ).addTo(feature_group_efdc8c05328c9528993d7680bde221f6);
+        
+    
+            var icon_f35fa95b7625c9b0a406fe9e87127c6b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b6faa4a4b3aff2cb906734624fa80c84 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_f96e45457204e2b08f1c16f3b0bc3a41 = $(`<div id="html_f96e45457204e2b08f1c16f3b0bc3a41" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: red; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> CAI Esc. JC Nº 4 DE 11º         </div>         <div style="width: 300px;">             <b>CAI Esc. JC Nº 4 DE 11º</b><br>             Programa: <b>CAI</b><br>             Escuela Base: <b>Esc. JC Nº 4 DE 11º "Benjamín Zorrilla"</b><br>             Distrito Escolar: <b>11</b><br>             Comuna: <b>7</b><br>             Dirección: <b>Av. San Pedrito 1415</b><br>             Mail Institucional: <b>cai.04de11@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_b6faa4a4b3aff2cb906734624fa80c84.setContent(html_f96e45457204e2b08f1c16f3b0bc3a41);
+            
+        
+
+        marker_7b6b33d1920e0b58d51396135c68b6aa.bindPopup(popup_b6faa4a4b3aff2cb906734624fa80c84)
+        ;
+
+        
+    
+    
+            marker_7b6b33d1920e0b58d51396135c68b6aa.bindTooltip(
+                `<div>
+                     CAI: CAI Esc. JC Nº 4 DE 11º
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_7b6b33d1920e0b58d51396135c68b6aa.setIcon(icon_f35fa95b7625c9b0a406fe9e87127c6b);
+            
+    
+            var marker_cc3840f19c1ad1a8050b5a2c49637745 = L.marker(
+                [-34.6431833, -58.4500339],
+                {
+}
+            ).addTo(feature_group_efdc8c05328c9528993d7680bde221f6);
+        
+    
+            var icon_3afb2495797c270919eed3a2c4609f1f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_0062dee613bab9bd9edf53f8ac5d93ad = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_7d193ff9f8e8f79d999f9e4fc7dd6beb = $(`<div id="html_7d193ff9f8e8f79d999f9e4fc7dd6beb" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: red; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> CAI Esc. JC Nº 22 DE 11º         </div>         <div style="width: 300px;">             <b>CAI Esc. JC Nº 22 DE 11º</b><br>             Programa: <b>CAI</b><br>             Escuela Base: <b>Esc. JC Nº 22 DE 11º "Hipólito Bouchard"</b><br>             Distrito Escolar: <b>11</b><br>             Comuna: <b>7</b><br>             Dirección: <b>Avelino Díaz 2356</b><br>             Mail Institucional: <b>cai.22de11@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_0062dee613bab9bd9edf53f8ac5d93ad.setContent(html_7d193ff9f8e8f79d999f9e4fc7dd6beb);
+            
+        
+
+        marker_cc3840f19c1ad1a8050b5a2c49637745.bindPopup(popup_0062dee613bab9bd9edf53f8ac5d93ad)
+        ;
+
+        
+    
+    
+            marker_cc3840f19c1ad1a8050b5a2c49637745.bindTooltip(
+                `<div>
+                     CAI: CAI Esc. JC Nº 22 DE 11º
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_cc3840f19c1ad1a8050b5a2c49637745.setIcon(icon_3afb2495797c270919eed3a2c4609f1f);
+            
+    
+            var marker_5ff079f6b18ad836b0235429e8b67cdd = L.marker(
+                [-34.6185998, -58.4718784],
+                {
+}
+            ).addTo(feature_group_efdc8c05328c9528993d7680bde221f6);
+        
+    
+            var icon_5b537c05b50006d6476558f8379b6808 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_706baebec4d73e021bf689a8f9892e70 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_af4ad30ff8f4e704eb5482c7106b4222 = $(`<div id="html_af4ad30ff8f4e704eb5482c7106b4222" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: red; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> CAI Esc JS Nº 14 D.E. 12         </div>         <div style="width: 300px;">             <b>CAI Esc JS Nº 14 D.E. 12</b><br>             Programa: <b>CAI</b><br>             Escuela Base: <b>Esc. JS Nº 14 D.E. 12 "Enrique G. Parker"</b><br>             Distrito Escolar: <b>12</b><br>             Comuna: <b>11</b><br>             Dirección: <b>Condarco 1129</b><br>             Mail Institucional: <b>cai.14de12@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_706baebec4d73e021bf689a8f9892e70.setContent(html_af4ad30ff8f4e704eb5482c7106b4222);
+            
+        
+
+        marker_5ff079f6b18ad836b0235429e8b67cdd.bindPopup(popup_706baebec4d73e021bf689a8f9892e70)
+        ;
+
+        
+    
+    
+            marker_5ff079f6b18ad836b0235429e8b67cdd.bindTooltip(
+                `<div>
+                     CAI: CAI Esc JS Nº 14 D.E. 12
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_5ff079f6b18ad836b0235429e8b67cdd.setIcon(icon_5b537c05b50006d6476558f8379b6808);
+            
+    
+            var marker_8847ffd1c5b162b01cce4871cdd1e396 = L.marker(
+                [-34.6586464, -58.4753609],
+                {
+}
+            ).addTo(feature_group_efdc8c05328c9528993d7680bde221f6);
+        
+    
+            var icon_62cd8a37684abbea99effec773a1f6cc = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_cb4ee6a117b66364b57de8303ffdf0b7 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_dbcbf49936a460fd7f716b1676c76e80 = $(`<div id="html_dbcbf49936a460fd7f716b1676c76e80" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: red; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> CAI Esc. JS Nº 8 DE 13º         </div>         <div style="width: 300px;">             <b>CAI Esc. JS Nº 8 DE 13º</b><br>             Programa: <b>CAI</b><br>             Escuela Base: <b>Esc. JS Nº 8 DE 13º "Reino de Thailandia"</b><br>             Distrito Escolar: <b>13</b><br>             Comuna: <b>9</b><br>             Dirección: <b>Homero 2159</b><br>             Mail Institucional: <b>cai.08de13@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_cb4ee6a117b66364b57de8303ffdf0b7.setContent(html_dbcbf49936a460fd7f716b1676c76e80);
+            
+        
+
+        marker_8847ffd1c5b162b01cce4871cdd1e396.bindPopup(popup_cb4ee6a117b66364b57de8303ffdf0b7)
+        ;
+
+        
+    
+    
+            marker_8847ffd1c5b162b01cce4871cdd1e396.bindTooltip(
+                `<div>
+                     CAI: CAI Esc. JS Nº 8 DE 13º
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_8847ffd1c5b162b01cce4871cdd1e396.setIcon(icon_62cd8a37684abbea99effec773a1f6cc);
+            
+    
+            var marker_66c753deac6535873bfa216c506b32e4 = L.marker(
+                [-34.5919149, -58.4675938],
+                {
+}
+            ).addTo(feature_group_efdc8c05328c9528993d7680bde221f6);
+        
+    
+            var icon_43a7a3adde36f59d4c41ed36b22a7809 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_80fbbcabb2faff18dcb2c8799e2ef792 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_4b7dc06f05f7ff61b179ae8725410f60 = $(`<div id="html_4b7dc06f05f7ff61b179ae8725410f60" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: red; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> CAI Esc JC Nº 20 DE 14°         </div>         <div style="width: 300px;">             <b>CAI Esc JC Nº 20 DE 14°</b><br>             Programa: <b>CAI</b><br>             Escuela Base: <b>Esc. JC Nº 20 DE 14° "República de Honduras"</b><br>             Distrito Escolar: <b>14</b><br>             Comuna: <b>15</b><br>             Dirección: <b>Avda. Elcano 4861</b><br>             Mail Institucional: <b>cai.20de14@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_80fbbcabb2faff18dcb2c8799e2ef792.setContent(html_4b7dc06f05f7ff61b179ae8725410f60);
+            
+        
+
+        marker_66c753deac6535873bfa216c506b32e4.bindPopup(popup_80fbbcabb2faff18dcb2c8799e2ef792)
+        ;
+
+        
+    
+    
+            marker_66c753deac6535873bfa216c506b32e4.bindTooltip(
+                `<div>
+                     CAI: CAI Esc JC Nº 20 DE 14°
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_66c753deac6535873bfa216c506b32e4.setIcon(icon_43a7a3adde36f59d4c41ed36b22a7809);
+            
+    
+            var marker_4934b06ec728dccbb782a5c783221324 = L.marker(
+                [-34.5917615, -58.4788122],
+                {
+}
+            ).addTo(feature_group_efdc8c05328c9528993d7680bde221f6);
+        
+    
+            var icon_16f6c1128d05fdc59eca52300db4814d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e9371542129b8fa7894a02c12cf21da8 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_e6d35341f631be622222b6443412015f = $(`<div id="html_e6d35341f631be622222b6443412015f" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: red; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> CAI Esc. JS Nº 22° DE 14°         </div>         <div style="width: 300px;">             <b>CAI Esc. JS Nº 22° DE 14°</b><br>             Programa: <b>CAI</b><br>             Escuela Base: <b>Esc. JC Nº 22° DE 14° Agronomia"</b><br>             Distrito Escolar: <b>14</b><br>             Comuna: <b>15</b><br>             Dirección: <b>Av. delos Constituyentes 3100</b><br>             Mail Institucional: <b>cai.22de14@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_e9371542129b8fa7894a02c12cf21da8.setContent(html_e6d35341f631be622222b6443412015f);
+            
+        
+
+        marker_4934b06ec728dccbb782a5c783221324.bindPopup(popup_e9371542129b8fa7894a02c12cf21da8)
+        ;
+
+        
+    
+    
+            marker_4934b06ec728dccbb782a5c783221324.bindTooltip(
+                `<div>
+                     CAI: CAI Esc. JS Nº 22° DE 14°
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_4934b06ec728dccbb782a5c783221324.setIcon(icon_16f6c1128d05fdc59eca52300db4814d);
+            
+    
+            var marker_7050934f2b2b7834ef083cbe370b6f07 = L.marker(
+                [-34.5936039, -58.5042894],
+                {
+}
+            ).addTo(feature_group_efdc8c05328c9528993d7680bde221f6);
+        
+    
+            var icon_732c993142c4c8b71191dd5ceac8f452 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_9d81bc4b4519a5f8b7cfdf8a48a1e937 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_a53a1f6412bba7be3a5ccc1217505076 = $(`<div id="html_a53a1f6412bba7be3a5ccc1217505076" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: red; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> CAI Esc. N° 02 DE 16         </div>         <div style="width: 300px;">             <b>CAI Esc. N° 02 DE 16</b><br>             Programa: <b>CAI</b><br>             Escuela Base: <b>Esc. N° 02 DE 16 República de Panama</b><br>             Distrito Escolar: <b>16</b><br>             Comuna: <b>11</b><br>             Dirección: <b>Av San Martin 6387</b><br>             Mail Institucional: <b>cai.02de16@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_9d81bc4b4519a5f8b7cfdf8a48a1e937.setContent(html_a53a1f6412bba7be3a5ccc1217505076);
+            
+        
+
+        marker_7050934f2b2b7834ef083cbe370b6f07.bindPopup(popup_9d81bc4b4519a5f8b7cfdf8a48a1e937)
+        ;
+
+        
+    
+    
+            marker_7050934f2b2b7834ef083cbe370b6f07.bindTooltip(
+                `<div>
+                     CAI: CAI Esc. N° 02 DE 16
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_7050934f2b2b7834ef083cbe370b6f07.setIcon(icon_732c993142c4c8b71191dd5ceac8f452);
+            
+    
+            var marker_0d64dd0331aad379eec7034c66398ec1 = L.marker(
+                [-34.6556301, -58.4403468],
+                {
+}
+            ).addTo(feature_group_efdc8c05328c9528993d7680bde221f6);
+        
+    
+            var icon_91449dd8dc61c18d4b4a3538aff76cbb = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_0f91850aec2d1f88c00cbfbd7b8f40a6 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_5453c95cdc93f5449126c45076fef3b8 = $(`<div id="html_5453c95cdc93f5449126c45076fef3b8" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: red; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> CAI Esc. JC N° 23 DE 19°         </div>         <div style="width: 300px;">             <b>CAI Esc. JC N° 23 DE 19°</b><br>             Programa: <b>CAI</b><br>             Escuela Base: <b>Esc. JC N° 23 DE 19° Rene Favaloro</b><br>             Distrito Escolar: <b>19</b><br>             Comuna: <b>8</b><br>             Dirección: <b>Chilavert 2690</b><br>             Mail Institucional: <b>cai.23de19@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_0f91850aec2d1f88c00cbfbd7b8f40a6.setContent(html_5453c95cdc93f5449126c45076fef3b8);
+            
+        
+
+        marker_0d64dd0331aad379eec7034c66398ec1.bindPopup(popup_0f91850aec2d1f88c00cbfbd7b8f40a6)
+        ;
+
+        
+    
+    
+            marker_0d64dd0331aad379eec7034c66398ec1.bindTooltip(
+                `<div>
+                     CAI: CAI Esc. JC N° 23 DE 19°
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_0d64dd0331aad379eec7034c66398ec1.setIcon(icon_91449dd8dc61c18d4b4a3538aff76cbb);
+            
+    
+            var marker_c49efcb17ef0e251f066a2d818199220 = L.marker(
+                [-34.6598251, -58.4489886],
+                {
+}
+            ).addTo(feature_group_efdc8c05328c9528993d7680bde221f6);
+        
+    
+            var icon_e789ab1e4c932ec6810c48af9433f62a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_bedf85d7096c923b3e2848be763727fd = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_6a9c8cfdacbe077f76c78528af73b8df = $(`<div id="html_6a9c8cfdacbe077f76c78528af73b8df" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: red; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> CAI EEE Nº 7 JUAN XXIII DE 19         </div>         <div style="width: 300px;">             <b>CAI EEE Nº 7 JUAN XXIII DE 19</b><br>             Programa: <b>CAI</b><br>             Escuela Base: <b>EEE Nº 7 JUAN XXIII DE 19</b><br>             Distrito Escolar: <b>19</b><br>             Comuna: <b>8</b><br>             Dirección: <b>Mariano Acosta 2936</b><br>             Mail Institucional: <b>cai.07de19@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_bedf85d7096c923b3e2848be763727fd.setContent(html_6a9c8cfdacbe077f76c78528af73b8df);
+            
+        
+
+        marker_c49efcb17ef0e251f066a2d818199220.bindPopup(popup_bedf85d7096c923b3e2848be763727fd)
+        ;
+
+        
+    
+    
+            marker_c49efcb17ef0e251f066a2d818199220.bindTooltip(
+                `<div>
+                     CAI: CAI EEE Nº 7 JUAN XXIII DE 19
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_c49efcb17ef0e251f066a2d818199220.setIcon(icon_e789ab1e4c932ec6810c48af9433f62a);
+            
+    
+            var marker_8b3dc9f05d2d559d9d85d0e82464efc1 = L.marker(
+                [-34.6432464, -58.5118036],
+                {
+}
+            ).addTo(feature_group_efdc8c05328c9528993d7680bde221f6);
+        
+    
+            var icon_b6d2f04b85a93fd45816f9580547b60f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_864b519aed7a41be57081ccb2ac89f5a = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_6acff4795affe870897f0d788f521fd1 = $(`<div id="html_6acff4795affe870897f0d788f521fd1" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: red; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> CAI Esc. JS Nº 09 D.E. 20         </div>         <div style="width: 300px;">             <b>CAI Esc. JS Nº 09 D.E. 20</b><br>             Programa: <b>CAI</b><br>             Escuela Base: <b>Esc. JS Nº 09 D.E. 20 "José María Torres"</b><br>             Distrito Escolar: <b>20</b><br>             Comuna: <b>9</b><br>             Dirección: <b>Av. Larrazabal 420</b><br>             Mail Institucional: <b>cai.09de20@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_864b519aed7a41be57081ccb2ac89f5a.setContent(html_6acff4795affe870897f0d788f521fd1);
+            
+        
+
+        marker_8b3dc9f05d2d559d9d85d0e82464efc1.bindPopup(popup_864b519aed7a41be57081ccb2ac89f5a)
+        ;
+
+        
+    
+    
+            marker_8b3dc9f05d2d559d9d85d0e82464efc1.bindTooltip(
+                `<div>
+                     CAI: CAI Esc. JS Nº 09 D.E. 20
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_8b3dc9f05d2d559d9d85d0e82464efc1.setIcon(icon_b6d2f04b85a93fd45816f9580547b60f);
+            
+    
+            var marker_31eb8dde6748be8c15fbb6657c1fbfb5 = L.marker(
+                [-34.6755542, -58.4927042],
+                {
+}
+            ).addTo(feature_group_efdc8c05328c9528993d7680bde221f6);
+        
+    
+            var icon_91b066b10ca9d37dc7b05793d808f673 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_3fa3c8d14ae7580a8e8b935fcee257e8 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_2678e5a3e5791a266e0a71d4783a6f37 = $(`<div id="html_2678e5a3e5791a266e0a71d4783a6f37" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: red; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> CAI Esc. JS 24 DE 20         </div>         <div style="width: 300px;">             <b>CAI Esc. JS 24 DE 20</b><br>             Programa: <b>CAI</b><br>             Escuela Base: <b>Esc. JS 24 DE 20 Esc Primaria 24 DE 20</b><br>             Distrito Escolar: <b>20</b><br>             Comuna: <b>8</b><br>             Dirección: <b>Zuviría 6590</b><br>             Mail Institucional: <b>cai.24de20@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_3fa3c8d14ae7580a8e8b935fcee257e8.setContent(html_2678e5a3e5791a266e0a71d4783a6f37);
+            
+        
+
+        marker_31eb8dde6748be8c15fbb6657c1fbfb5.bindPopup(popup_3fa3c8d14ae7580a8e8b935fcee257e8)
+        ;
+
+        
+    
+    
+            marker_31eb8dde6748be8c15fbb6657c1fbfb5.bindTooltip(
+                `<div>
+                     CAI: CAI Esc. JS 24 DE 20
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_31eb8dde6748be8c15fbb6657c1fbfb5.setIcon(icon_91b066b10ca9d37dc7b05793d808f673);
+            
+    
+            var marker_88d875998141eeab8bd150b0c3f100de = L.marker(
+                [-34.680122, -58.4661665],
+                {
+}
+            ).addTo(feature_group_efdc8c05328c9528993d7680bde221f6);
+        
+    
+            var icon_7c3d523cc52888b5e4d04319aedabebc = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_1f9dd99c403a293195d93dd5a447c4bd = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_bd64136adc41a853b394240e15922521 = $(`<div id="html_bd64136adc41a853b394240e15922521" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: red; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> CAI Esc. JC Nº 5 DE 21º         </div>         <div style="width: 300px;">             <b>CAI Esc. JC Nº 5 DE 21º</b><br>             Programa: <b>CAI</b><br>             Escuela Base: <b>Esc. JC Nº 5 DE 21º "Armada Argentina"</b><br>             Distrito Escolar: <b>21</b><br>             Comuna: <b>8</b><br>             Dirección: <b>Avda. Larrazabal 4520</b><br>             Mail Institucional: <b>cai.05de21@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_1f9dd99c403a293195d93dd5a447c4bd.setContent(html_bd64136adc41a853b394240e15922521);
+            
+        
+
+        marker_88d875998141eeab8bd150b0c3f100de.bindPopup(popup_1f9dd99c403a293195d93dd5a447c4bd)
+        ;
+
+        
+    
+    
+            marker_88d875998141eeab8bd150b0c3f100de.bindTooltip(
+                `<div>
+                     CAI: CAI Esc. JC Nº 5 DE 21º
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_88d875998141eeab8bd150b0c3f100de.setIcon(icon_7c3d523cc52888b5e4d04319aedabebc);
+            
+    
+            var marker_8a7f58c986382f3a3c6e00e66c4c328d = L.marker(
+                [-34.6760155, -58.4668258],
+                {
+}
+            ).addTo(feature_group_efdc8c05328c9528993d7680bde221f6);
+        
+    
+            var icon_1b7bf0a6d369265ebfe6c80facf701d2 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_6e0f6fea97b5c37b3528a32bba2d3c89 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_4b53c08e859950e37b7a79b47428d387 = $(`<div id="html_4b53c08e859950e37b7a79b47428d387" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: red; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> CAI Esc. JS Nº 19 DE 21º -         </div>         <div style="width: 300px;">             <b>CAI Esc. JS Nº 19 DE 21º -</b><br>             Programa: <b>CAI</b><br>             Escuela Base: <b>Esc. JS Nº 19 DE 21º - "Hermanos Latinoamericanos"</b><br>             Distrito Escolar: <b>21</b><br>             Comuna: <b>8</b><br>             Dirección: <b>Barros Pazos 5250</b><br>             Mail Institucional: <b>cai.19de21@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_6e0f6fea97b5c37b3528a32bba2d3c89.setContent(html_4b53c08e859950e37b7a79b47428d387);
+            
+        
+
+        marker_8a7f58c986382f3a3c6e00e66c4c328d.bindPopup(popup_6e0f6fea97b5c37b3528a32bba2d3c89)
+        ;
+
+        
+    
+    
+            marker_8a7f58c986382f3a3c6e00e66c4c328d.bindTooltip(
+                `<div>
+                     CAI: CAI Esc. JS Nº 19 DE 21º -
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_8a7f58c986382f3a3c6e00e66c4c328d.setIcon(icon_1b7bf0a6d369265ebfe6c80facf701d2);
+            
+    
+            feature_group_efdc8c05328c9528993d7680bde221f6.addTo(map_bcda98267b0b8e349ebf3d7a6f13a15f);
+        
+    
+            var feature_group_7c6940590cc99fcdb03da896604eaeb0 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_ba6a3fc5f840a31a08013538573d2aa1 = L.marker(
+                [-34.6500058, -58.377771],
+                {
+}
+            ).addTo(feature_group_7c6940590cc99fcdb03da896604eaeb0);
+        
+    
+            var icon_ac129168fbac1c46280d3486afdd7cd9 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_adab5a3761e963a0755113200e2e739a = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_873c7fcc7efe453a58bb73b9b9f92ea8 = $(`<div id="html_873c7fcc7efe453a58bb73b9b9f92ea8" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: blue; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> Club de Chicos Barracas         </div>         <div style="width: 300px;">             <b>Club de Chicos Barracas</b><br>             Programa: <b>CCH</b><br>             Escuela Base: <b>Esc. JC N° 20 DE 05 "Nieves Escalada de Oromi"</b><br>             Distrito Escolar: <b>5</b><br>             Comuna: <b>4</b><br>             Dirección: <b>San Antonio 682</b><br>             Mail Institucional: <b>cch.barracas@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_adab5a3761e963a0755113200e2e739a.setContent(html_873c7fcc7efe453a58bb73b9b9f92ea8);
+            
+        
+
+        marker_ba6a3fc5f840a31a08013538573d2aa1.bindPopup(popup_adab5a3761e963a0755113200e2e739a)
+        ;
+
+        
+    
+    
+            marker_ba6a3fc5f840a31a08013538573d2aa1.bindTooltip(
+                `<div>
+                     CCH: Club de Chicos Barracas
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_ba6a3fc5f840a31a08013538573d2aa1.setIcon(icon_ac129168fbac1c46280d3486afdd7cd9);
+            
+    
+            var marker_5c5ed0c8258acbeb9b7bbe532d63b5c8 = L.marker(
+                [-34.6175051, -58.4028021],
+                {
+}
+            ).addTo(feature_group_7c6940590cc99fcdb03da896604eaeb0);
+        
+    
+            var icon_cbb5726601e7ba8e03ee6554ae50c357 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_0b79e0a2030d8fdac7d1c43f61a1c803 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_53f875d6a40e53121e7a0236dddab46d = $(`<div id="html_53f875d6a40e53121e7a0236dddab46d" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: blue; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> Club de Chicos Balvanera         </div>         <div style="width: 300px;">             <b>Club de Chicos Balvanera</b><br>             Programa: <b>CCH</b><br>             Escuela Base: <b>Esc. JS Nº 06 DE 06 "Dr. Guillermo Correa"</b><br>             Distrito Escolar: <b>6</b><br>             Comuna: <b>3</b><br>             Dirección: <b>Saavedra 695</b><br>             Mail Institucional: <b>cch.balvanera@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_0b79e0a2030d8fdac7d1c43f61a1c803.setContent(html_53f875d6a40e53121e7a0236dddab46d);
+            
+        
+
+        marker_5c5ed0c8258acbeb9b7bbe532d63b5c8.bindPopup(popup_0b79e0a2030d8fdac7d1c43f61a1c803)
+        ;
+
+        
+    
+    
+            marker_5c5ed0c8258acbeb9b7bbe532d63b5c8.bindTooltip(
+                `<div>
+                     CCH: Club de Chicos Balvanera
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_5c5ed0c8258acbeb9b7bbe532d63b5c8.setIcon(icon_cbb5726601e7ba8e03ee6554ae50c357);
+            
+    
+            var marker_c6ec81367c4726885ca671dbcbb7b365 = L.marker(
+                [-34.6063636, -58.448783],
+                {
+}
+            ).addTo(feature_group_7c6940590cc99fcdb03da896604eaeb0);
+        
+    
+            var icon_1301b4f82b8ea7c1c63eb2d1c9bdc559 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_799bf8b97c4259a175c59856caf307ad = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_2b34afea869fea12b43442b5c6f1a5fa = $(`<div id="html_2b34afea869fea12b43442b5c6f1a5fa" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: blue; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> Club de Chicos Caballito         </div>         <div style="width: 300px;">             <b>Club de Chicos Caballito</b><br>             Programa: <b>CCH</b><br>             Escuela Base: <b>Esc. JC Nº 16 DE 07 "Andrés Ferreyra"</b><br>             Distrito Escolar: <b>7</b><br>             Comuna: <b>15</b><br>             Dirección: <b>Cnel. Apolinario Figueroa 661</b><br>             Mail Institucional: <b>cch.caballito@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_799bf8b97c4259a175c59856caf307ad.setContent(html_2b34afea869fea12b43442b5c6f1a5fa);
+            
+        
+
+        marker_c6ec81367c4726885ca671dbcbb7b365.bindPopup(popup_799bf8b97c4259a175c59856caf307ad)
+        ;
+
+        
+    
+    
+            marker_c6ec81367c4726885ca671dbcbb7b365.bindTooltip(
+                `<div>
+                     CCH: Club de Chicos Caballito
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_c6ec81367c4726885ca671dbcbb7b365.setIcon(icon_1301b4f82b8ea7c1c63eb2d1c9bdc559);
+            
+    
+            var marker_92382038133fc35d760e5578a10b3a14 = L.marker(
+                [-34.5554759, -58.4780317],
+                {
+}
+            ).addTo(feature_group_7c6940590cc99fcdb03da896604eaeb0);
+        
+    
+            var icon_04998a90c80e25eafaa219de1fea975c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_10a055e455bb7f2e6632162c604d98d7 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_5c6dfe80dfb91539e5f96d225d4341a0 = $(`<div id="html_5c6dfe80dfb91539e5f96d225d4341a0" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: blue; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> Club de Chicos Coghlan         </div>         <div style="width: 300px;">             <b>Club de Chicos Coghlan</b><br>             Programa: <b>CCH</b><br>             Escuela Base: <b>Esc. JS Nº 14 DE 10 Fray Martin del Barco Centenera</b><br>             Distrito Escolar: <b>10</b><br>             Comuna: <b>12</b><br>             Dirección: <b>Roque Perez 3545</b><br>             Mail Institucional: <b>cch.coghlan@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_10a055e455bb7f2e6632162c604d98d7.setContent(html_5c6dfe80dfb91539e5f96d225d4341a0);
+            
+        
+
+        marker_92382038133fc35d760e5578a10b3a14.bindPopup(popup_10a055e455bb7f2e6632162c604d98d7)
+        ;
+
+        
+    
+    
+            marker_92382038133fc35d760e5578a10b3a14.bindTooltip(
+                `<div>
+                     CCH: Club de Chicos Coghlan
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_92382038133fc35d760e5578a10b3a14.setIcon(icon_04998a90c80e25eafaa219de1fea975c);
+            
+    
+            var marker_f089e3ba76d957a40e703e17398167d2 = L.marker(
+                [-34.6360739, -58.4848592],
+                {
+}
+            ).addTo(feature_group_7c6940590cc99fcdb03da896604eaeb0);
+        
+    
+            var icon_af42db8608a998e8d2325b6898dc6967 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_8dc867a4c178052a62acb1a2eea897b4 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_c64b90d929dabc3af0d22aab4e8a6492 = $(`<div id="html_c64b90d929dabc3af0d22aab4e8a6492" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: blue; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> Club de Chicos Velez Sarsfield         </div>         <div style="width: 300px;">             <b>Club de Chicos Velez Sarsfield</b><br>             Programa: <b>CCH</b><br>             Escuela Base: <b>Esc. JC Nº 01 D.E. 11 "José Alfredo Ferreira"</b><br>             Distrito Escolar: <b>11</b><br>             Comuna: <b>10</b><br>             Dirección: <b>Cnel. Ramón L. Falcón 4126</b><br>             Mail Institucional: <b>cch.velezsarfierld@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_8dc867a4c178052a62acb1a2eea897b4.setContent(html_c64b90d929dabc3af0d22aab4e8a6492);
+            
+        
+
+        marker_f089e3ba76d957a40e703e17398167d2.bindPopup(popup_8dc867a4c178052a62acb1a2eea897b4)
+        ;
+
+        
+    
+    
+            marker_f089e3ba76d957a40e703e17398167d2.bindTooltip(
+                `<div>
+                     CCH: Club de Chicos Velez Sarsfield
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_f089e3ba76d957a40e703e17398167d2.setIcon(icon_af42db8608a998e8d2325b6898dc6967);
+            
+    
+            var marker_097c203c27af37c986fb949760e80b50 = L.marker(
+                [-34.6246136, -58.4669833],
+                {
+}
+            ).addTo(feature_group_7c6940590cc99fcdb03da896604eaeb0);
+        
+    
+            var icon_e0b89354b4bcc4efe3824f1a8f7e5f0d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_11bfb8c0f0a9abfc33ef857b282231f7 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_1942ac77bcb0bdde525173fda3e13f19 = $(`<div id="html_1942ac77bcb0bdde525173fda3e13f19" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: blue; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> Club de Chicos Flores         </div>         <div style="width: 300px;">             <b>Club de Chicos Flores</b><br>             Programa: <b>CCH</b><br>             Escuela Base: <b>Esc. JS 12 DE 12 "Provincia de Chaco"</b><br>             Distrito Escolar: <b>12</b><br>             Comuna: <b>7</b><br>             Dirección: <b>Av. Avellaneda 2547</b><br>             Mail Institucional: <b>cch.flores@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_11bfb8c0f0a9abfc33ef857b282231f7.setContent(html_1942ac77bcb0bdde525173fda3e13f19);
+            
+        
+
+        marker_097c203c27af37c986fb949760e80b50.bindPopup(popup_11bfb8c0f0a9abfc33ef857b282231f7)
+        ;
+
+        
+    
+    
+            marker_097c203c27af37c986fb949760e80b50.bindTooltip(
+                `<div>
+                     CCH: Club de Chicos Flores
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_097c203c27af37c986fb949760e80b50.setIcon(icon_e0b89354b4bcc4efe3824f1a8f7e5f0d);
+            
+    
+            var marker_1bda69068bc2e2e41843e67d6e9599fc = L.marker(
+                [-34.6005569, -58.4677543],
+                {
+}
+            ).addTo(feature_group_7c6940590cc99fcdb03da896604eaeb0);
+        
+    
+            var icon_b48ef453df0ab88708b816c929572ddf = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_050081e509dea69ea9f7227aa9af3aa4 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_0ce4d5d08e5dc7d2630dfea94701f118 = $(`<div id="html_0ce4d5d08e5dc7d2630dfea94701f118" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: blue; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> Club de Chicos Paternal         </div>         <div style="width: 300px;">             <b>Club de Chicos Paternal</b><br>             Programa: <b>CCH</b><br>             Escuela Base: <b>Esc. JC N°10 DE 14 "“República del Ecuador”"</b><br>             Distrito Escolar: <b>14</b><br>             Comuna: <b>15</b><br>             Dirección: <b>Espinosa 2547</b><br>             Mail Institucional: <b>cch.paternal@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_050081e509dea69ea9f7227aa9af3aa4.setContent(html_0ce4d5d08e5dc7d2630dfea94701f118);
+            
+        
+
+        marker_1bda69068bc2e2e41843e67d6e9599fc.bindPopup(popup_050081e509dea69ea9f7227aa9af3aa4)
+        ;
+
+        
+    
+    
+            marker_1bda69068bc2e2e41843e67d6e9599fc.bindTooltip(
+                `<div>
+                     CCH: Club de Chicos Paternal
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_1bda69068bc2e2e41843e67d6e9599fc.setIcon(icon_b48ef453df0ab88708b816c929572ddf);
+            
+    
+            var marker_4041a5353bcaceb228bbaac86a496265 = L.marker(
+                [-34.5634837, -58.5022655],
+                {
+}
+            ).addTo(feature_group_7c6940590cc99fcdb03da896604eaeb0);
+        
+    
+            var icon_d31ce4aad37b57979bb36b2a11973541 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_8f6f8a8d20d4aea1963c8daecd003dcd = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_42e7b955165f8fd78626bf48eda8ab54 = $(`<div id="html_42e7b955165f8fd78626bf48eda8ab54" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: blue; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> Club de Chicos Saavedra         </div>         <div style="width: 300px;">             <b>Club de Chicos Saavedra</b><br>             Programa: <b>CCH</b><br>             Escuela Base: <b>Esc. JS Nº 19 DE 15 "Naciones Unidas"</b><br>             Distrito Escolar: <b>15</b><br>             Comuna: <b>12</b><br>             Dirección: <b>Rogelio Yrurtia 5806</b><br>             Mail Institucional: <b>cch.saavedra@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_8f6f8a8d20d4aea1963c8daecd003dcd.setContent(html_42e7b955165f8fd78626bf48eda8ab54);
+            
+        
+
+        marker_4041a5353bcaceb228bbaac86a496265.bindPopup(popup_8f6f8a8d20d4aea1963c8daecd003dcd)
+        ;
+
+        
+    
+    
+            marker_4041a5353bcaceb228bbaac86a496265.bindTooltip(
+                `<div>
+                     CCH: Club de Chicos Saavedra
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_4041a5353bcaceb228bbaac86a496265.setIcon(icon_d31ce4aad37b57979bb36b2a11973541);
+            
+    
+            var marker_31f3dee67b3b23067390e20e370169ca = L.marker(
+                [-34.6258335, -58.4930435],
+                {
+}
+            ).addTo(feature_group_7c6940590cc99fcdb03da896604eaeb0);
+        
+    
+            var icon_91d1804dcce5f84e8979f2c0cd408276 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e3d74007246fa1daa8c227304d1d2955 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_cf86543cd7118cd56d3929282a3cfdeb = $(`<div id="html_cf86543cd7118cd56d3929282a3cfdeb" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: blue; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> Club de Chicos Floresta         </div>         <div style="width: 300px;">             <b>Club de Chicos Floresta</b><br>             Programa: <b>CCH</b><br>             Escuela Base: <b>Esc. JC Nº 15 D.E. 18 "Manuel Peña"</b><br>             Distrito Escolar: <b>18</b><br>             Comuna: <b>10</b><br>             Dirección: <b>Av. Segurola 1104</b><br>             Mail Institucional: <b>cch.floresta@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_e3d74007246fa1daa8c227304d1d2955.setContent(html_cf86543cd7118cd56d3929282a3cfdeb);
+            
+        
+
+        marker_31f3dee67b3b23067390e20e370169ca.bindPopup(popup_e3d74007246fa1daa8c227304d1d2955)
+        ;
+
+        
+    
+    
+            marker_31f3dee67b3b23067390e20e370169ca.bindTooltip(
+                `<div>
+                     CCH: Club de Chicos Floresta
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_31f3dee67b3b23067390e20e370169ca.setIcon(icon_91d1804dcce5f84e8979f2c0cd408276);
+            
+    
+            var marker_cbadaa5fc11b7958e48e9601410b8815 = L.marker(
+                [-34.6283837, -58.5224921],
+                {
+}
+            ).addTo(feature_group_7c6940590cc99fcdb03da896604eaeb0);
+        
+    
+            var icon_0669d5ec7bc6c5d3451b8105fb3092c5 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e72a9846609a517cdc760ca5903f3e1d = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_96f0ef27e1cab7b73624bbd6b1b8951f = $(`<div id="html_96f0ef27e1cab7b73624bbd6b1b8951f" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: blue; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> Club de Chicos Liniers         </div>         <div style="width: 300px;">             <b>Club de Chicos Liniers</b><br>             Programa: <b>CCH</b><br>             Escuela Base: <b>Esc. JS N°25 Estados Unidos de America</b><br>             Distrito Escolar: <b>18</b><br>             Comuna: <b>10</b><br>             Dirección: <b>Bruselas 785</b><br>             Mail Institucional: <b>cch.liniers@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_e72a9846609a517cdc760ca5903f3e1d.setContent(html_96f0ef27e1cab7b73624bbd6b1b8951f);
+            
+        
+
+        marker_cbadaa5fc11b7958e48e9601410b8815.bindPopup(popup_e72a9846609a517cdc760ca5903f3e1d)
+        ;
+
+        
+    
+    
+            marker_cbadaa5fc11b7958e48e9601410b8815.bindTooltip(
+                `<div>
+                     CCH: Club de Chicos Liniers
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_cbadaa5fc11b7958e48e9601410b8815.setIcon(icon_0669d5ec7bc6c5d3451b8105fb3092c5);
+            
+    
+            var marker_2a126c6044c362153924faa3c0c2ca36 = L.marker(
+                [-34.6533399, -58.4318747],
+                {
+}
+            ).addTo(feature_group_7c6940590cc99fcdb03da896604eaeb0);
+        
+    
+            var icon_80b6dc920d8aab486b853f83f458a040 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_bde863c49f34de30a50833f1f12ee2c5 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_82710ac73c3e13cd9c92ecb18d566523 = $(`<div id="html_82710ac73c3e13cd9c92ecb18d566523" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: blue; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> Club de Chicos Charrúa         </div>         <div style="width: 300px;">             <b>Club de Chicos Charrúa</b><br>             Programa: <b>CCH</b><br>             Escuela Base: <b>Esc. JC Nº 13 DE 19º Presbítero Alberti</b><br>             Distrito Escolar: <b>19</b><br>             Comuna: <b>4</b><br>             Dirección: <b>Itaqui 2050</b><br>             Mail Institucional: <b>cch.pompeya@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_bde863c49f34de30a50833f1f12ee2c5.setContent(html_82710ac73c3e13cd9c92ecb18d566523);
+            
+        
+
+        marker_2a126c6044c362153924faa3c0c2ca36.bindPopup(popup_bde863c49f34de30a50833f1f12ee2c5)
+        ;
+
+        
+    
+    
+            marker_2a126c6044c362153924faa3c0c2ca36.bindTooltip(
+                `<div>
+                     CCH: Club de Chicos Charrúa
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_2a126c6044c362153924faa3c0c2ca36.setIcon(icon_80b6dc920d8aab486b853f83f458a040);
+            
+    
+            var marker_0db9dbd5ef80f743c582875922d75d01 = L.marker(
+                [-34.6481559, -58.432688],
+                {
+}
+            ).addTo(feature_group_7c6940590cc99fcdb03da896604eaeb0);
+        
+    
+            var icon_fdf05da8b11ea37cbf3dc62b9fff513a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_6b3828676c299a72ac89174bd25472d3 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_d9f28c93b75a87b1cfa0c24d525895db = $(`<div id="html_d9f28c93b75a87b1cfa0c24d525895db" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: blue; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> Club de Chicos Bajo Flores         </div>         <div style="width: 300px;">             <b>Club de Chicos Bajo Flores</b><br>             Programa: <b>CCH</b><br>             Escuela Base: <b>EEM Nº 3 DE 19 "Profesor Carlos Geniso"</b><br>             Distrito Escolar: <b>19</b><br>             Comuna: <b>7</b><br>             Dirección: <b>Agustín De Vedia 2519</b><br>             Mail Institucional: <b>cch.bajoflores@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_6b3828676c299a72ac89174bd25472d3.setContent(html_d9f28c93b75a87b1cfa0c24d525895db);
+            
+        
+
+        marker_0db9dbd5ef80f743c582875922d75d01.bindPopup(popup_6b3828676c299a72ac89174bd25472d3)
+        ;
+
+        
+    
+    
+            marker_0db9dbd5ef80f743c582875922d75d01.bindTooltip(
+                `<div>
+                     CCH: Club de Chicos Bajo Flores
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_0db9dbd5ef80f743c582875922d75d01.setIcon(icon_fdf05da8b11ea37cbf3dc62b9fff513a);
+            
+    
+            var marker_9a9e1364904a7d3c09e5b661ce17a41c = L.marker(
+                [-34.6684279, -58.4974444],
+                {
+}
+            ).addTo(feature_group_7c6940590cc99fcdb03da896604eaeb0);
+        
+    
+            var icon_962da3210e9fabeb687e5db130e82167 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_c6f89caf1fb9d068d74029b25f13a73c = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_11b2b994396d2dcdd2679518a16241c0 = $(`<div id="html_11b2b994396d2dcdd2679518a16241c0" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: blue; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> Club de Chicos Mataderos         </div>         <div style="width: 300px;">             <b>Club de Chicos Mataderos</b><br>             Programa: <b>CCH</b><br>             Escuela Base: <b>Esc. JC Nº 19 DE 20 "Roma"</b><br>             Distrito Escolar: <b>20</b><br>             Comuna: <b>9</b><br>             Dirección: <b>Cosquín 3100</b><br>             Mail Institucional: <b>cch.mataderos@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_c6f89caf1fb9d068d74029b25f13a73c.setContent(html_11b2b994396d2dcdd2679518a16241c0);
+            
+        
+
+        marker_9a9e1364904a7d3c09e5b661ce17a41c.bindPopup(popup_c6f89caf1fb9d068d74029b25f13a73c)
+        ;
+
+        
+    
+    
+            marker_9a9e1364904a7d3c09e5b661ce17a41c.bindTooltip(
+                `<div>
+                     CCH: Club de Chicos Mataderos
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_9a9e1364904a7d3c09e5b661ce17a41c.setIcon(icon_962da3210e9fabeb687e5db130e82167);
+            
+    
+            feature_group_7c6940590cc99fcdb03da896604eaeb0.addTo(map_bcda98267b0b8e349ebf3d7a6f13a15f);
+        
+    
+            var feature_group_0f13be5cedef80185f77906cd17d06a1 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_3e6f6f549445150123914db9c22821ef = L.marker(
+                [-34.588103, -58.3700797],
+                {
+}
+            ).addTo(feature_group_0f13be5cedef80185f77906cd17d06a1);
+        
+    
+            var icon_48505aabc40127650b3db6b155032a7f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_df9c714d3695b79d4d12faa5267f2a6f = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_01385a2f227cb855e1be8206161ecf46 = $(`<div id="html_01385a2f227cb855e1be8206161ecf46" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: orange; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> Club de Jóvenes Retiro         </div>         <div style="width: 300px;">             <b>Club de Jóvenes Retiro</b><br>             Programa: <b>CJ/CAJ</b><br>             Escuela Base: <b>Escuela de Educación Media Nº 06 "Padre Carlos Mugica"</b><br>             Distrito Escolar: <b>1</b><br>             Comuna: <b>1</b><br>             Dirección: <b>Letonia 1940</b><br>             Mail Institucional: <b>cj.retiro@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_df9c714d3695b79d4d12faa5267f2a6f.setContent(html_01385a2f227cb855e1be8206161ecf46);
+            
+        
+
+        marker_3e6f6f549445150123914db9c22821ef.bindPopup(popup_df9c714d3695b79d4d12faa5267f2a6f)
+        ;
+
+        
+    
+    
+            marker_3e6f6f549445150123914db9c22821ef.bindTooltip(
+                `<div>
+                     CJ/CAJ: Club de Jóvenes Retiro
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_3e6f6f549445150123914db9c22821ef.setIcon(icon_48505aabc40127650b3db6b155032a7f);
+            
+    
+            var marker_944c2304a0902c2c672a4b1d07ceb7ac = L.marker(
+                [-34.6017259, -58.3929429],
+                {
+}
+            ).addTo(feature_group_0f13be5cedef80185f77906cd17d06a1);
+        
+    
+            var icon_91160e2b3cde51a1362862200addf772 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_a5c35771ae96f584bd1a62e56a42b9e8 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_1e5ee91b918c58c9b7520bd84a9c0816 = $(`<div id="html_1e5ee91b918c58c9b7520bd84a9c0816" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: orange; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> Club de Jóvenes Centro         </div>         <div style="width: 300px;">             <b>Club de Jóvenes Centro</b><br>             Programa: <b>CJ/CAJ</b><br>             Escuela Base: <b>Comercio Nº 2 DE: 1 - "Bermejo"</b><br>             Distrito Escolar: <b>1</b><br>             Comuna: <b>3</b><br>             Dirección: <b>Callao 628</b><br>             Mail Institucional: <b>cj.centro@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_a5c35771ae96f584bd1a62e56a42b9e8.setContent(html_1e5ee91b918c58c9b7520bd84a9c0816);
+            
+        
+
+        marker_944c2304a0902c2c672a4b1d07ceb7ac.bindPopup(popup_a5c35771ae96f584bd1a62e56a42b9e8)
+        ;
+
+        
+    
+    
+            marker_944c2304a0902c2c672a4b1d07ceb7ac.bindTooltip(
+                `<div>
+                     CJ/CAJ: Club de Jóvenes Centro
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_944c2304a0902c2c672a4b1d07ceb7ac.setIcon(icon_91160e2b3cde51a1362862200addf772);
+            
+    
+            var marker_b9fc9ce77f0af04f7c75a0f9bc9b9036 = L.marker(
+                [-34.5991475, -58.4192529],
+                {
+}
+            ).addTo(feature_group_0f13be5cedef80185f77906cd17d06a1);
+        
+    
+            var icon_5ca748ee4cff9c7cd1f35044c312dc7d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_be49c8e1e3e3b9b2db1cdeb69c4e4dca = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_1a68b7c2ed066f672272915b0e0cea3f = $(`<div id="html_1a68b7c2ed066f672272915b0e0cea3f" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: orange; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> Club de Jóvenes Almagro         </div>         <div style="width: 300px;">             <b>Club de Jóvenes Almagro</b><br>             Programa: <b>CJ/CAJ</b><br>             Escuela Base: <b>Escuela Técnica Nº 30 Norberto Piñero DE 02</b><br>             Distrito Escolar: <b>2</b><br>             Comuna: <b>5</b><br>             Dirección: <b>Jeronimo Salguero 920</b><br>             Mail Institucional: <b>cj.almagro@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_be49c8e1e3e3b9b2db1cdeb69c4e4dca.setContent(html_1a68b7c2ed066f672272915b0e0cea3f);
+            
+        
+
+        marker_b9fc9ce77f0af04f7c75a0f9bc9b9036.bindPopup(popup_be49c8e1e3e3b9b2db1cdeb69c4e4dca)
+        ;
+
+        
+    
+    
+            marker_b9fc9ce77f0af04f7c75a0f9bc9b9036.bindTooltip(
+                `<div>
+                     CJ/CAJ: Club de Jóvenes Almagro
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_b9fc9ce77f0af04f7c75a0f9bc9b9036.setIcon(icon_5ca748ee4cff9c7cd1f35044c312dc7d);
+            
+    
+            var marker_d356f754a17078c3b2efee9444889646 = L.marker(
+                [-34.5965524, -58.4050756],
+                {
+}
+            ).addTo(feature_group_0f13be5cedef80185f77906cd17d06a1);
+        
+    
+            var icon_04f4d9ea364f10465876641dce6d470c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_037bc30c7d57d9dca68f068bb8a6bbe9 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_9c541e3fecf3d21399b93b6e7621dc33 = $(`<div id="html_9c541e3fecf3d21399b93b6e7621dc33" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: orange; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> Club  de  Jovenes  Nueva Recoleta         </div>         <div style="width: 300px;">             <b>Club  de  Jovenes  Nueva Recoleta</b><br>             Programa: <b>CJ/CAJ</b><br>             Escuela Base: <b>Colegio Manuel Belgrano N° 6</b><br>             Distrito Escolar: <b>2</b><br>             Comuna: <b>2</b><br>             Dirección: <b>Ecuador 1158</b><br>             Mail Institucional: <b>cj.nuevarecoleta@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_037bc30c7d57d9dca68f068bb8a6bbe9.setContent(html_9c541e3fecf3d21399b93b6e7621dc33);
+            
+        
+
+        marker_d356f754a17078c3b2efee9444889646.bindPopup(popup_037bc30c7d57d9dca68f068bb8a6bbe9)
+        ;
+
+        
+    
+    
+            marker_d356f754a17078c3b2efee9444889646.bindTooltip(
+                `<div>
+                     CJ/CAJ: Club  de  Jovenes  Nueva Recoleta
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_d356f754a17078c3b2efee9444889646.setIcon(icon_04f4d9ea364f10465876641dce6d470c);
+            
+    
+            var marker_752c500fc5e0ffc404af367c736948e2 = L.marker(
+                [-34.6329301, -58.3642063],
+                {
+}
+            ).addTo(feature_group_0f13be5cedef80185f77906cd17d06a1);
+        
+    
+            var icon_e06827d6d04a9c7e2eb0e9014be759db = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_ad0eae9875c31850935146ba5eb14bf0 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_eea425ac60f7db40597e821f10a8a1f4 = $(`<div id="html_eea425ac60f7db40597e821f10a8a1f4" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: orange; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> Club de Jovenes La Boca         </div>         <div style="width: 300px;">             <b>Club de Jovenes La Boca</b><br>             Programa: <b>CJ/CAJ</b><br>             Escuela Base: <b>Escuela Media Nº 3 DE 4</b><br>             Distrito Escolar: <b>4</b><br>             Comuna: <b>4</b><br>             Dirección: <b>Palos y Blanes</b><br>             Mail Institucional: <b>cj.laboca@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_ad0eae9875c31850935146ba5eb14bf0.setContent(html_eea425ac60f7db40597e821f10a8a1f4);
+            
+        
+
+        marker_752c500fc5e0ffc404af367c736948e2.bindPopup(popup_ad0eae9875c31850935146ba5eb14bf0)
+        ;
+
+        
+    
+    
+            marker_752c500fc5e0ffc404af367c736948e2.bindTooltip(
+                `<div>
+                     CJ/CAJ: Club de Jovenes La Boca
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_752c500fc5e0ffc404af367c736948e2.setIcon(icon_e06827d6d04a9c7e2eb0e9014be759db);
+            
+    
+            var marker_5af19a5fffed8f2ddccbccb10aa5131c = L.marker(
+                [-34.6433117, -58.3730717],
+                {
+}
+            ).addTo(feature_group_0f13be5cedef80185f77906cd17d06a1);
+        
+    
+            var icon_ccf3c8e9c48793c309b79d5b3dcb99e6 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_2fd9f1c954eb481a5c35e384ab9d2b70 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_2e59c9685413177e72b81b43706a3ee0 = $(`<div id="html_2e59c9685413177e72b81b43706a3ee0" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: orange; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> Club de Jovenes  Barracas         </div>         <div style="width: 300px;">             <b>Club de Jovenes  Barracas</b><br>             Programa: <b>CJ/CAJ</b><br>             Escuela Base: <b>Escuela de Comercio. Nº 01 Joaquin B. Gonzalez</b><br>             Distrito Escolar: <b>4</b><br>             Comuna: <b>4</b><br>             Dirección: <b>Benito Quinquela Martín 1649</b><br>             Mail Institucional: <b>cj.barracas@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_2fd9f1c954eb481a5c35e384ab9d2b70.setContent(html_2e59c9685413177e72b81b43706a3ee0);
+            
+        
+
+        marker_5af19a5fffed8f2ddccbccb10aa5131c.bindPopup(popup_2fd9f1c954eb481a5c35e384ab9d2b70)
+        ;
+
+        
+    
+    
+            marker_5af19a5fffed8f2ddccbccb10aa5131c.bindTooltip(
+                `<div>
+                     CJ/CAJ: Club de Jovenes  Barracas
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_5af19a5fffed8f2ddccbccb10aa5131c.setIcon(icon_ccf3c8e9c48793c309b79d5b3dcb99e6);
+            
+    
+            var marker_0a6c140f8419ca51f7dc2e3cd56a2b5c = L.marker(
+                [-34.6228841, -58.3726946],
+                {
+}
+            ).addTo(feature_group_0f13be5cedef80185f77906cd17d06a1);
+        
+    
+            var icon_e818c430c11a73ac3561b8242b31d735 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_9d865d4781d036170ac9b1536a20ab44 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_2e0c7caa256c2d89f4ae39bfabe1010a = $(`<div id="html_2e0c7caa256c2d89f4ae39bfabe1010a" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: orange; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> Club de Jóvenes San Telmo         </div>         <div style="width: 300px;">             <b>Club de Jóvenes San Telmo</b><br>             Programa: <b>CJ/CAJ</b><br>             Escuela Base: <b>Escuela Normal Superior Nº 03 (Polideportivo) "Bernardino Rivadavia"</b><br>             Distrito Escolar: <b>4</b><br>             Comuna: <b>1</b><br>             Dirección: <b>Bolivar 1280</b><br>             Mail Institucional: <b>cj.santelmo@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_9d865d4781d036170ac9b1536a20ab44.setContent(html_2e0c7caa256c2d89f4ae39bfabe1010a);
+            
+        
+
+        marker_0a6c140f8419ca51f7dc2e3cd56a2b5c.bindPopup(popup_9d865d4781d036170ac9b1536a20ab44)
+        ;
+
+        
+    
+    
+            marker_0a6c140f8419ca51f7dc2e3cd56a2b5c.bindTooltip(
+                `<div>
+                     CJ/CAJ: Club de Jóvenes San Telmo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_0a6c140f8419ca51f7dc2e3cd56a2b5c.setIcon(icon_e818c430c11a73ac3561b8242b31d735);
+            
+    
+            var marker_08accbb71cbbabee3a9ee5ed88f90532 = L.marker(
+                [-34.6514576, -58.3966535],
+                {
+}
+            ).addTo(feature_group_0f13be5cedef80185f77906cd17d06a1);
+        
+    
+            var icon_57363bdf38debec6e195cb4f5141b686 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_525e8967744d1b02555167c09d5c204e = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_2754cdea9abe3dea08f0a7cdf19f3468 = $(`<div id="html_2754cdea9abe3dea08f0a7cdf19f3468" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: orange; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> Club de Jóvenes Barracas Sur         </div>         <div style="width: 300px;">             <b>Club de Jóvenes Barracas Sur</b><br>             Programa: <b>CJ/CAJ</b><br>             Escuela Base: <b>Escuela Media  Nº 6</b><br>             Distrito Escolar: <b>5</b><br>             Comuna: <b>4</b><br>             Dirección: <b>Montesquieu e Iriarte (Alt.3501)</b><br>             Mail Institucional: <b>cj.barracassur@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_525e8967744d1b02555167c09d5c204e.setContent(html_2754cdea9abe3dea08f0a7cdf19f3468);
+            
+        
+
+        marker_08accbb71cbbabee3a9ee5ed88f90532.bindPopup(popup_525e8967744d1b02555167c09d5c204e)
+        ;
+
+        
+    
+    
+            marker_08accbb71cbbabee3a9ee5ed88f90532.bindTooltip(
+                `<div>
+                     CJ/CAJ: Club de Jóvenes Barracas Sur
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_08accbb71cbbabee3a9ee5ed88f90532.setIcon(icon_57363bdf38debec6e195cb4f5141b686);
+            
+    
+            var marker_60e93a2ef09c19a47ba9445ba44b54df = L.marker(
+                [-34.6394474, -58.4028571],
+                {
+}
+            ).addTo(feature_group_0f13be5cedef80185f77906cd17d06a1);
+        
+    
+            var icon_d8720d0064b10df7857656162e13cbc5 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_89708e2c44303a77af2a8d88762202c7 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_040cc7690bcf7f003bc80894f2deaa6e = $(`<div id="html_040cc7690bcf7f003bc80894f2deaa6e" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: orange; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> Club de Jóvenes Patricios         </div>         <div style="width: 300px;">             <b>Club de Jóvenes Patricios</b><br>             Programa: <b>CJ/CAJ</b><br>             Escuela Base: <b>Escuela Técnica Nº 7 "Dolores Lavalle de Lavalle"</b><br>             Distrito Escolar: <b>5</b><br>             Comuna: <b>4</b><br>             Dirección: <b>Avda. Zavaleta 204</b><br>             Mail Institucional: <b>cj.patricios@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_89708e2c44303a77af2a8d88762202c7.setContent(html_040cc7690bcf7f003bc80894f2deaa6e);
+            
+        
+
+        marker_60e93a2ef09c19a47ba9445ba44b54df.bindPopup(popup_89708e2c44303a77af2a8d88762202c7)
+        ;
+
+        
+    
+    
+            marker_60e93a2ef09c19a47ba9445ba44b54df.bindTooltip(
+                `<div>
+                     CJ/CAJ: Club de Jóvenes Patricios
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_60e93a2ef09c19a47ba9445ba44b54df.setIcon(icon_d8720d0064b10df7857656162e13cbc5);
+            
+    
+            var marker_ddef99946b03ed0ad05d193f4ac10ed6 = L.marker(
+                [-34.6257829, -58.4048494],
+                {
+}
+            ).addTo(feature_group_0f13be5cedef80185f77906cd17d06a1);
+        
+    
+            var icon_b0baeda368bb6a13da9cda01fa0adb2f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_96cd59d28e546ff7279d84d19ed094b6 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_aa955fceb8678ff23278d688d0621dc8 = $(`<div id="html_aa955fceb8678ff23278d688d0621dc8" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: orange; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> Club de Jóvenes San Cristóbal         </div>         <div style="width: 300px;">             <b>Club de Jóvenes San Cristóbal</b><br>             Programa: <b>CJ/CAJ</b><br>             Escuela Base: <b>Escuela Técnica Nº 11 (Polideportivo) "Manuel Belgrano</b><br>             Distrito Escolar: <b>6</b><br>             Comuna: <b>3</b><br>             Dirección: <b>Cochabamba 2838</b><br>             Mail Institucional: <b>cj.sancristobal@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_96cd59d28e546ff7279d84d19ed094b6.setContent(html_aa955fceb8678ff23278d688d0621dc8);
+            
+        
+
+        marker_ddef99946b03ed0ad05d193f4ac10ed6.bindPopup(popup_96cd59d28e546ff7279d84d19ed094b6)
+        ;
+
+        
+    
+    
+            marker_ddef99946b03ed0ad05d193f4ac10ed6.bindTooltip(
+                `<div>
+                     CJ/CAJ: Club de Jóvenes San Cristóbal
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_ddef99946b03ed0ad05d193f4ac10ed6.setIcon(icon_b0baeda368bb6a13da9cda01fa0adb2f);
+            
+    
+            var marker_e6cf4639cd7f8f79dd4a85a770694efd = L.marker(
+                [-34.6183601, -58.4032033],
+                {
+}
+            ).addTo(feature_group_0f13be5cedef80185f77906cd17d06a1);
+        
+    
+            var icon_8d5fd39baecea8f4fb4c44272189eebb = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_5a5d285d79814d15a32b9b3943857ad2 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_29205a179f12d063ceaa64a99f696c5d = $(`<div id="html_29205a179f12d063ceaa64a99f696c5d" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: orange; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> Club de Jóvenes Balvanera         </div>         <div style="width: 300px;">             <b>Club de Jóvenes Balvanera</b><br>             Programa: <b>CJ/CAJ</b><br>             Escuela Base: <b>Escuela Técnica Nº25 DE 06 -Tte 1º de Artilleria Fray Luis Beltran</b><br>             Distrito Escolar: <b>6</b><br>             Comuna: <b>3</b><br>             Dirección: <b>Av, Jujuy 780</b><br>             Mail Institucional: <b>cj.balvanera@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_5a5d285d79814d15a32b9b3943857ad2.setContent(html_29205a179f12d063ceaa64a99f696c5d);
+            
+        
+
+        marker_e6cf4639cd7f8f79dd4a85a770694efd.bindPopup(popup_5a5d285d79814d15a32b9b3943857ad2)
+        ;
+
+        
+    
+    
+            marker_e6cf4639cd7f8f79dd4a85a770694efd.bindTooltip(
+                `<div>
+                     CJ/CAJ: Club de Jóvenes Balvanera
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_e6cf4639cd7f8f79dd4a85a770694efd.setIcon(icon_8d5fd39baecea8f4fb4c44272189eebb);
+            
+    
+            var marker_879c1101c879b8e02d6463f90e187f46 = L.marker(
+                [-34.6141334, -58.4307566],
+                {
+}
+            ).addTo(feature_group_0f13be5cedef80185f77906cd17d06a1);
+        
+    
+            var icon_116ee1f0a472c5eab4feccb94ea6be5c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_76f7f69b9e2654b485d7c00559a9482e = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_98f5307e3f91677ef494e1e1caa924d1 = $(`<div id="html_98f5307e3f91677ef494e1e1caa924d1" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: orange; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> Club de Jóvenes Caballito         </div>         <div style="width: 300px;">             <b>Club de Jóvenes Caballito</b><br>             Programa: <b>CJ/CAJ</b><br>             Escuela Base: <b>Escuela de Comercio N° 19 D.E. 8 - Juan Montalvo</b><br>             Distrito Escolar: <b>8</b><br>             Comuna: <b>6</b><br>             Dirección: <b>Formosa 136</b><br>             Mail Institucional: <b>cj.caballito@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_76f7f69b9e2654b485d7c00559a9482e.setContent(html_98f5307e3f91677ef494e1e1caa924d1);
+            
+        
+
+        marker_879c1101c879b8e02d6463f90e187f46.bindPopup(popup_76f7f69b9e2654b485d7c00559a9482e)
+        ;
+
+        
+    
+    
+            marker_879c1101c879b8e02d6463f90e187f46.bindTooltip(
+                `<div>
+                     CJ/CAJ: Club de Jóvenes Caballito
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_879c1101c879b8e02d6463f90e187f46.setIcon(icon_116ee1f0a472c5eab4feccb94ea6be5c);
+            
+    
+            var marker_72767eb5ef4225e94cc2e7a03bc7d41b = L.marker(
+                [-34.6091905, -58.4468324],
+                {
+}
+            ).addTo(feature_group_0f13be5cedef80185f77906cd17d06a1);
+        
+    
+            var icon_b15471b48ea8544d75d5b71ffda5bc3b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b6844282488744e2769b4d72f89841d4 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_9bfaf879c2ba88452e4277f4281078c8 = $(`<div id="html_9bfaf879c2ba88452e4277f4281078c8" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: orange; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> Club de Jóvenes Huergo         </div>         <div style="width: 300px;">             <b>Club de Jóvenes Huergo</b><br>             Programa: <b>CJ/CAJ</b><br>             Escuela Base: <b>Escuela Técnica Nº 09 "Ingeniero Luis Huergo"</b><br>             Distrito Escolar: <b>7</b><br>             Comuna: <b>6</b><br>             Dirección: <b>Martín de Gainza 1050</b><br>             Mail Institucional: <b>cj.huergo@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_b6844282488744e2769b4d72f89841d4.setContent(html_9bfaf879c2ba88452e4277f4281078c8);
+            
+        
+
+        marker_72767eb5ef4225e94cc2e7a03bc7d41b.bindPopup(popup_b6844282488744e2769b4d72f89841d4)
+        ;
+
+        
+    
+    
+            marker_72767eb5ef4225e94cc2e7a03bc7d41b.bindTooltip(
+                `<div>
+                     CJ/CAJ: Club de Jóvenes Huergo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_72767eb5ef4225e94cc2e7a03bc7d41b.setIcon(icon_b15471b48ea8544d75d5b71ffda5bc3b);
+            
+    
+            var marker_cfa7c45b12badfa38af0bc61a95cc717 = L.marker(
+                [-34.5839783, -58.4349152],
+                {
+}
+            ).addTo(feature_group_0f13be5cedef80185f77906cd17d06a1);
+        
+    
+            var icon_526f381804a5e20f49f96c24cf1e7ff8 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_f2ae2061db2c1e360e3d3798d5497779 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_448e4323151f76d8c4f16c52ec2cc8c6 = $(`<div id="html_448e4323151f76d8c4f16c52ec2cc8c6" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: orange; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> Club de Jóvenes Palermo         </div>         <div style="width: 300px;">             <b>Club de Jóvenes Palermo</b><br>             Programa: <b>CJ/CAJ</b><br>             Escuela Base: <b>Colegio Nº 04 "Nicolás Avellaneda"</b><br>             Distrito Escolar: <b>9</b><br>             Comuna: <b>14</b><br>             Dirección: <b>El Salvador 5528</b><br>             Mail Institucional: <b>cj.palermo@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_f2ae2061db2c1e360e3d3798d5497779.setContent(html_448e4323151f76d8c4f16c52ec2cc8c6);
+            
+        
+
+        marker_cfa7c45b12badfa38af0bc61a95cc717.bindPopup(popup_f2ae2061db2c1e360e3d3798d5497779)
+        ;
+
+        
+    
+    
+            marker_cfa7c45b12badfa38af0bc61a95cc717.bindTooltip(
+                `<div>
+                     CJ/CAJ: Club de Jóvenes Palermo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_cfa7c45b12badfa38af0bc61a95cc717.setIcon(icon_526f381804a5e20f49f96c24cf1e7ff8);
+            
+    
+            var marker_089fe43fe33fb5e5fa0a49fb3da1e4cd = L.marker(
+                [-34.5545676, -58.4559807],
+                {
+}
+            ).addTo(feature_group_0f13be5cedef80185f77906cd17d06a1);
+        
+    
+            var icon_6d5395d1735fee70bcd251817014c458 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_ee06dfc4d0a924f335b12c86d4b51dc2 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_49bc3571e6712748b497e6f1ccd4416c = $(`<div id="html_49bc3571e6712748b497e6f1ccd4416c" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: orange; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> Club de Jóvenes Belgrano/Nuñez         </div>         <div style="width: 300px;">             <b>Club de Jóvenes Belgrano/Nuñez</b><br>             Programa: <b>CJ/CAJ</b><br>             Escuela Base: <b>Escuela Normal Superior Nº 10 "Juan Bautista Alberdi"</b><br>             Distrito Escolar: <b>10</b><br>             Comuna: <b>13</b><br>             Dirección: <b>3 de febrero 2475</b><br>             Mail Institucional: <b>cj.belgranonunez@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_ee06dfc4d0a924f335b12c86d4b51dc2.setContent(html_49bc3571e6712748b497e6f1ccd4416c);
+            
+        
+
+        marker_089fe43fe33fb5e5fa0a49fb3da1e4cd.bindPopup(popup_ee06dfc4d0a924f335b12c86d4b51dc2)
+        ;
+
+        
+    
+    
+            marker_089fe43fe33fb5e5fa0a49fb3da1e4cd.bindTooltip(
+                `<div>
+                     CJ/CAJ: Club de Jóvenes Belgrano/Nuñez
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_089fe43fe33fb5e5fa0a49fb3da1e4cd.setIcon(icon_6d5395d1735fee70bcd251817014c458);
+            
+    
+            var marker_3ad42ef76f38af4f7e72005da844e536 = L.marker(
+                [-34.6266358, -58.4692219],
+                {
+}
+            ).addTo(feature_group_0f13be5cedef80185f77906cd17d06a1);
+        
+    
+            var icon_1d9e4fd49af927093344ce1fa3db5614 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_9fef93173c7eda09a032e1c2eb4749f4 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_fc3c9f607aac16405c87db592be4b786 = $(`<div id="html_fc3c9f607aac16405c87db592be4b786" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: orange; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> Club de Jóvenes Cortazar         </div>         <div style="width: 300px;">             <b>Club de Jóvenes Cortazar</b><br>             Programa: <b>CJ/CAJ</b><br>             Escuela Base: <b>Esc. de Educacion Media Nº 01 DE 12 "Julio Cortazar"</b><br>             Distrito Escolar: <b>12</b><br>             Comuna: <b>7</b><br>             Dirección: <b>Bogota 2759</b><br>             Mail Institucional: <b>cj.cortazar@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_9fef93173c7eda09a032e1c2eb4749f4.setContent(html_fc3c9f607aac16405c87db592be4b786);
+            
+        
+
+        marker_3ad42ef76f38af4f7e72005da844e536.bindPopup(popup_9fef93173c7eda09a032e1c2eb4749f4)
+        ;
+
+        
+    
+    
+            marker_3ad42ef76f38af4f7e72005da844e536.bindTooltip(
+                `<div>
+                     CJ/CAJ: Club de Jóvenes Cortazar
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_3ad42ef76f38af4f7e72005da844e536.setIcon(icon_1d9e4fd49af927093344ce1fa3db5614);
+            
+    
+            var marker_8760d52aa978a1c05d857b9059fc26b6 = L.marker(
+                [-34.5943081, -58.4759304],
+                {
+}
+            ).addTo(feature_group_0f13be5cedef80185f77906cd17d06a1);
+        
+    
+            var icon_613413c5876d0709dbbe93974ac65090 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_21fadf9e007b6587c65cad98e4f9f0fb = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_6a5af55333c279dc7d37e30af2471875 = $(`<div id="html_6a5af55333c279dc7d37e30af2471875" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: orange; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> Club de Jóvenes García Lorca         </div>         <div style="width: 300px;">             <b>Club de Jóvenes García Lorca</b><br>             Programa: <b>CJ/CAJ</b><br>             Escuela Base: <b>Escuela de Educación Media Nº 1 "Federico García Lorca"</b><br>             Distrito Escolar: <b>14</b><br>             Comuna: <b>15</b><br>             Dirección: <b>Av. Chorroarín 305</b><br>             Mail Institucional: <b>cj.garcialorca@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_21fadf9e007b6587c65cad98e4f9f0fb.setContent(html_6a5af55333c279dc7d37e30af2471875);
+            
+        
+
+        marker_8760d52aa978a1c05d857b9059fc26b6.bindPopup(popup_21fadf9e007b6587c65cad98e4f9f0fb)
+        ;
+
+        
+    
+    
+            marker_8760d52aa978a1c05d857b9059fc26b6.bindTooltip(
+                `<div>
+                     CJ/CAJ: Club de Jóvenes García Lorca
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_8760d52aa978a1c05d857b9059fc26b6.setIcon(icon_613413c5876d0709dbbe93974ac65090);
+            
+    
+            var marker_47b0f08dc460e948c04e279e4c7d61d7 = L.marker(
+                [-34.5838041, -58.4548814],
+                {
+}
+            ).addTo(feature_group_0f13be5cedef80185f77906cd17d06a1);
+        
+    
+            var icon_5cf58885f957678c11c83e72ba78a01b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_29bc465f58d470a284e0f69b26f4fb10 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_59a85cbf3bc24e6df49474ff74b4bbef = $(`<div id="html_59a85cbf3bc24e6df49474ff74b4bbef" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: orange; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> Club de Jóvenes Chacarita         </div>         <div style="width: 300px;">             <b>Club de Jóvenes Chacarita</b><br>             Programa: <b>CJ/CAJ</b><br>             Escuela Base: <b>Escuela Técnica Nº 32 DE 14 "Gral. José de San Martín"</b><br>             Distrito Escolar: <b>14</b><br>             Comuna: <b>15</b><br>             Dirección: <b>Teodoro García 3899</b><br>             Mail Institucional: <b>cj.chacarita@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_29bc465f58d470a284e0f69b26f4fb10.setContent(html_59a85cbf3bc24e6df49474ff74b4bbef);
+            
+        
+
+        marker_47b0f08dc460e948c04e279e4c7d61d7.bindPopup(popup_29bc465f58d470a284e0f69b26f4fb10)
+        ;
+
+        
+    
+    
+            marker_47b0f08dc460e948c04e279e4c7d61d7.bindTooltip(
+                `<div>
+                     CJ/CAJ: Club de Jóvenes Chacarita
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_47b0f08dc460e948c04e279e4c7d61d7.setIcon(icon_5cf58885f957678c11c83e72ba78a01b);
+            
+    
+            var marker_762edc719d958bb185dc844cbf252bfe = L.marker(
+                [-34.5604035, -58.4936437],
+                {
+}
+            ).addTo(feature_group_0f13be5cedef80185f77906cd17d06a1);
+        
+    
+            var icon_07ffc04eeb965336ae76c22de844b8a8 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_0f28ee92934d576bc36f56e95d1bdd34 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_9f5ea770ab69b86d18f77fa7da244396 = $(`<div id="html_9f5ea770ab69b86d18f77fa7da244396" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: orange; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> Club de Jóvenes Polo Saavedra         </div>         <div style="width: 300px;">             <b>Club de Jóvenes Polo Saavedra</b><br>             Programa: <b>CJ/CAJ</b><br>             Escuela Base: <b>Polo Saavedra Escuela Técnica 36 DE 15 "Almirante Guillermo Brown"</b><br>             Distrito Escolar: <b>15</b><br>             Comuna: <b>12</b><br>             Dirección: <b>Galván 3700</b><br>             Mail Institucional: <b>cj.polosaavedra@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_0f28ee92934d576bc36f56e95d1bdd34.setContent(html_9f5ea770ab69b86d18f77fa7da244396);
+            
+        
+
+        marker_762edc719d958bb185dc844cbf252bfe.bindPopup(popup_0f28ee92934d576bc36f56e95d1bdd34)
+        ;
+
+        
+    
+    
+            marker_762edc719d958bb185dc844cbf252bfe.bindTooltip(
+                `<div>
+                     CJ/CAJ: Club de Jóvenes Polo Saavedra
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_762edc719d958bb185dc844cbf252bfe.setIcon(icon_07ffc04eeb965336ae76c22de844b8a8);
+            
+    
+            var marker_70622920b0c828284b0e6808e2f2b36d = L.marker(
+                [-34.6008115, -58.512698],
+                {
+}
+            ).addTo(feature_group_0f13be5cedef80185f77906cd17d06a1);
+        
+    
+            var icon_eb17b06ff031296de9e63ad77875b4a6 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_bbbf2d00b5cc42a221d4740d71833dd9 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_5ff360a26de5f09b64c47baab801deb1 = $(`<div id="html_5ff360a26de5f09b64c47baab801deb1" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: orange; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> Club de Jóvenes Devoto         </div>         <div style="width: 300px;">             <b>Club de Jóvenes Devoto</b><br>             Programa: <b>CJ/CAJ</b><br>             Escuela Base: <b>Escuela de Educación Media Nº 3  "Antonio Devoto"</b><br>             Distrito Escolar: <b>17</b><br>             Comuna: <b>11</b><br>             Dirección: <b>Mercedes 4002</b><br>             Mail Institucional: <b>cj.devoto@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_bbbf2d00b5cc42a221d4740d71833dd9.setContent(html_5ff360a26de5f09b64c47baab801deb1);
+            
+        
+
+        marker_70622920b0c828284b0e6808e2f2b36d.bindPopup(popup_bbbf2d00b5cc42a221d4740d71833dd9)
+        ;
+
+        
+    
+    
+            marker_70622920b0c828284b0e6808e2f2b36d.bindTooltip(
+                `<div>
+                     CJ/CAJ: Club de Jóvenes Devoto
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_70622920b0c828284b0e6808e2f2b36d.setIcon(icon_eb17b06ff031296de9e63ad77875b4a6);
+            
+    
+            var marker_abab5343c5a4db7f3009e81509131f2b = L.marker(
+                [-34.6288295, -58.5043839],
+                {
+}
+            ).addTo(feature_group_0f13be5cedef80185f77906cd17d06a1);
+        
+    
+            var icon_c9cc326cd24d45e7c6c7e7f1e37dfe90 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_bca9944925b7e3d4ed36f43be20f16c1 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_c4cad436de1950ecd881e9ec0b3c49db = $(`<div id="html_c4cad436de1950ecd881e9ec0b3c49db" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: orange; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> Club de Jóvenes Jorge Donn         </div>         <div style="width: 300px;">             <b>Club de Jóvenes Jorge Donn</b><br>             Programa: <b>CJ/CAJ</b><br>             Escuela Base: <b>Escuela Superior de Educación Artística en Danzas Nº 2 DE 18º</b><br>             Distrito Escolar: <b>18</b><br>             Comuna: <b>10</b><br>             Dirección: <b>Alejandro Margariño Cervantes 5068</b><br>             Mail Institucional: <b>cj.jorgedonn@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_bca9944925b7e3d4ed36f43be20f16c1.setContent(html_c4cad436de1950ecd881e9ec0b3c49db);
+            
+        
+
+        marker_abab5343c5a4db7f3009e81509131f2b.bindPopup(popup_bca9944925b7e3d4ed36f43be20f16c1)
+        ;
+
+        
+    
+    
+            marker_abab5343c5a4db7f3009e81509131f2b.bindTooltip(
+                `<div>
+                     CJ/CAJ: Club de Jóvenes Jorge Donn
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_abab5343c5a4db7f3009e81509131f2b.setIcon(icon_c9cc326cd24d45e7c6c7e7f1e37dfe90);
+            
+    
+            var marker_82918717f0caff8017fc41c6930beae3 = L.marker(
+                [-34.6558699, -58.4209695],
+                {
+}
+            ).addTo(feature_group_0f13be5cedef80185f77906cd17d06a1);
+        
+    
+            var icon_8a97e50cf095feba9f5e31575392b089 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_261d96205067e023e5a39c57963c3173 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_9f5765d0001ed00e9655d34a8c95c5b7 = $(`<div id="html_9f5765d0001ed00e9655d34a8c95c5b7" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: orange; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> Club de Jóvenes Pompeya         </div>         <div style="width: 300px;">             <b>Club de Jóvenes Pompeya</b><br>             Programa: <b>CJ/CAJ</b><br>             Escuela Base: <b>Escuela Técnica Nº 33 "Fundición Maestranza del Plumerillo"</b><br>             Distrito Escolar: <b>19</b><br>             Comuna: <b>4</b><br>             Dirección: <b>Avda. Intendente Fco. Rabanal 1549</b><br>             Mail Institucional: <b>cj.pompeya@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_261d96205067e023e5a39c57963c3173.setContent(html_9f5765d0001ed00e9655d34a8c95c5b7);
+            
+        
+
+        marker_82918717f0caff8017fc41c6930beae3.bindPopup(popup_261d96205067e023e5a39c57963c3173)
+        ;
+
+        
+    
+    
+            marker_82918717f0caff8017fc41c6930beae3.bindTooltip(
+                `<div>
+                     CJ/CAJ: Club de Jóvenes Pompeya
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_82918717f0caff8017fc41c6930beae3.setIcon(icon_8a97e50cf095feba9f5e31575392b089);
+            
+    
+            var marker_90ed5022cdb2af5398ec41f14933a4e3 = L.marker(
+                [-34.6563815, -58.4566408],
+                {
+}
+            ).addTo(feature_group_0f13be5cedef80185f77906cd17d06a1);
+        
+    
+            var icon_63a247e786ccd3d10b70e9e4f862f509 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_a79bf4aaee6346fdba80e1e8db774b24 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_81595ccd4caa1dfb0298ab5f50940b00 = $(`<div id="html_81595ccd4caa1dfb0298ab5f50940b00" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: orange; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> Club de Jóvenes Carrillo         </div>         <div style="width: 300px;">             <b>Club de Jóvenes Carrillo</b><br>             Programa: <b>CJ/CAJ</b><br>             Escuela Base: <b>Centro Comunitario de Educación Permanente "Ramón Carrillo"</b><br>             Distrito Escolar: <b>19</b><br>             Comuna: <b>8</b><br>             Dirección: <b>Martínez  Castro y Pasaje "F"</b><br>             Mail Institucional: <b>cj.carrillo@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_a79bf4aaee6346fdba80e1e8db774b24.setContent(html_81595ccd4caa1dfb0298ab5f50940b00);
+            
+        
+
+        marker_90ed5022cdb2af5398ec41f14933a4e3.bindPopup(popup_a79bf4aaee6346fdba80e1e8db774b24)
+        ;
+
+        
+    
+    
+            marker_90ed5022cdb2af5398ec41f14933a4e3.bindTooltip(
+                `<div>
+                     CJ/CAJ: Club de Jóvenes Carrillo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_90ed5022cdb2af5398ec41f14933a4e3.setIcon(icon_63a247e786ccd3d10b70e9e4f862f509);
+            
+    
+            var marker_875857e48b833bb457bf6f3e429a4f2e = L.marker(
+                [-34.6481559, -58.432688],
+                {
+}
+            ).addTo(feature_group_0f13be5cedef80185f77906cd17d06a1);
+        
+    
+            var icon_26d0e769f9f0ca3eeee1cabaaba60add = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_842a79b269e6bb943b319aea0e13da8f = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_2eb8062accb811d7f29fd788c9499b98 = $(`<div id="html_2eb8062accb811d7f29fd788c9499b98" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: orange; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> Club de Jóvenes Bajo Flores         </div>         <div style="width: 300px;">             <b>Club de Jóvenes Bajo Flores</b><br>             Programa: <b>CJ/CAJ</b><br>             Escuela Base: <b>Escuela de Educación Media Nº 03</b><br>             Distrito Escolar: <b>19</b><br>             Comuna: <b>7</b><br>             Dirección: <b>A. De Vedia 2519</b><br>             Mail Institucional: <b>cj.bajoflores@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_842a79b269e6bb943b319aea0e13da8f.setContent(html_2eb8062accb811d7f29fd788c9499b98);
+            
+        
+
+        marker_875857e48b833bb457bf6f3e429a4f2e.bindPopup(popup_842a79b269e6bb943b319aea0e13da8f)
+        ;
+
+        
+    
+    
+            marker_875857e48b833bb457bf6f3e429a4f2e.bindTooltip(
+                `<div>
+                     CJ/CAJ: Club de Jóvenes Bajo Flores
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_875857e48b833bb457bf6f3e429a4f2e.setIcon(icon_26d0e769f9f0ca3eeee1cabaaba60add);
+            
+    
+            var marker_47a80ec663237ed301ba54728ff27cd2 = L.marker(
+                [-34.6626213, -58.4486649],
+                {
+}
+            ).addTo(feature_group_0f13be5cedef80185f77906cd17d06a1);
+        
+    
+            var icon_e23f21e00521b86465708be42c11e03f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_fc821c1c89a3ad0a55dd4b6c48b6f239 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_62c91e6ca4cf7874d1d9812c7cf02e19 = $(`<div id="html_62c91e6ca4cf7874d1d9812c7cf02e19" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: orange; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> Club de Jóvenes Jauretche         </div>         <div style="width: 300px;">             <b>Club de Jóvenes Jauretche</b><br>             Programa: <b>CJ/CAJ</b><br>             Escuela Base: <b>Escuela de Educación Media Nº 02 "Arturo Jauretche"</b><br>             Distrito Escolar: <b>19</b><br>             Comuna: <b>8</b><br>             Dirección: <b>Martínez Castro 3077</b><br>             Mail Institucional: <b>cj.jauretche@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_fc821c1c89a3ad0a55dd4b6c48b6f239.setContent(html_62c91e6ca4cf7874d1d9812c7cf02e19);
+            
+        
+
+        marker_47a80ec663237ed301ba54728ff27cd2.bindPopup(popup_fc821c1c89a3ad0a55dd4b6c48b6f239)
+        ;
+
+        
+    
+    
+            marker_47a80ec663237ed301ba54728ff27cd2.bindTooltip(
+                `<div>
+                     CJ/CAJ: Club de Jóvenes Jauretche
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_47a80ec663237ed301ba54728ff27cd2.setIcon(icon_e23f21e00521b86465708be42c11e03f);
+            
+    
+            var marker_40311e3ebd92d6737eb3e72713032c58 = L.marker(
+                [-34.6759222, -58.4863496],
+                {
+}
+            ).addTo(feature_group_0f13be5cedef80185f77906cd17d06a1);
+        
+    
+            var icon_aa619e2718180c3b2fc291167e4936e5 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_7f69cb608e56bd3d135948f673301427 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_2d0cdc06513b8fbc3a7304e4d3ee69e5 = $(`<div id="html_2d0cdc06513b8fbc3a7304e4d3ee69e5" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: orange; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> Club de Jóvenes Mataderos         </div>         <div style="width: 300px;">             <b>Club de Jóvenes Mataderos</b><br>             Programa: <b>CJ/CAJ</b><br>             Escuela Base: <b>Escuela de Educación Media Nº 02</b><br>             Distrito Escolar: <b>20</b><br>             Comuna: <b>8</b><br>             Dirección: <b>Cañada de Gómez 3850</b><br>             Mail Institucional: <b>cj.mataderos@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_7f69cb608e56bd3d135948f673301427.setContent(html_2d0cdc06513b8fbc3a7304e4d3ee69e5);
+            
+        
+
+        marker_40311e3ebd92d6737eb3e72713032c58.bindPopup(popup_7f69cb608e56bd3d135948f673301427)
+        ;
+
+        
+    
+    
+            marker_40311e3ebd92d6737eb3e72713032c58.bindTooltip(
+                `<div>
+                     CJ/CAJ: Club de Jóvenes Mataderos
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_40311e3ebd92d6737eb3e72713032c58.setIcon(icon_aa619e2718180c3b2fc291167e4936e5);
+            
+    
+            var marker_a20c446037dd96daf5bd64f301858222 = L.marker(
+                [-34.6856267, -58.4581806],
+                {
+}
+            ).addTo(feature_group_0f13be5cedef80185f77906cd17d06a1);
+        
+    
+            var icon_adaf3ab5bf34febba19d858aed829d6e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_300630b912536786f4c24bbeb2f72131 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_aaf5b58dcf5a8fa55188b92a0988669f = $(`<div id="html_aaf5b58dcf5a8fa55188b92a0988669f" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: orange; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> Club de Jóvenes Lugano I y II         </div>         <div style="width: 300px;">             <b>Club de Jóvenes Lugano I y II</b><br>             Programa: <b>CJ/CAJ</b><br>             Escuela Base: <b>Escuela de Comercio 35 DE.21" Leopoldo Marechal"</b><br>             Distrito Escolar: <b>21</b><br>             Comuna: <b>8</b><br>             Dirección: <b>Av. Larrazábal 5212</b><br>             Mail Institucional: <b>cj.lugano1y2@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_300630b912536786f4c24bbeb2f72131.setContent(html_aaf5b58dcf5a8fa55188b92a0988669f);
+            
+        
+
+        marker_a20c446037dd96daf5bd64f301858222.bindPopup(popup_300630b912536786f4c24bbeb2f72131)
+        ;
+
+        
+    
+    
+            marker_a20c446037dd96daf5bd64f301858222.bindTooltip(
+                `<div>
+                     CJ/CAJ: Club de Jóvenes Lugano I y II
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_a20c446037dd96daf5bd64f301858222.setIcon(icon_adaf3ab5bf34febba19d858aed829d6e);
+            
+    
+            var marker_54bc24d94b868999fcdb7f67bb6ad768 = L.marker(
+                [-34.6760155, -58.4668258],
+                {
+}
+            ).addTo(feature_group_0f13be5cedef80185f77906cd17d06a1);
+        
+    
+            var icon_ca594ae78693f71c17df288f0f5a444c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_67da1840c3db0e8f3fd857ca9e71e3b6 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_7cd1f32d9aa8f4a13a790d1c5d8008d5 = $(`<div id="html_7cd1f32d9aa8f4a13a790d1c5d8008d5" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: orange; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> Club de Jóvenes Frecuencia Lugano         </div>         <div style="width: 300px;">             <b>Club de Jóvenes Frecuencia Lugano</b><br>             Programa: <b>CJ/CAJ</b><br>             Escuela Base: <b>EEM Nº 01 DE 21 DR. Rene Favaloro</b><br>             Distrito Escolar: <b>21</b><br>             Comuna: <b>8</b><br>             Dirección: <b>JOSE BARROS PAZOS 5250</b><br>             Mail Institucional: <b>cj.frecuencialugano@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_67da1840c3db0e8f3fd857ca9e71e3b6.setContent(html_7cd1f32d9aa8f4a13a790d1c5d8008d5);
+            
+        
+
+        marker_54bc24d94b868999fcdb7f67bb6ad768.bindPopup(popup_67da1840c3db0e8f3fd857ca9e71e3b6)
+        ;
+
+        
+    
+    
+            marker_54bc24d94b868999fcdb7f67bb6ad768.bindTooltip(
+                `<div>
+                     CJ/CAJ: Club de Jóvenes Frecuencia Lugano
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_54bc24d94b868999fcdb7f67bb6ad768.setIcon(icon_ca594ae78693f71c17df288f0f5a444c);
+            
+    
+            var marker_643edf0fbee4563239eac173ab9f4f3e = L.marker(
+                [-34.6208215, -58.5174982],
+                {
+}
+            ).addTo(feature_group_0f13be5cedef80185f77906cd17d06a1);
+        
+    
+            var icon_d4f6fa5adc88ca44924dc483510cfd44 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_0f2ba73fbf60d2baeb1391348066556a = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_23f592ccba0bd74fef7c5801c62fba8f = $(`<div id="html_23f592ccba0bd74fef7c5801c62fba8f" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: orange; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> CAJ La Técnica 35         </div>         <div style="width: 300px;">             <b>CAJ La Técnica 35</b><br>             Programa: <b>CJ/CAJ</b><br>             Escuela Base: <b>Escuela Técnica Nº 35 D.E. 18 Ing. Eduardo Latzina</b><br>             Distrito Escolar: <b>18</b><br>             Comuna: <b>10</b><br>             Dirección: <b>Baigorria 5360</b><br>             Mail Institucional: <b>caj.latecnica35@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_0f2ba73fbf60d2baeb1391348066556a.setContent(html_23f592ccba0bd74fef7c5801c62fba8f);
+            
+        
+
+        marker_643edf0fbee4563239eac173ab9f4f3e.bindPopup(popup_0f2ba73fbf60d2baeb1391348066556a)
+        ;
+
+        
+    
+    
+            marker_643edf0fbee4563239eac173ab9f4f3e.bindTooltip(
+                `<div>
+                     CJ/CAJ: CAJ La Técnica 35
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_643edf0fbee4563239eac173ab9f4f3e.setIcon(icon_d4f6fa5adc88ca44924dc483510cfd44);
+            
+    
+            var marker_97d549a3ad9fc334cf616c2e9607d02c = L.marker(
+                [-34.6278683, -58.487846],
+                {
+}
+            ).addTo(feature_group_0f13be5cedef80185f77906cd17d06a1);
+        
+    
+            var icon_52e5424188dbc86c9f51a63872bfc268 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_3f8f4e0e35963651516f4bf1427cf307 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_dc159049708acdda110791fe1c261bb2 = $(`<div id="html_dc159049708acdda110791fe1c261bb2" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: orange; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> CAJ Larroque         </div>         <div style="width: 300px;">             <b>CAJ Larroque</b><br>             Programa: <b>CJ/CAJ</b><br>             Escuela Base: <b>Escuela Media N° 18 DE 18 Dr. Alberto Larroque</b><br>             Distrito Escolar: <b>18</b><br>             Comuna: <b>10</b><br>             Dirección: <b>Morón 4149</b><br>             Mail Institucional: <b>caj.larroque@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_3f8f4e0e35963651516f4bf1427cf307.setContent(html_dc159049708acdda110791fe1c261bb2);
+            
+        
+
+        marker_97d549a3ad9fc334cf616c2e9607d02c.bindPopup(popup_3f8f4e0e35963651516f4bf1427cf307)
+        ;
+
+        
+    
+    
+            marker_97d549a3ad9fc334cf616c2e9607d02c.bindTooltip(
+                `<div>
+                     CJ/CAJ: CAJ Larroque
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_97d549a3ad9fc334cf616c2e9607d02c.setIcon(icon_52e5424188dbc86c9f51a63872bfc268);
+            
+    
+            feature_group_0f13be5cedef80185f77906cd17d06a1.addTo(map_bcda98267b0b8e349ebf3d7a6f13a15f);
+        
+    
+            var feature_group_83700021ea849a7eadca2584f8bd66cc = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_60dd559f133b33425da577dc2d0b4905 = L.marker(
+                [-34.6175051, -58.4028021],
+                {
+}
+            ).addTo(feature_group_83700021ea849a7eadca2584f8bd66cc);
+        
+    
+            var icon_28cf8e6ff0887e4ee4c8badeff3247e5 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_25a3f12d5fa9325dbb7abc281bf67a63 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_3eaaf806fd5297edae02ba1f4d41b35e = $(`<div id="html_3eaaf806fd5297edae02ba1f4d41b35e" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: green; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> Centro Infantil Balvanera         </div>         <div style="width: 300px;">             <b>Centro Infantil Balvanera</b><br>             Programa: <b>CI</b><br>             Escuela Base: <b>JIC Nº03 DE 06  Fryda Schultz De Mantovani</b><br>             Distrito Escolar: <b>6</b><br>             Comuna: <b>3</b><br>             Dirección: <b>Saavedra 695</b><br>             Mail Institucional: <b>ci.balvanera@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_25a3f12d5fa9325dbb7abc281bf67a63.setContent(html_3eaaf806fd5297edae02ba1f4d41b35e);
+            
+        
+
+        marker_60dd559f133b33425da577dc2d0b4905.bindPopup(popup_25a3f12d5fa9325dbb7abc281bf67a63)
+        ;
+
+        
+    
+    
+            marker_60dd559f133b33425da577dc2d0b4905.bindTooltip(
+                `<div>
+                     CI: Centro Infantil Balvanera
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_60dd559f133b33425da577dc2d0b4905.setIcon(icon_28cf8e6ff0887e4ee4c8badeff3247e5);
+            
+    
+            var marker_559f275ccdfb188d9131548d1653c650 = L.marker(
+                [-34.6514576, -58.3966535],
+                {
+}
+            ).addTo(feature_group_83700021ea849a7eadca2584f8bd66cc);
+        
+    
+            var icon_de95629cfd0e5ddc694a6088b6d1eb4c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_ec2305ab4baa6ae7a8ffce58c17b2dfc = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_fd4234326a37a17a813c5f6869f2b189 = $(`<div id="html_fd4234326a37a17a813c5f6869f2b189" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: green; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> Centro Infantil Barracas         </div>         <div style="width: 300px;">             <b>Centro Infantil Barracas</b><br>             Programa: <b>CI</b><br>             Escuela Base: <b>EI Nº 12 DE 05</b><br>             Distrito Escolar: <b>5</b><br>             Comuna: <b>4</b><br>             Dirección: <b>Montesquieu e Iriarte (Alt.3501)</b><br>             Mail Institucional: <b>ci.barracas@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_ec2305ab4baa6ae7a8ffce58c17b2dfc.setContent(html_fd4234326a37a17a813c5f6869f2b189);
+            
+        
+
+        marker_559f275ccdfb188d9131548d1653c650.bindPopup(popup_ec2305ab4baa6ae7a8ffce58c17b2dfc)
+        ;
+
+        
+    
+    
+            marker_559f275ccdfb188d9131548d1653c650.bindTooltip(
+                `<div>
+                     CI: Centro Infantil Barracas
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_559f275ccdfb188d9131548d1653c650.setIcon(icon_de95629cfd0e5ddc694a6088b6d1eb4c);
+            
+    
+            var marker_a9430cae8a492a0f5d381ba982dac1c8 = L.marker(
+                [-34.6358, -58.4421],
+                {
+}
+            ).addTo(feature_group_83700021ea849a7eadca2584f8bd66cc);
+        
+    
+            var icon_66a0b6ceabd657135705243da00412b1 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_577f1a3093f38e2a13005d3dca33eefc = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_b918b93515b9490eb60de2a071d09d3c = $(`<div id="html_b918b93515b9490eb60de2a071d09d3c" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: green; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> Centro Infantil Parque Chacabuco         </div>         <div style="width: 300px;">             <b>Centro Infantil Parque Chacabuco</b><br>             Programa: <b>CI</b><br>             Escuela Base: <b>JIC Nº 05  DE 08 Martha A. Salotti</b><br>             Distrito Escolar: <b>8</b><br>             Comuna: <b>7</b><br>             Dirección: <b>Asamblea 1221</b><br>             Mail Institucional: <b>ci.parquechacabuco@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_577f1a3093f38e2a13005d3dca33eefc.setContent(html_b918b93515b9490eb60de2a071d09d3c);
+            
+        
+
+        marker_a9430cae8a492a0f5d381ba982dac1c8.bindPopup(popup_577f1a3093f38e2a13005d3dca33eefc)
+        ;
+
+        
+    
+    
+            marker_a9430cae8a492a0f5d381ba982dac1c8.bindTooltip(
+                `<div>
+                     CI: Centro Infantil Parque Chacabuco
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_a9430cae8a492a0f5d381ba982dac1c8.setIcon(icon_66a0b6ceabd657135705243da00412b1);
+            
+    
+            var marker_38a279ef136281ea18ba12b90dbaa4ca = L.marker(
+                [-34.5917, -58.4788],
+                {
+}
+            ).addTo(feature_group_83700021ea849a7eadca2584f8bd66cc);
+        
+    
+            var icon_187b8353d1bab73bfcc3ee3c0240e5f7 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_425b2c7bf783766360d991fdfe060e59 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_4eda1b4f454e89926d82db80fc45c2a9 = $(`<div id="html_4eda1b4f454e89926d82db80fc45c2a9" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: green; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> Centro Infantil Agronomia         </div>         <div style="width: 300px;">             <b>Centro Infantil Agronomia</b><br>             Programa: <b>CI</b><br>             Escuela Base: <b>JII Nº 04  DE 14 Jardin De Los Arboles</b><br>             Distrito Escolar: <b>14</b><br>             Comuna: <b>15</b><br>             Dirección: <b>Av. de los Constituyentes 3100</b><br>             Mail Institucional: <b>ci.agronomia@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_425b2c7bf783766360d991fdfe060e59.setContent(html_4eda1b4f454e89926d82db80fc45c2a9);
+            
+        
+
+        marker_38a279ef136281ea18ba12b90dbaa4ca.bindPopup(popup_425b2c7bf783766360d991fdfe060e59)
+        ;
+
+        
+    
+    
+            marker_38a279ef136281ea18ba12b90dbaa4ca.bindTooltip(
+                `<div>
+                     CI: Centro Infantil Agronomia
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_38a279ef136281ea18ba12b90dbaa4ca.setIcon(icon_187b8353d1bab73bfcc3ee3c0240e5f7);
+            
+    
+            var marker_94f27a2613e46b3627e3317131b8323b = L.marker(
+                [-34.6556209, -58.44021],
+                {
+}
+            ).addTo(feature_group_83700021ea849a7eadca2584f8bd66cc);
+        
+    
+            var icon_c90f1fd172d8b968809b16cbbe3a6510 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_8fdd18b29be30fbb85a52b2f9c06292e = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_bba8d44727e822d8e1569be3599a297d = $(`<div id="html_bba8d44727e822d8e1569be3599a297d" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: green; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> Centro Infantil Chilavert         </div>         <div style="width: 300px;">             <b>Centro Infantil Chilavert</b><br>             Programa: <b>CI</b><br>             Escuela Base: <b>EI Nº 09 DE 19</b><br>             Distrito Escolar: <b>19</b><br>             Comuna: <b>8</b><br>             Dirección: <b>Cnel. Martiniano Chilavert 2680</b><br>             Mail Institucional: <b>ci.chilavert@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_8fdd18b29be30fbb85a52b2f9c06292e.setContent(html_bba8d44727e822d8e1569be3599a297d);
+            
+        
+
+        marker_94f27a2613e46b3627e3317131b8323b.bindPopup(popup_8fdd18b29be30fbb85a52b2f9c06292e)
+        ;
+
+        
+    
+    
+            marker_94f27a2613e46b3627e3317131b8323b.bindTooltip(
+                `<div>
+                     CI: Centro Infantil Chilavert
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_94f27a2613e46b3627e3317131b8323b.setIcon(icon_c90f1fd172d8b968809b16cbbe3a6510);
+            
+    
+            var marker_9655480b02d983951f7779c61a20620a = L.marker(
+                [-34.6682544, -58.4984195],
+                {
+}
+            ).addTo(feature_group_83700021ea849a7eadca2584f8bd66cc);
+        
+    
+            var icon_63ee65975527578cdaba5fb6c34be0ee = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e3ce3bba2993d3850c6992dacd81ca4e = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_fce11b964f48afd25199daceaddd9081 = $(`<div id="html_fce11b964f48afd25199daceaddd9081" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: green; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> Centro Infantil Mataderos         </div>         <div style="width: 300px;">             <b>Centro Infantil Mataderos</b><br>             Programa: <b>CI</b><br>             Escuela Base: <b>JII N° 14 DE. 20</b><br>             Distrito Escolar: <b>20</b><br>             Comuna: <b>9</b><br>             Dirección: <b>Pasaje Yrupe 6835</b><br>             Mail Institucional: <b>ci.mataderos@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_e3ce3bba2993d3850c6992dacd81ca4e.setContent(html_fce11b964f48afd25199daceaddd9081);
+            
+        
+
+        marker_9655480b02d983951f7779c61a20620a.bindPopup(popup_e3ce3bba2993d3850c6992dacd81ca4e)
+        ;
+
+        
+    
+    
+            marker_9655480b02d983951f7779c61a20620a.bindTooltip(
+                `<div>
+                     CI: Centro Infantil Mataderos
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_9655480b02d983951f7779c61a20620a.setIcon(icon_63ee65975527578cdaba5fb6c34be0ee);
+            
+    
+            var marker_cd78b34c443662da1ee323ae6f6eb533 = L.marker(
+                [-34.6769693, -58.4658442],
+                {
+}
+            ).addTo(feature_group_83700021ea849a7eadca2584f8bd66cc);
+        
+    
+            var icon_d6fce807ea8b6e185b7d21f0919d46c4 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "house",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_7aff45660bbd0140f0a13d467278e66c = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_a3dc2d3641ee718c207511fe6735cb4c = $(`<div id="html_a3dc2d3641ee718c207511fe6735cb4c" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">         <div style="background: green; color: white; padding: 10px; font-size: 16px; font-weight: bold;">             <i class="fa fa-map-marker"></i> Centro Infantil Lugano         </div>         <div style="width: 300px;">             <b>Centro Infantil Lugano</b><br>             Programa: <b>CI</b><br>             Escuela Base: <b>EI Nº 08 DE 21</b><br>             Distrito Escolar: <b>21</b><br>             Comuna: <b>8</b><br>             Dirección: <b>Pola entre Chilavert y Barros Pazos</b><br>             Mail Institucional: <b>ci.lugano@bue.edu.ar</b>         </div>     </div>     </div>`)[0];
+                popup_7aff45660bbd0140f0a13d467278e66c.setContent(html_a3dc2d3641ee718c207511fe6735cb4c);
+            
+        
+
+        marker_cd78b34c443662da1ee323ae6f6eb533.bindPopup(popup_7aff45660bbd0140f0a13d467278e66c)
+        ;
+
+        
+    
+    
+            marker_cd78b34c443662da1ee323ae6f6eb533.bindTooltip(
+                `<div>
+                     CI: Centro Infantil Lugano
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_cd78b34c443662da1ee323ae6f6eb533.setIcon(icon_d6fce807ea8b6e185b7d21f0919d46c4);
+            
+    
+            feature_group_83700021ea849a7eadca2584f8bd66cc.addTo(map_bcda98267b0b8e349ebf3d7a6f13a15f);
+        
+    
+            var layer_control_5f2406cb9110c7e406b9b106871e2475_layers = {
+                base_layers : {
+                    "cartodbpositron" : tile_layer_a4addd44d0a316bd75887ee5c0487458,
+                },
+                overlays :  {
+                    "CAI" : feature_group_efdc8c05328c9528993d7680bde221f6,
+                    "CCH" : feature_group_7c6940590cc99fcdb03da896604eaeb0,
+                    "CJ/CAJ" : feature_group_0f13be5cedef80185f77906cd17d06a1,
+                    "CI" : feature_group_83700021ea849a7eadca2584f8bd66cc,
+                },
+            };
+            let layer_control_5f2406cb9110c7e406b9b106871e2475 = L.control.layers(
+                layer_control_5f2406cb9110c7e406b9b106871e2475_layers.base_layers,
+                layer_control_5f2406cb9110c7e406b9b106871e2475_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": false,
+  "autoZIndex": true,
+}
+            ).addTo(map_bcda98267b0b8e349ebf3d7a6f13a15f);
+
+        
+</script>
+</html>
