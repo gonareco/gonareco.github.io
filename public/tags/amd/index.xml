@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>AMD on Gonzalo Areco</title>
+    <link>https://gonareco.github.io/blog/tags/amd/</link>
+    <description>Recent content in AMD on Gonzalo Areco</description>
+    <generator>Hugo</generator>
+    <language>es</language>
+    <lastBuildDate>Tue, 12 May 2026 10:00:00 -0300</lastBuildDate>
+    <atom:link href="https://gonareco.github.io/blog/tags/amd/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cómo compilé llama.cpp en Fedora con aceleración AMD Radeon</title>
+      <link>https://gonareco.github.io/blog/posts/llama-cpp-fedora/</link>
+      <pubDate>Tue, 12 May 2026 10:00:00 -0300</pubDate>
+      <guid>https://gonareco.github.io/blog/posts/llama-cpp-fedora/</guid>
+      <description>&lt;h2 id=&#34;por-qué-compilar-manualmente-y-no-usar-ollama&#34;&gt;Por qué compilar manualmente y no usar Ollama&lt;/h2&gt;
+&lt;p&gt;Cuando quise correr modelos locales en mi laptop, probé primero Ollama
+con Podman. Funcionaba, pero noté dos problemas:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Overhead del contenedor:&lt;/strong&gt; Cada vez que corría un modelo, consumía
+~500MB de RAM solo en el contenedor.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Detección automática de GPU:&lt;/strong&gt; Ollama no detectaba mi Radeon 630.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Decidí compilar llama.cpp directamente para tener &lt;strong&gt;control total&lt;/strong&gt; y
+aprovechar mi hardware al máximo.&lt;/p&gt;
+&lt;h2 id=&#34;mi-hardware&#34;&gt;Mi hardware&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;CPU: AMD Ryzen 5 7000 series&lt;/li&gt;
+&lt;li&gt;GPU: AMD Radeon 630 (4GB)&lt;/li&gt;
+&lt;li&gt;RAM: 32 GB&lt;/li&gt;
+&lt;li&gt;OS: Fedora 44&lt;/li&gt;
+&lt;li&gt;LLM Elegido: Qwen2.5-Coder:3b&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;el-problema-rocm-en-fedora-no-es-tan-simple&#34;&gt;El problema: ROCm en Fedora no es tan simple&lt;/h2&gt;
+&lt;p&gt;AMD tiene ROCm (Radeon Open Compute), el equivalente a CUDA de NVIDIA.
+Pero oficialmente, ROCm solo soporta Ubuntu y RHEL. Fedora no está en la
+lista oficial.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

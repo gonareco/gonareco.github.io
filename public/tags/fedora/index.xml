@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Fedora on Gonzalo Areco</title>
+    <link>https://gonareco.github.io/blog/tags/fedora/</link>
+    <description>Recent content in Fedora on Gonzalo Areco</description>
+    <generator>Hugo</generator>
+    <language>es</language>
+    <lastBuildDate>Wed, 03 Jun 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://gonareco.github.io/blog/tags/fedora/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kali Linux en Fedora con KVM: virtualización nativa para pentesting</title>
+      <link>https://gonareco.github.io/blog/posts/kali/</link>
+      <pubDate>Wed, 03 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://gonareco.github.io/blog/posts/kali/</guid>
+      <description>&lt;h2 id=&#34;el-contexto&#34;&gt;El contexto&lt;/h2&gt;
+&lt;p&gt;Ejecutar herramientas de auditoría de red (Nmap, Metasploit, Burp Suite) sin contaminar el sistema anfitrión ni depender de hardware dedicado.&lt;/p&gt;
+&lt;h2 id=&#34;la-solución&#34;&gt;La solución&lt;/h2&gt;
+&lt;p&gt;Máquina virtual con virt-manager (KVM). Kali aislado, Fedora limpio, rendimiento óptimo.&lt;/p&gt;
+&lt;h2 id=&#34;por-qué-kvm-y-no-virtualbox&#34;&gt;¿Por qué KVM y no VirtualBox?&lt;/h2&gt;
+&lt;p&gt;En Fedora, KVM + virt-manager es la opción nativa y superior:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;KVM está en el kernel.&lt;/strong&gt; No se cargan módulos externos ni dependencias adicionales.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Rendimiento casi nativo.&lt;/strong&gt; Hipervisor tipo 1, overhead mínimo. VirtualBox es tipo 2 y corre sobre el SO anfitrión.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Integración nativa con el ecosistema Fedora/RHEL.&lt;/strong&gt; La misma base que entornos empresariales.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Snapshots eficientes.&lt;/strong&gt; Instantáneas rápidas, confiables y con soporte directo desde virsh o interfaz gráfica.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;instalación-del-entorno&#34;&gt;Instalación del entorno&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;bash
+sudo dnf install @virtualization
+sudo systemctl enable --now libvirtd
+sudo usermod -aG libvirt $USER
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;configuración-de-la-vm&#34;&gt;Configuración de la VM&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Descargar la ISO de Kali desde kali.org.&lt;/li&gt;
+&lt;li&gt;Crear nueva VM en virt-manager.&lt;/li&gt;
+&lt;li&gt;RAM: 4 GB como mínimo.&lt;/li&gt;
+&lt;li&gt;Disco: 40 GB (formato qcow2). Con menos espacio se compromete la actualización del sistema.&lt;/li&gt;
+&lt;li&gt;Red: NAT por defecto. Para auditorías específicas se configura red puente.&lt;/li&gt;
+&lt;li&gt;Particionado: &amp;ldquo;Todo en una partición&amp;rdquo; para evitar tablas MBR/MSDOS con swap intermedia (para una VM esto es suficiente, en un servidor productivo recomendaría particiones específicas para /home, /var, etc. )&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;gestión-de-instantáneas&#34;&gt;Gestión de instantáneas&lt;/h2&gt;
+&lt;p&gt;Las instantáneas se crean con la VM apagada para garantizar consistencia.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Cómo liberé mi Jellyfin de la red local</title>
+      <link>https://gonareco.github.io/blog/posts/tailscale-jellyfin/</link>
+      <pubDate>Fri, 29 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://gonareco.github.io/blog/posts/tailscale-jellyfin/</guid>
+      <description>&lt;h2 id=&#34;el-problema-esclavo-de-mi-propia-red&#34;&gt;El problema: esclavo de mi propia red&lt;/h2&gt;
+&lt;p&gt;Tenía Jellyfin corriendo en mi Lenovo. En casa perfecto, pero apenas salía de mi red local, por supuesto me quedaba sin mis series de lujo y la mejor película de todos los tiempos (Simpsons en formato 4:3, South Park y Terminator II (Versión Extendida))&lt;/p&gt;
+&lt;p&gt;Necesitaba una forma de acceder desde cualquier lugar, pero quería evitar configuraciones de router, puertos, certificados y esas cosas porque desde mi punto de vista (el único que importa para el caso) no ameritaba el esfuerzo de configuraciones para algo tan hogareño.
+Ojo, una alternativa DIY (Do It Yourself, lo aclaro más abajo) es completamente válida, será material para otro post.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Cómo convertí un caro pisapapeles en un servidor media casero (con Fedora, Podman y Jellyfin)</title>
+      <link>https://gonareco.github.io/blog/posts/server-jellyfin/</link>
+      <pubDate>Tue, 19 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://gonareco.github.io/blog/posts/server-jellyfin/</guid>
+      <description>&lt;h2 id=&#34;el-problema-una-lenovo-que-adoro-que-anda-muy-bien-pero-ya-tiene-sus-años-11&#34;&gt;El problema: Una Lenovo que adoro, que anda muy bien pero ya tiene sus años (11)&lt;/h2&gt;
+&lt;p&gt;Mi vieja Lenovo es un i7 6500, con 16 GB de RAM, un SSD de 256 y un HDD de 1 TB. ¿Sistema operativo? Fedora, desde ya.
+Para ahorrarnos de decirle &lt;em&gt;la vieja&lt;/em&gt;, &lt;em&gt;la nueva&lt;/em&gt; etc, la llamaremos cariñosamente &lt;strong&gt;Jelly&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Como Jelly estaba apagada acumulando polvo siendo un &lt;em&gt;pisapapeles caro&lt;/em&gt; decidí darle una segunda vida y de paso aprender y compartir algo.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Cómo compilé llama.cpp en Fedora con aceleración AMD Radeon</title>
+      <link>https://gonareco.github.io/blog/posts/llama-cpp-fedora/</link>
+      <pubDate>Tue, 12 May 2026 10:00:00 -0300</pubDate>
+      <guid>https://gonareco.github.io/blog/posts/llama-cpp-fedora/</guid>
+      <description>&lt;h2 id=&#34;por-qué-compilar-manualmente-y-no-usar-ollama&#34;&gt;Por qué compilar manualmente y no usar Ollama&lt;/h2&gt;
+&lt;p&gt;Cuando quise correr modelos locales en mi laptop, probé primero Ollama
+con Podman. Funcionaba, pero noté dos problemas:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Overhead del contenedor:&lt;/strong&gt; Cada vez que corría un modelo, consumía
+~500MB de RAM solo en el contenedor.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Detección automática de GPU:&lt;/strong&gt; Ollama no detectaba mi Radeon 630.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Decidí compilar llama.cpp directamente para tener &lt;strong&gt;control total&lt;/strong&gt; y
+aprovechar mi hardware al máximo.&lt;/p&gt;
+&lt;h2 id=&#34;mi-hardware&#34;&gt;Mi hardware&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;CPU: AMD Ryzen 5 7000 series&lt;/li&gt;
+&lt;li&gt;GPU: AMD Radeon 630 (4GB)&lt;/li&gt;
+&lt;li&gt;RAM: 32 GB&lt;/li&gt;
+&lt;li&gt;OS: Fedora 44&lt;/li&gt;
+&lt;li&gt;LLM Elegido: Qwen2.5-Coder:3b&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;el-problema-rocm-en-fedora-no-es-tan-simple&#34;&gt;El problema: ROCm en Fedora no es tan simple&lt;/h2&gt;
+&lt;p&gt;AMD tiene ROCm (Radeon Open Compute), el equivalente a CUDA de NVIDIA.
+Pero oficialmente, ROCm solo soporta Ubuntu y RHEL. Fedora no está en la
+lista oficial.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Podman rootless en Fedora: por qué es más seguro que Docker</title>
+      <link>https://gonareco.github.io/blog/posts/podman-rootless/</link>
+      <pubDate>Fri, 08 May 2026 10:00:00 -0300</pubDate>
+      <guid>https://gonareco.github.io/blog/posts/podman-rootless/</guid>
+      <description>&lt;h2 id=&#34;por-qué-me-cambié-a-podman&#34;&gt;Por qué me cambié a Podman&lt;/h2&gt;
+&lt;p&gt;Sencillamente para probar algo nuevo. Vengo usando Docker desde hace años, como sucede muchas veces un interés inicial se convierte en norma de uso general y luego uno no se vuelve a preguntar por qué usa tal o cual cosa. En definitiva cuando empecé a profundizar en administración de Linux, descubrí que Podman es el estándar en el mundo Red Hat/Fedora. No solo viene en los repositorios oficiales (mientras que Docker requiere agregar un repo externo), sino que tiene una ventaja de seguridad enorme: es rootless por defecto.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

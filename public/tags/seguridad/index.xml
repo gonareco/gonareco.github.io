@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Seguridad on Gonzalo Areco</title>
+    <link>https://gonareco.github.io/blog/tags/seguridad/</link>
+    <description>Recent content in Seguridad on Gonzalo Areco</description>
+    <generator>Hugo</generator>
+    <language>es</language>
+    <lastBuildDate>Fri, 08 May 2026 10:00:00 -0300</lastBuildDate>
+    <atom:link href="https://gonareco.github.io/blog/tags/seguridad/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Podman rootless en Fedora: por qué es más seguro que Docker</title>
+      <link>https://gonareco.github.io/blog/posts/podman-rootless/</link>
+      <pubDate>Fri, 08 May 2026 10:00:00 -0300</pubDate>
+      <guid>https://gonareco.github.io/blog/posts/podman-rootless/</guid>
+      <description>&lt;h2 id=&#34;por-qué-me-cambié-a-podman&#34;&gt;Por qué me cambié a Podman&lt;/h2&gt;
+&lt;p&gt;Sencillamente para probar algo nuevo. Vengo usando Docker desde hace años, como sucede muchas veces un interés inicial se convierte en norma de uso general y luego uno no se vuelve a preguntar por qué usa tal o cual cosa. En definitiva cuando empecé a profundizar en administración de Linux, descubrí que Podman es el estándar en el mundo Red Hat/Fedora. No solo viene en los repositorios oficiales (mientras que Docker requiere agregar un repo externo), sino que tiene una ventaja de seguridad enorme: es rootless por defecto.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

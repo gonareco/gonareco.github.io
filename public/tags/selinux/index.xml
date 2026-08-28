@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>SELinux on Gonzalo Areco</title>
+    <link>https://gonareco.github.io/blog/tags/selinux/</link>
+    <description>Recent content in SELinux on Gonzalo Areco</description>
+    <generator>Hugo</generator>
+    <language>es</language>
+    <lastBuildDate>Tue, 19 May 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://gonareco.github.io/blog/tags/selinux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cómo convertí un caro pisapapeles en un servidor media casero (con Fedora, Podman y Jellyfin)</title>
+      <link>https://gonareco.github.io/blog/posts/server-jellyfin/</link>
+      <pubDate>Tue, 19 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://gonareco.github.io/blog/posts/server-jellyfin/</guid>
+      <description>&lt;h2 id=&#34;el-problema-una-lenovo-que-adoro-que-anda-muy-bien-pero-ya-tiene-sus-años-11&#34;&gt;El problema: Una Lenovo que adoro, que anda muy bien pero ya tiene sus años (11)&lt;/h2&gt;
+&lt;p&gt;Mi vieja Lenovo es un i7 6500, con 16 GB de RAM, un SSD de 256 y un HDD de 1 TB. ¿Sistema operativo? Fedora, desde ya.
+Para ahorrarnos de decirle &lt;em&gt;la vieja&lt;/em&gt;, &lt;em&gt;la nueva&lt;/em&gt; etc, la llamaremos cariñosamente &lt;strong&gt;Jelly&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Como Jelly estaba apagada acumulando polvo siendo un &lt;em&gt;pisapapeles caro&lt;/em&gt; decidí darle una segunda vida y de paso aprender y compartir algo.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Podman rootless en Fedora: por qué es más seguro que Docker</title>
+      <link>https://gonareco.github.io/blog/posts/podman-rootless/</link>
+      <pubDate>Fri, 08 May 2026 10:00:00 -0300</pubDate>
+      <guid>https://gonareco.github.io/blog/posts/podman-rootless/</guid>
+      <description>&lt;h2 id=&#34;por-qué-me-cambié-a-podman&#34;&gt;Por qué me cambié a Podman&lt;/h2&gt;
+&lt;p&gt;Sencillamente para probar algo nuevo. Vengo usando Docker desde hace años, como sucede muchas veces un interés inicial se convierte en norma de uso general y luego uno no se vuelve a preguntar por qué usa tal o cual cosa. En definitiva cuando empecé a profundizar en administración de Linux, descubrí que Podman es el estándar en el mundo Red Hat/Fedora. No solo viene en los repositorios oficiales (mientras que Docker requiere agregar un repo externo), sino que tiene una ventaja de seguridad enorme: es rootless por defecto.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
