@@ -1,0 +1,103 @@
+baseURL: "https://gonareco.github.io/blog/"
+title: "Gonzalo Areco"
+theme: "PaperMod"
+languageCode: "es"
+defaultContentLanguage: "es"
+
+enableRobotsTXT: true
+buildDrafts: false
+buildFuture: false
+buildExpired: false
+
+minify:
+  disableXML: true
+  minifyOutput: true
+
+params:
+  env: production
+  title: "Gonzalo Areco"
+  description: "Bitácora de un pingüino rengo en el mundo del Data Scientist, el Linux Admin y la Ciberseguridad"
+  keywords: ["Data Science", "Linux", "Python", "NLP", "Ciberseguridad"]
+  author: "Gonzalo Areco"
+
+  # Configuración del perfil (modo portfolio)
+  profileMode:
+    enabled: true
+    title: "Gonzalo Areco"
+    subtitle: "Data Scientist · Linux Admin · Ethical Hacking"
+    imageUrl: "img/el-tux-rengo.png" 
+    imageTitle: "Gonzalo Areco"
+    buttons:
+      - name: "Posts"
+        url: "posts/"
+      - name: "Proyectos"
+        url: "projects/"
+      - name: "Skills"
+        url: "skills/"
+
+  # Redes sociales (aparecen abajo del perfil)
+  socialIcons:
+    - name: "github"
+      url: "https://github.com/gonareco"
+    - name: "linkedin"
+      url: "https://linkedin.com/in/gonzalo-areco"
+    - name: "email"
+      url: "mailto:gonzalo.areco.data@gmail.com"
+    - name: "whatsapp"
+      url: "https://wa.me/5491168692847"
+
+  # Configuración visual
+  ShowReadingTime: true
+  ShowShareButtons: false
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: true
+  ShowWordCount: true
+  ShowRssButtonInSectionTermList: true
+  UseHugoToc: true
+  ShowToc: true
+  TocOpen: false
+
+  
+  # Etiquetas
+  label:
+    text: "Gonzalo Areco"
+    icon: ""
+
+menu:
+  main:
+    - identifier: "posts"
+      name: "Posts"
+      url: "/posts/"
+      weight: 10
+    - identifier: "projects"
+      name: "Proyectos"
+      url: "/projects/"
+      weight: 20
+    - identifier: "skills"
+      name: "Skills"
+      url: "/skills/"
+      weight: 30
+    - identifier: "tags"
+      name: "Tags"
+      url: "/tags/"
+      weight: 40
+    - identifier: "about"
+      name: "Acerca de"
+      url: "/about/"
+      weight: 50
+
+pygmentsCodeFences: true
+pygmentsUseClasses: true
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true  # Permite HTML en Markdown
+  highlight:
+    noClasses: false
+    anchorLineNos: true
+    codeFences: true
+    guessSyntax: true
+    lineNos: true
+    style: "monokai"

@@ -1,0 +1,13 @@
+# Hugo
+public/
+resources/
+.hugo_build.lock
+
+# Backups
+*.bk.yml
+*.bk
+
+# Archivos temporales
+*.tmp
+*.swp
+.DS_Store
