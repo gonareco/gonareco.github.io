@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Llama.cpp on Gonzalo Areco</title>
+    <link>https://gonareco.github.io/blog/tags/llama.cpp/</link>
+    <description>Recent content in Llama.cpp on Gonzalo Areco</description>
+    <generator>Hugo</generator>
+    <language>es</language>
+    <lastBuildDate>Fri, 12 Jun 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://gonareco.github.io/blog/tags/llama.cpp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>LLMs locales con llama.cpp: por qué trabajo híbridamente (nube y local)</title>
+      <link>https://gonareco.github.io/blog/posts/llm/</link>
+      <pubDate>Fri, 12 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://gonareco.github.io/blog/posts/llm/</guid>
+      <description>&lt;h2 id=&#34;el-problema-depender-de-la-nube-para-todo&#34;&gt;El problema: depender de la nube para todo&lt;/h2&gt;
+&lt;p&gt;No soy un experto en LLMs, pero descubrí algunas cuestiones que podrían mejorarse sin gastar un peso en el camino. Los LLMs online gratuitos funcionan, pero:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Los datos sensibles (normalización de direcciones, encuestas de programas sociales, algunos proyectos personales de desarrollo) no pueden salir de mi máquina.&lt;/li&gt;
+&lt;li&gt;Claude cuesta. ChatGPT también, si querés algo decente. Deepseek en su versión gratuita me es bastante funcional pero:&lt;/li&gt;
+&lt;li&gt;Sin internet no anda.&lt;/li&gt;
+&lt;li&gt;Los modelos online en su mayoría fueron entrenados en inglés, por lo que responden por defecto con las estructuras de antítesis enfática, esos ejemplos de (No es, es&amp;hellip;), así como la excesiva explicación itemizada o ejemplificada típica de ese idioma. Los modelos inevitablemente arrastran ese &lt;em&gt;defecto&lt;/em&gt; en nuestro lenguaje. Eso me molesta muchísimo.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Necesitaba algo que corriera localmente sin morir en el intento, con el objetivo de usarlo principalmente para desarrollo, revisión de código y esas cuestiones más bien técnicas.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

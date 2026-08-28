@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Jellyfin on Gonzalo Areco</title>
+    <link>https://gonareco.github.io/blog/tags/jellyfin/</link>
+    <description>Recent content in Jellyfin on Gonzalo Areco</description>
+    <generator>Hugo</generator>
+    <language>es</language>
+    <lastBuildDate>Fri, 29 May 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://gonareco.github.io/blog/tags/jellyfin/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cómo liberé mi Jellyfin de la red local</title>
+      <link>https://gonareco.github.io/blog/posts/tailscale-jellyfin/</link>
+      <pubDate>Fri, 29 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://gonareco.github.io/blog/posts/tailscale-jellyfin/</guid>
+      <description>&lt;h2 id=&#34;el-problema-esclavo-de-mi-propia-red&#34;&gt;El problema: esclavo de mi propia red&lt;/h2&gt;
+&lt;p&gt;Tenía Jellyfin corriendo en mi Lenovo. En casa perfecto, pero apenas salía de mi red local, por supuesto me quedaba sin mis series de lujo y la mejor película de todos los tiempos (Simpsons en formato 4:3, South Park y Terminator II (Versión Extendida))&lt;/p&gt;
+&lt;p&gt;Necesitaba una forma de acceder desde cualquier lugar, pero quería evitar configuraciones de router, puertos, certificados y esas cosas porque desde mi punto de vista (el único que importa para el caso) no ameritaba el esfuerzo de configuraciones para algo tan hogareño.
+Ojo, una alternativa DIY (Do It Yourself, lo aclaro más abajo) es completamente válida, será material para otro post.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Cómo convertí un caro pisapapeles en un servidor media casero (con Fedora, Podman y Jellyfin)</title>
+      <link>https://gonareco.github.io/blog/posts/server-jellyfin/</link>
+      <pubDate>Tue, 19 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://gonareco.github.io/blog/posts/server-jellyfin/</guid>
+      <description>&lt;h2 id=&#34;el-problema-una-lenovo-que-adoro-que-anda-muy-bien-pero-ya-tiene-sus-años-11&#34;&gt;El problema: Una Lenovo que adoro, que anda muy bien pero ya tiene sus años (11)&lt;/h2&gt;
+&lt;p&gt;Mi vieja Lenovo es un i7 6500, con 16 GB de RAM, un SSD de 256 y un HDD de 1 TB. ¿Sistema operativo? Fedora, desde ya.
+Para ahorrarnos de decirle &lt;em&gt;la vieja&lt;/em&gt;, &lt;em&gt;la nueva&lt;/em&gt; etc, la llamaremos cariñosamente &lt;strong&gt;Jelly&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Como Jelly estaba apagada acumulando polvo siendo un &lt;em&gt;pisapapeles caro&lt;/em&gt; decidí darle una segunda vida y de paso aprender y compartir algo.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

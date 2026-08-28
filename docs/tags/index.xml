@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Tags on Gonzalo Areco</title>
+    <link>https://gonareco.github.io/blog/tags/</link>
+    <description>Recent content in Tags on Gonzalo Areco</description>
+    <generator>Hugo</generator>
+    <language>es</language>
+    <lastBuildDate>Thu, 06 Aug 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://gonareco.github.io/blog/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Big-Data</title>
+      <link>https://gonareco.github.io/blog/tags/big-data/</link>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 +0000</pubDate>
+      <guid>https://gonareco.github.io/blog/tags/big-data/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Csv</title>
+      <link>https://gonareco.github.io/blog/tags/csv/</link>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 +0000</pubDate>
+      <guid>https://gonareco.github.io/blog/tags/csv/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Data-Analyst</title>
+      <link>https://gonareco.github.io/blog/tags/data-analyst/</link>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 +0000</pubDate>
+      <guid>https://gonareco.github.io/blog/tags/data-analyst/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Data-Science</title>
+      <link>https://gonareco.github.io/blog/tags/data-science/</link>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 +0000</pubDate>
+      <guid>https://gonareco.github.io/blog/tags/data-science/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Etl</title>
+      <link>https://gonareco.github.io/blog/tags/etl/</link>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 +0000</pubDate>
+      <guid>https://gonareco.github.io/blog/tags/etl/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Pandas</title>
+      <link>https://gonareco.github.io/blog/tags/pandas/</link>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 +0000</pubDate>
+      <guid>https://gonareco.github.io/blog/tags/pandas/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Performance</title>
+      <link>https://gonareco.github.io/blog/tags/performance/</link>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 +0000</pubDate>
+      <guid>https://gonareco.github.io/blog/tags/performance/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Polars</title>
+      <link>https://gonareco.github.io/blog/tags/polars/</link>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 +0000</pubDate>
+      <guid>https://gonareco.github.io/blog/tags/polars/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Python</title>
+      <link>https://gonareco.github.io/blog/tags/python/</link>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 +0000</pubDate>
+      <guid>https://gonareco.github.io/blog/tags/python/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>GPU</title>
+      <link>https://gonareco.github.io/blog/tags/gpu/</link>
+      <pubDate>Fri, 12 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://gonareco.github.io/blog/tags/gpu/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Linux</title>
+      <link>https://gonareco.github.io/blog/tags/linux/</link>
+      <pubDate>Fri, 12 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://gonareco.github.io/blog/tags/linux/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Llama.cpp</title>
+      <link>https://gonareco.github.io/blog/tags/llama.cpp/</link>
+      <pubDate>Fri, 12 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://gonareco.github.io/blog/tags/llama.cpp/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>LLM</title>
+      <link>https://gonareco.github.io/blog/tags/llm/</link>
+      <pubDate>Fri, 12 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://gonareco.github.io/blog/tags/llm/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Mistral</title>
+      <link>https://gonareco.github.io/blog/tags/mistral/</link>
+      <pubDate>Fri, 12 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://gonareco.github.io/blog/tags/mistral/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Qwen</title>
+      <link>https://gonareco.github.io/blog/tags/qwen/</link>
+      <pubDate>Fri, 12 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://gonareco.github.io/blog/tags/qwen/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>ROCm</title>
+      <link>https://gonareco.github.io/blog/tags/rocm/</link>
+      <pubDate>Fri, 12 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://gonareco.github.io/blog/tags/rocm/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Ethical Hacking</title>
+      <link>https://gonareco.github.io/blog/tags/ethical-hacking/</link>
+      <pubDate>Wed, 03 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://gonareco.github.io/blog/tags/ethical-hacking/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Fedora</title>
+      <link>https://gonareco.github.io/blog/tags/fedora/</link>
+      <pubDate>Wed, 03 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://gonareco.github.io/blog/tags/fedora/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Kali Linux</title>
+      <link>https://gonareco.github.io/blog/tags/kali-linux/</link>
+      <pubDate>Wed, 03 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://gonareco.github.io/blog/tags/kali-linux/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>KVM</title>
+      <link>https://gonareco.github.io/blog/tags/kvm/</link>
+      <pubDate>Wed, 03 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://gonareco.github.io/blog/tags/kvm/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Pentesting</title>
+      <link>https://gonareco.github.io/blog/tags/pentesting/</link>
+      <pubDate>Wed, 03 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://gonareco.github.io/blog/tags/pentesting/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Virt-Manager</title>
+      <link>https://gonareco.github.io/blog/tags/virt-manager/</link>
+      <pubDate>Wed, 03 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://gonareco.github.io/blog/tags/virt-manager/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Jellyfin</title>
+      <link>https://gonareco.github.io/blog/tags/jellyfin/</link>
+      <pubDate>Fri, 29 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://gonareco.github.io/blog/tags/jellyfin/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Podman</title>
+      <link>https://gonareco.github.io/blog/tags/podman/</link>
+      <pubDate>Fri, 29 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://gonareco.github.io/blog/tags/podman/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Tailscale</title>
+      <link>https://gonareco.github.io/blog/tags/tailscale/</link>
+      <pubDate>Fri, 29 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://gonareco.github.io/blog/tags/tailscale/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>VPN</title>
+      <link>https://gonareco.github.io/blog/tags/vpn/</link>
+      <pubDate>Fri, 29 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://gonareco.github.io/blog/tags/vpn/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Permisos</title>
+      <link>https://gonareco.github.io/blog/tags/permisos/</link>
+      <pubDate>Tue, 19 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://gonareco.github.io/blog/tags/permisos/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>SELinux</title>
+      <link>https://gonareco.github.io/blog/tags/selinux/</link>
+      <pubDate>Tue, 19 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://gonareco.github.io/blog/tags/selinux/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Data Cleaning</title>
+      <link>https://gonareco.github.io/blog/tags/data-cleaning/</link>
+      <pubDate>Wed, 13 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://gonareco.github.io/blog/tags/data-cleaning/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Regex</title>
+      <link>https://gonareco.github.io/blog/tags/regex/</link>
+      <pubDate>Wed, 13 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://gonareco.github.io/blog/tags/regex/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Tkinter</title>
+      <link>https://gonareco.github.io/blog/tags/tkinter/</link>
+      <pubDate>Wed, 13 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://gonareco.github.io/blog/tags/tkinter/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>AMD</title>
+      <link>https://gonareco.github.io/blog/tags/amd/</link>
+      <pubDate>Tue, 12 May 2026 10:00:00 -0300</pubDate>
+      <guid>https://gonareco.github.io/blog/tags/amd/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Docker</title>
+      <link>https://gonareco.github.io/blog/tags/docker/</link>
+      <pubDate>Fri, 08 May 2026 10:00:00 -0300</pubDate>
+      <guid>https://gonareco.github.io/blog/tags/docker/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Seguridad</title>
+      <link>https://gonareco.github.io/blog/tags/seguridad/</link>
+      <pubDate>Fri, 08 May 2026 10:00:00 -0300</pubDate>
+      <guid>https://gonareco.github.io/blog/tags/seguridad/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Dash</title>
+      <link>https://gonareco.github.io/blog/tags/dash/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://gonareco.github.io/blog/tags/dash/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>NTLK</title>
+      <link>https://gonareco.github.io/blog/tags/ntlk/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://gonareco.github.io/blog/tags/ntlk/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>SpaCy</title>
+      <link>https://gonareco.github.io/blog/tags/spacy/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://gonareco.github.io/blog/tags/spacy/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

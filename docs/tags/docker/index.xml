@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Docker on Gonzalo Areco</title>
+    <link>https://gonareco.github.io/blog/tags/docker/</link>
+    <description>Recent content in Docker on Gonzalo Areco</description>
+    <generator>Hugo</generator>
+    <language>es</language>
+    <lastBuildDate>Fri, 08 May 2026 10:00:00 -0300</lastBuildDate>
+    <atom:link href="https://gonareco.github.io/blog/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Podman rootless en Fedora: por qué es más seguro que Docker</title>
+      <link>https://gonareco.github.io/blog/posts/podman-rootless/</link>
+      <pubDate>Fri, 08 May 2026 10:00:00 -0300</pubDate>
+      <guid>https://gonareco.github.io/blog/posts/podman-rootless/</guid>
+      <description>&lt;h2 id=&#34;por-qué-me-cambié-a-podman&#34;&gt;Por qué me cambié a Podman&lt;/h2&gt;
+&lt;p&gt;Sencillamente para probar algo nuevo. Vengo usando Docker desde hace años, como sucede muchas veces un interés inicial se convierte en norma de uso general y luego uno no se vuelve a preguntar por qué usa tal o cual cosa. En definitiva cuando empecé a profundizar en administración de Linux, descubrí que Podman es el estándar en el mundo Red Hat/Fedora. No solo viene en los repositorios oficiales (mientras que Docker requiere agregar un repo externo), sino que tiene una ventaja de seguridad enorme: es rootless por defecto.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Proyectos</title>
+      <link>https://gonareco.github.io/blog/projects/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://gonareco.github.io/blog/projects/</guid>
+      <description>&lt;h2 id=&#34;proyectos-destacados&#34;&gt;Proyectos destacados&lt;/h2&gt;
+&lt;h3 id=&#34;-csv-analyzer&#34;&gt;📊 CSV Analyzer&lt;/h3&gt;
+&lt;p&gt;Análisis automático de archivos CSV. Subís un CSV, devuelve estadísticas, correlaciones y visualizaciones.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Tecnologías:&lt;/strong&gt; Python, Pandas, Dash, Docker&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Código:&lt;/strong&gt; &lt;a href=&#34;https://github.com/gonareco/csv-analyzer&#34;&gt;github.com/gonareco/csv-analyzer&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Site:&lt;/strong&gt; &lt;a href=&#34;https://csv-analyzer-oyp7.onrender.com&#34;&gt;Uso en línea.&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;-news-nlp&#34;&gt;📰 News NLP&lt;/h3&gt;
+&lt;p&gt;Análisis de sentimiento, estilo y palabras recurrentes en noticias argentinas.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Tecnologías:&lt;/strong&gt; Python, spaCy, NLTK, Jupyter&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Código:&lt;/strong&gt; &lt;a href=&#34;https://github.com/gonareco/aguijon-nlp-analisis&#34;&gt;github.com/gonareco/aguijon-nlp-analisis&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+  </channel>
+</rss>

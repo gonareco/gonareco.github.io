@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Kali Linux on Gonzalo Areco</title>
+    <link>https://gonareco.github.io/blog/tags/kali-linux/</link>
+    <description>Recent content in Kali Linux on Gonzalo Areco</description>
+    <generator>Hugo</generator>
+    <language>es</language>
+    <lastBuildDate>Wed, 03 Jun 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://gonareco.github.io/blog/tags/kali-linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kali Linux en Fedora con KVM: virtualización nativa para pentesting</title>
+      <link>https://gonareco.github.io/blog/posts/kali/</link>
+      <pubDate>Wed, 03 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://gonareco.github.io/blog/posts/kali/</guid>
+      <description>&lt;h2 id=&#34;el-contexto&#34;&gt;El contexto&lt;/h2&gt;
+&lt;p&gt;Ejecutar herramientas de auditoría de red (Nmap, Metasploit, Burp Suite) sin contaminar el sistema anfitrión ni depender de hardware dedicado.&lt;/p&gt;
+&lt;h2 id=&#34;la-solución&#34;&gt;La solución&lt;/h2&gt;
+&lt;p&gt;Máquina virtual con virt-manager (KVM). Kali aislado, Fedora limpio, rendimiento óptimo.&lt;/p&gt;
+&lt;h2 id=&#34;por-qué-kvm-y-no-virtualbox&#34;&gt;¿Por qué KVM y no VirtualBox?&lt;/h2&gt;
+&lt;p&gt;En Fedora, KVM + virt-manager es la opción nativa y superior:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;KVM está en el kernel.&lt;/strong&gt; No se cargan módulos externos ni dependencias adicionales.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Rendimiento casi nativo.&lt;/strong&gt; Hipervisor tipo 1, overhead mínimo. VirtualBox es tipo 2 y corre sobre el SO anfitrión.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Integración nativa con el ecosistema Fedora/RHEL.&lt;/strong&gt; La misma base que entornos empresariales.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Snapshots eficientes.&lt;/strong&gt; Instantáneas rápidas, confiables y con soporte directo desde virsh o interfaz gráfica.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;instalación-del-entorno&#34;&gt;Instalación del entorno&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;bash
+sudo dnf install @virtualization
+sudo systemctl enable --now libvirtd
+sudo usermod -aG libvirt $USER
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;configuración-de-la-vm&#34;&gt;Configuración de la VM&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Descargar la ISO de Kali desde kali.org.&lt;/li&gt;
+&lt;li&gt;Crear nueva VM en virt-manager.&lt;/li&gt;
+&lt;li&gt;RAM: 4 GB como mínimo.&lt;/li&gt;
+&lt;li&gt;Disco: 40 GB (formato qcow2). Con menos espacio se compromete la actualización del sistema.&lt;/li&gt;
+&lt;li&gt;Red: NAT por defecto. Para auditorías específicas se configura red puente.&lt;/li&gt;
+&lt;li&gt;Particionado: &amp;ldquo;Todo en una partición&amp;rdquo; para evitar tablas MBR/MSDOS con swap intermedia (para una VM esto es suficiente, en un servidor productivo recomendaría particiones específicas para /home, /var, etc. )&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;gestión-de-instantáneas&#34;&gt;Gestión de instantáneas&lt;/h2&gt;
+&lt;p&gt;Las instantáneas se crean con la VM apagada para garantizar consistencia.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
