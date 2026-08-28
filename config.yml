@@ -25,7 +25,7 @@ params:
     enabled: true
     title: "Gonzalo Areco"
     subtitle: "Data Scientist · Linux Admin · Ethical Hacking"
-    imageUrl: "img/el-tux-rengo.png" 
+    imageUrl: "/blog/img/el-tux-rengo.png" 
     imageTitle: "Gonzalo Areco"
     buttons:
       - name: "Posts"
